@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-11-07T11:35:27.107Z</updated>
+  <updated>2020-11-11T01:26:17.852Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,69 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>post_name</title>
+    <link href="http://example.com/2020/11/10/post-name/"/>
+    <id>http://example.com/2020/11/10/post-name/</id>
+    <published>2020-11-10T13:10:35.000Z</published>
+    <updated>2020-11-11T01:26:17.852Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/.com//blog/source/_posts/post-name/timg.jpg"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/.com//blog/source/_posts/post-name/timg.jpg&quot;&gt;&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>article_name</title>
+    <link href="http://example.com/2020/11/10/article-name/"/>
+    <id>http://example.com/2020/11/10/article-name/</id>
+    <published>2020-11-10T12:51:56.000Z</published>
+    <updated>2020-11-10T12:51:56.614Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>node重新安装依赖模块</title>
+    <link href="http://example.com/2020/11/10/node%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E6%A8%A1%E5%9D%97/"/>
+    <id>http://example.com/2020/11/10/node%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E6%A8%A1%E5%9D%97/</id>
+    <published>2020-11-10T12:26:06.000Z</published>
+    <updated>2020-11-10T13:12:25.982Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/.com//timg.jpg" alt="dfsdf"><br>windows操作系统 </p><p>npm install -g rimraf<br>rimraf node_modules<br>rimraf package-lock.json</p><a id="more"></a><p>Linux操作系统</p><p>rm -rf node_modules<br>rm package-lock.json</p><p>2.清除缓存（非必须）下方代码不分操作系统</p><p>npm cache clear –force</p><p>3.重新安装依赖包，安装完成会自动生成package-lock.json</p><p>npm config install -g cnpm –registry=<a href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/.com//timg.jpg&quot; alt=&quot;dfsdf&quot;&gt;&lt;br&gt;windows操作系统 &lt;/p&gt;
+&lt;p&gt;npm install -g rimraf&lt;br&gt;rimraf node_modules&lt;br&gt;rimraf package-lock.json&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="node" scheme="http://example.com/categories/node/"/>
+    
+    
+    <category term="博客           //多个标签可以这样添加" scheme="http://example.com/tags/%E5%8D%9A%E5%AE%A2-%E5%A4%9A%E4%B8%AA%E6%A0%87%E7%AD%BE%E5%8F%AF%E4%BB%A5%E8%BF%99%E6%A0%B7%E6%B7%BB%E5%8A%A0/"/>
+    
+    <category term="hexo" scheme="http://example.com/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
     <title>我的第一篇博客文章</title>
     <link href="http://example.com/2020/11/07/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/"/>
     <id>http://example.com/2020/11/07/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</id>
     <published>2020-11-07T11:35:27.000Z</published>
-    <updated>2020-11-07T11:35:27.107Z</updated>
+    <updated>2020-11-10T11:39:55.211Z</updated>
     
     
     
