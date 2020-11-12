@@ -166,18 +166,7 @@
 </ol>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> <span class="type">shell01</span>]<span class="comment"># source first_shell.sh</span></span><br><span class="line">hello world</span><br><span class="line">hello world</span><br><span class="line">hello world</span><br></pre></td></tr></table></figure>
 
-<p><strong>小试牛刀：</strong>写一个木有灵魂的脚本，要求如下：</p>
-<ol>
-<li><p>删除/tmp/目录下的所有文件</p>
-</li>
-<li><p>然后在/tmp目录里创建3个目录，分别是dir1~dir3     </p>
-</li>
-<li><p>拷贝/etc/hosts文件到刚创建的dir1目录里       </p>
-</li>
-<li><p>最后打印”==报告首长，任务已于2019-05-05 10:10:10时间完成==”内容   </p>
-<p><code>echo &quot;报告首长，任务已于$(date +&#39;%F %T&#39;)&quot;</code></p>
-</li>
-</ol>
+
 <h1 id="二、变量的定义"><a href="#二、变量的定义" class="headerlink" title="==二、变量的定义=="></a>==二、变量的定义==</h1><h2 id="1-变量是什么？"><a href="#1-变量是什么？" class="headerlink" title="1. 变量是什么？"></a>1. 变量是什么？</h2><p>一句话概括：变量是用来临时保存数据的，该数据是可以变化的数据。</p>
 <h2 id="2-什么时候需要定义变量？"><a href="#2-什么时候需要定义变量？" class="headerlink" title="2. 什么时候需要定义变量？"></a>2. 什么时候需要定义变量？</h2><ul>
 <li>如果某个内容需要多次使用，并且在代码中<strong>重复出现</strong>，那么可以用变量代表该内容。这样在修改内容的时候，仅仅需要修改变量的值。</li>
