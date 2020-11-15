@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme-color" content=#58b77a>
+  <title>shell-case语句 | ming-2000</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Ming hongping">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <script id="hexo-configurations">
+  var CONFIG = {
+    root: '/',
+    theme: 'lx0.3.9',
+    version: '0.3.9',
+    localsearch:{
+      "enable": false,
+      "trigger": "auto",
+      "top_n_per_article": 1,
+      "unescape": false,
+      "preload": false
+      },
+    path: '-'
+  };
+</script>
+
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/css/main.min.css">
+  <style type="text/css">
+    pre,
+    code {
+      font-family: 'Fira Code', monospace;
+    }
+    html {
+      font-family: sans-serif;
+    }
+    body {
+      font-family: sans-serif;
+    }
+    h1, h2, h3, h4, h5, figure {
+      font-family: sans-serif;
+    }
+    .menu-container{
+      font-family: sans-serif;
+    }
+  </style>
+
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/js/jquery.jside.menu.js"></script>
+	<script>
+	$(document).ready(function(){
+	$(".menu-container").jSideMenu({
+	    jSidePosition: "position-right",
+	    jSideSticky: true,
+	    jSideSkin: "greenish",
+	     });
+	}); 
+	</script>
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="ming-2000" type="application/atom+xml">
+</head>
+<body>
+<div class="single">
+
+<div id="page">
+<div id="lx-aside" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/images/post_cover.jpeg)" data-stellar-background-ratio="0.5">
+  <div class="overlay">
+  <div class="page-title">
+    <div class="avatar"><a href="/"><img src="/images/avatar.jpeg"></a></div>
+    <span>2020-10-16</span>
+    <h2>shell-case语句</h2>
+    
+    </div>
+</div>
+</div>
+
+<div id="lx-main-content">
+  <div class="lx-post">
+    <div class="lx-entry padding">
+      <div>
+        <h3 id="1-语法结构"><a href="#1-语法结构" class="headerlink" title="1. 语法结构"></a>1. 语法结构</h3><a id="more"></a>
+
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">说明：pattern表示需要匹配的模式</span><br><span class="line"></span><br><span class="line">case var <span class="keyword">in</span>             定义变量;var代表是变量名</span><br><span class="line">pattern <span class="number">1</span>)              模式<span class="number">1</span>;用 | 分割多个模式，相当于or</span><br><span class="line">    command1            需要执行的语句</span><br><span class="line">    ;;                  两个分号代表命令结束</span><br><span class="line">pattern <span class="number">2</span>)</span><br><span class="line">    command2</span><br><span class="line">    ;;</span><br><span class="line">pattern <span class="number">3</span>)</span><br><span class="line">    command3</span><br><span class="line">    ;;</span><br><span class="line">		  *)              default，不满足以上模式，默认执行*)下面的语句</span><br><span class="line">    command4</span><br><span class="line">    ;;</span><br><span class="line">esac							esac表示case语句结束</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-应用案例"><a href="#2-应用案例" class="headerlink" title="2. 应用案例"></a>2. 应用案例</h3><h4 id="㈠-脚本传不同值做不同事"><a href="#㈠-脚本传不同值做不同事" class="headerlink" title="㈠ 脚本传不同值做不同事"></a>㈠ 脚本传不同值做不同事</h4><p>具体需求：当给程序传入start、stop、restart三个不同参数时分别执行相应命令</p>
+<p>powershell  </p>
+<pre><code>#!/bin/env bash
+case $1 in
+        start|S)
+        service apache start &amp;&gt;/dev/null &amp;&amp; echo &quot;apache 启动成功&quot;
+        ;;
+        stop|T)
+        service apache stop &amp;&gt;/dev/null &amp;&amp; echo &quot;apache 停止成功&quot;
+        ;;
+        restart|R)
+        service apache restart &amp;&gt;/dev/null &amp;&amp; echo &quot;apache 重启完毕&quot;
+        ;;
+        *)
+        echo &quot;请输入要做的事情...&quot;
+        ;;
+esac</code></pre>
+<h3 id="㈡-根据用户需求选择做事"><a href="#㈡-根据用户需求选择做事" class="headerlink" title="㈡ 根据用户需求选择做事"></a>㈡ 根据用户需求选择做事</h3><p><strong>具体需求：</strong></p>
+<p>脚本提示让用户输入需要管理的服务名，然后提示用户需要对服务做什么操作，如启动，关闭等操作</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/env bash</span></span><br><span class="line">read <span class="literal">-p</span> <span class="string">&quot;请输入你要管理的服务名称(vsftpd):&quot;</span> service</span><br><span class="line">case <span class="variable">$service</span> <span class="keyword">in</span></span><br><span class="line">        vsftpd|ftp)</span><br><span class="line">        read <span class="literal">-p</span> <span class="string">&quot;请选择你需要做的事情(restart|stop):&quot;</span> action</span><br><span class="line">        case <span class="variable">$action</span> <span class="keyword">in</span></span><br><span class="line">                stop|S)</span><br><span class="line">                service vsftpd stop &amp;&gt;/dev/null &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;该<span class="variable">$serivce</span>服务已经停止成功&quot;</span></span><br><span class="line">                ;;</span><br><span class="line">                <span class="built_in">start</span>)</span><br><span class="line">                service vsftpd <span class="built_in">start</span> &amp;&gt;/dev/null &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;该<span class="variable">$serivce</span>服务已经成功启动&quot;</span></span><br><span class="line">                ;;</span><br><span class="line">        esac</span><br><span class="line">        ;;</span><br><span class="line">        httpd|apache)</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;apache hello world&quot;</span></span><br><span class="line">        ;;</span><br><span class="line">        *)</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;请输入你要管理的服务名称(vsftpd)&quot;</span></span><br><span class="line">        ;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+
+<h3 id="㈢-菜单提示让用户选择需要做的事"><a href="#㈢-菜单提示让用户选择需要做的事" class="headerlink" title="㈢ 菜单提示让用户选择需要做的事"></a>㈢ 菜单提示让用户选择需要做的事</h3><p><strong>具体需求：</strong></p>
+<p>模拟一个多任务维护界面;当执行程序时先显示总菜单，然后进行选择后做相应维护监控操作</p>
+<p>powershell  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">**********请选择*********</span><br><span class="line">h	显示命令帮助</span><br><span class="line">f	显示磁盘分区</span><br><span class="line">d	显示磁盘挂载</span><br><span class="line">m	查看内存使用</span><br><span class="line">u	查看系统负载</span><br><span class="line">q	退出程序</span><br><span class="line">*************************</span><br></pre></td></tr></table></figure>
+
+<p><strong>思路：</strong></p>
+<ol>
+<li>菜单打印出来</li>
+<li>交互式让用户输入操作编号，然后做出相应处理</li>
+</ol>
+<p><strong>落地实现：</strong></p>
+<ol>
+<li>菜单打印(分解动作)</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/env bash</span></span><br><span class="line"><span class="built_in">cat</span> &lt;&lt;<span class="literal">-EOF</span></span><br><span class="line">	<span class="built_in">h</span>	显示命令帮助</span><br><span class="line">	f	显示磁盘分区</span><br><span class="line">	d	显示磁盘挂载</span><br><span class="line">	m	查看内存使用</span><br><span class="line">	u	查看系统负载</span><br><span class="line">	q	退出程序</span><br><span class="line">	EOF</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>最终实现</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">#打印菜单</span><br><span class="line">cat &lt;&lt;-EOF</span><br><span class="line">	h	显示命令帮助</span><br><span class="line">	f	显示磁盘分区</span><br><span class="line">	d	显示磁盘挂载</span><br><span class="line">	m	查看内存使用</span><br><span class="line">	u	查看系统负载</span><br><span class="line">	q	退出程序</span><br><span class="line">	EOF</span><br><span class="line"></span><br><span class="line">#让用户输入需要的操作</span><br><span class="line">while true</span><br><span class="line">do</span><br><span class="line">read -p &quot;请输入需要操作的选项[f|d]:&quot; var1</span><br><span class="line">case $var1 in</span><br><span class="line">	h)</span><br><span class="line">	cat &lt;&lt;-EOF</span><br><span class="line">        h       显示命令帮助</span><br><span class="line">        f       显示磁盘分区</span><br><span class="line">        d       显示磁盘挂载</span><br><span class="line">        m       查看内存使用</span><br><span class="line">        u       查看系统负载</span><br><span class="line">        q       退出程序</span><br><span class="line">	EOF</span><br><span class="line">	;;</span><br><span class="line">	f)</span><br><span class="line">	fdisk -l</span><br><span class="line">	;;</span><br><span class="line">	d)</span><br><span class="line">	df -h</span><br><span class="line">	;;</span><br><span class="line">	m)</span><br><span class="line">	free -m</span><br><span class="line">	;;</span><br><span class="line">	u)</span><br><span class="line">	uptime</span><br><span class="line">	;;</span><br><span class="line">	q)</span><br><span class="line">	exit</span><br><span class="line">	;;</span><br><span class="line">esac</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">#打印菜单</span><br><span class="line">menu()&#123;</span><br><span class="line">cat &lt;&lt;-END</span><br><span class="line">	h	显示命令帮助</span><br><span class="line">	f	显示磁盘分区</span><br><span class="line">	d	显示磁盘挂载</span><br><span class="line">	m	查看内存使用</span><br><span class="line">	u	查看系统负载</span><br><span class="line">	q	退出程序</span><br><span class="line">	END</span><br><span class="line">&#125;</span><br><span class="line">menu</span><br><span class="line">while true</span><br><span class="line">do</span><br><span class="line">read -p &quot;请输入你的操作[h for help]:&quot; var1</span><br><span class="line">case $var1 in</span><br><span class="line">	h)</span><br><span class="line">	menu</span><br><span class="line">	;;</span><br><span class="line">	f)</span><br><span class="line">	read -p &quot;请输入你要查看的设备名字[&#x2F;dev&#x2F;sdb]:&quot; var2</span><br><span class="line">	case $var2 in</span><br><span class="line">		&#x2F;dev&#x2F;sda)</span><br><span class="line">		fdisk -l &#x2F;dev&#x2F;sda</span><br><span class="line">		;;</span><br><span class="line">		&#x2F;dev&#x2F;sdb)</span><br><span class="line">		fdisk -l &#x2F;dev&#x2F;sdb</span><br><span class="line">		;;</span><br><span class="line">	esac</span><br><span class="line">	;;</span><br><span class="line">	d)</span><br><span class="line">	lsblk</span><br><span class="line">	;;</span><br><span class="line">	m)</span><br><span class="line">	free -m</span><br><span class="line">	;;</span><br><span class="line">	u)</span><br><span class="line">	uptime</span><br><span class="line">	;;</span><br><span class="line">	q)</span><br><span class="line">	exit</span><br><span class="line">	;;</span><br><span class="line">esac</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="lx-navigation">
+	<div class="lx-cover prev lx-cover-sm" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/images/footer-l.jpeg)">
+		<div class="overlay"></div>
+		<a class="copy" href="/2020/10/18/%E5%87%BD%E6%95%B0/">
+			<div class="display-t">
+				<div class="display-tc">
+					<div>
+						<span>Next</span>
+						<h3>shell-c...</h3>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+        <div class="lx-cover next lx-cover-sm" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/images/footer-r.jpeg)">
+		<div class="overlay"></div>
+		<a class="copy" href="/2020/10/11/Red-hat%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81/">
+			<div class="display-t">
+				<div class="display-tc">
+					<div>
+						<span>Prev</span>
+						<h3>Red hat...</h3>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+</div>
+
+</div>
+
+<footer>
+  <div>
+  Copyright &copy; 2019.<a href="/">ming-2000</a><br>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme <a href="https://lx.js.org" target="_blank">Lx</a><br>
+  </div>
+</footer>
+
+</div>
+
+<button class="hamburger hamburger--arrow-r" type="button">
+    <div class="hamburger-box">
+      <div class="hamburger-inner"></div>
+    </div>
+</button> 
+<div class="menu visibility">
+  <div class="menu-head">
+    <span class="layer">
+      <div class="col">
+        <div class="row for-pic">
+          <div class="profile-pic">
+            <a href="/"><img src="/images/avatar.jpeg" alt="Ming hongping"/></a>
+          </div>
+        </div>
+        <div class="row for-name">
+          <p>Ming hongping</p>
+          <span class="tagline">Hello!</span>
+        </div>
+      </div>
+    </span>
+  </div>
+  <nav class="menu-container">
+  <ul class="menu-items">
+    <li><a href="/"><i class="fa fa-home fa-fw"></i>首页</a></li>
+    <li><a href="/archives/"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+    
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-bookmark fa-fw"></i>页面</span>
+        <ul>
+          <li><a href="/guestbook/">Guestbook</a></li>
+        <li><a href="/about/">About</a></li>
+        </ul>
+    </li>
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-link fa-fw"></i>友链</span>
+        <ul>
+          <li> <a href="https://lx.js.org" target="_blank">Theme-Lx</a></li>
+        </ul>
+    </li>
+  </ul>
+  </nav>
+</div>
+
+<div class="gototop js-top">
+  <a href="#" class="js-gotop"><i class="fa fa-arrow-up"></i></a>
+</div>
+<script src="//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/js/jquery.easing.min.js"></script>
+<script>
+(function () {
+	"use strict";
+	var goToTop = function() {
+		$(".js-gotop").on("click", function(event){
+			event.preventDefault();
+			$("html, body").animate({
+				scrollTop: $("html").offset().top
+			}, 500, "easeInOutExpo");
+			return false;
+		});
+		$(window).scroll(function(){
+			var $win = $(window);
+			if ($win.scrollTop() > 200) {
+				$(".js-top").addClass("active");
+			} else {
+				$(".js-top").removeClass("active");
+			}
+		});
+	};
+	$(function(){
+		goToTop();
+	});
+}());
+</script>
+
+
+</body>
+</html>

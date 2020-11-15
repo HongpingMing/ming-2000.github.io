@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme-color" content=#58b77a>
+  <title>shell-for循环 | ming-2000</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Ming hongping">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <script id="hexo-configurations">
+  var CONFIG = {
+    root: '/',
+    theme: 'lx0.3.9',
+    version: '0.3.9',
+    localsearch:{
+      "enable": false,
+      "trigger": "auto",
+      "top_n_per_article": 1,
+      "unescape": false,
+      "preload": false
+      },
+    path: '-'
+  };
+</script>
+
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/css/main.min.css">
+  <style type="text/css">
+    pre,
+    code {
+      font-family: 'Fira Code', monospace;
+    }
+    html {
+      font-family: sans-serif;
+    }
+    body {
+      font-family: sans-serif;
+    }
+    h1, h2, h3, h4, h5, figure {
+      font-family: sans-serif;
+    }
+    .menu-container{
+      font-family: sans-serif;
+    }
+  </style>
+
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/js/jquery.jside.menu.js"></script>
+	<script>
+	$(document).ready(function(){
+	$(".menu-container").jSideMenu({
+	    jSidePosition: "position-right",
+	    jSideSticky: true,
+	    jSideSkin: "greenish",
+	     });
+	}); 
+	</script>
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="ming-2000" type="application/atom+xml">
+</head>
+<body>
+<div class="single">
+
+<div id="page">
+<div id="lx-aside" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/images/post_cover.jpeg)" data-stellar-background-ratio="0.5">
+  <div class="overlay">
+  <div class="page-title">
+    <div class="avatar"><a href="/"><img src="/images/avatar.jpeg"></a></div>
+    <span>2020-10-26</span>
+    <h2>shell-for循环</h2>
+    
+    </div>
+</div>
+</div>
+
+<div id="lx-main-content">
+  <div class="lx-post">
+    <div class="lx-entry padding">
+      <div>
+        <h3 id="㈠-列表循环"><a href="#㈠-列表循环" class="headerlink" title="㈠ 列表循环"></a>㈠ 列表循环</h3><h4 id="列表for循环：用于将一组命令执行知的次数"><a href="#列表for循环：用于将一组命令执行知的次数" class="headerlink" title="列表for循环：用于将一组命令执行知的次数"></a>列表for循环：用于将一组命令执行知的次数</h4><h4 id="基本语法格式"><a href="#基本语法格式" class="headerlink" title="基本语法格式"></a>基本语法格式</h4><a id="more"></a>
+
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> variable <span class="keyword">in</span> &#123;list&#125;  </span><br><span class="line"></span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">         command </span><br><span class="line">         command</span><br><span class="line">         …</span><br><span class="line">    done</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">for variable in a b c  </span><br><span class="line"></span><br><span class="line">    do</span><br><span class="line">        command</span><br><span class="line">        command</span><br><span class="line">    done  </span><br></pre></td></tr></table></figure>
+<p><strong>举例说明</strong></p>
+<p>  powershell</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">for var in &#123;1..10&#125;;do echo $var;done </span><br><span class="line">for var in 1 2 3 4 5;do echo $var;done    </span><br><span class="line">for var in &#96;seq 10&#96;;do echo $var;done   </span><br><span class="line">for var in $(seq 10);do echo $var;done  </span><br><span class="line">for var in &#123;0..10..2&#125;;do echo $var;done  </span><br><span class="line">for var in &#123;2..10..2&#125;;do echo $var;done  </span><br><span class="line">for var in &#123;10..1&#125;;do echo $var;done</span><br><span class="line">for var in &#123;10..1..-2&#125;;do echo $var;done   </span><br><span class="line">for var in &#96;seq 10 -2 1&#96;;do echo $var;done </span><br></pre></td></tr></table></figure>
+<h3 id="㈡-不带列表循环"><a href="#㈡-不带列表循环" class="headerlink" title="㈡ 不带列表循环"></a>㈡ 不带列表循环</h3><h4 id="不带列表的for循环执行时由用户指定参数和参数的个数"><a href="#不带列表的for循环执行时由用户指定参数和参数的个数" class="headerlink" title="不带列表的for循环执行时由用户指定参数和参数的个数"></a>不带列表的for循环执行时由用户指定参数和参数的个数</h4><h4 id="基本语法格式-1"><a href="#基本语法格式-1" class="headerlink" title="基本语法格式"></a>基本语法格式</h4><p>powershell  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">for variable  </span><br><span class="line">do  </span><br><span class="line">       command </span><br><span class="line">    command</span><br><span class="line">    …</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<h4 id="举例说明"><a href="#举例说明" class="headerlink" title="举例说明"></a>举例说明</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">	<span class="comment">#!/bin/bash</span></span><br><span class="line">	<span class="keyword">for</span> var</span><br><span class="line">	<span class="keyword">do</span></span><br><span class="line">		<span class="built_in">echo</span> <span class="variable">$var</span></span><br><span class="line">	done</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;脚本后面有<span class="variable">$</span>#个参数&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="㈢-类C风格的for循环"><a href="#㈢-类C风格的for循环" class="headerlink" title="㈢ 类C风格的for循环"></a>㈢ 类C风格的for循环</h3><h4 id="基本语法结构"><a href="#基本语法结构" class="headerlink" title="基本语法结构"></a>基本语法结构</h4><p>powershell   </p>
+<pre><code>for(( expr1;expr2;expr3 ))
+    do
+        command
+        command
+        …
+    done
+for (( i=1;i&lt;=5;i++))
+    do
+      echo $i
+    done</code></pre>
+<p>expr1：定义变量并赋初值<br>expr2：决定是否进行循环（条件）<br>expr3：决定循环变量如何改变，决定循环什么时候退出</p>
+<h4 id="举例说明-1"><a href="#举例说明-1" class="headerlink" title="举例说明"></a>举例说明</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">powershell  </span><br><span class="line"></span><br><span class="line"> # for ((i&#x3D;1;i&lt;&#x3D;5;i++));do echo $i;done   </span><br><span class="line"> # for ((i&#x3D;1;i&lt;&#x3D;10;i+&#x3D;2));do echo $i;done  </span><br><span class="line"> # for ((i&#x3D;2;i&lt;&#x3D;10;i+&#x3D;2));do echo $i;done  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="2-应用案例"><a href="#2-应用案例" class="headerlink" title="2. 应用案例"></a>2. 应用案例</h2><h3 id="㈠-脚本计算1-100奇数和"><a href="#㈠-脚本计算1-100奇数和" class="headerlink" title="㈠ 脚本计算1-100奇数和"></a>㈠ 脚本计算1-100奇数和</h3><h4 id="①-思路"><a href="#①-思路" class="headerlink" title="① 思路"></a>① 思路</h4><ol>
+<li>定义一个变量来保存奇数的和   ==sum===0</li>
+<li>找出1-100的奇数，保存到另一个变量里 i 遍历出来的奇数</li>
+<li>从1-100中找出奇数后，再相加，然后将和赋值给变量  循环变量  for</li>
+<li>遍历完毕后，将sum的值打印出来<h4 id="②-落地实现（条条大路通罗马）"><a href="#②-落地实现（条条大路通罗马）" class="headerlink" title="② 落地实现（条条大路通罗马）"></a>② 落地实现（条条大路通罗马）</h4></li>
+</ol>
+<p>powershell<br><code>#!/bin/env bash</code><br>计算1-100的奇数和<br>定义变量来保存奇数和  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sum&#x3D;0</span><br><span class="line"></span><br><span class="line">for &amp;emsp; &amp;emsp;循环遍历1-100的奇数，并且相加，把结果重新赋值给sum</span><br><span class="line"></span><br><span class="line">for i in &#123;1..100..2&#125;</span><br><span class="line">do</span><br><span class="line">	let sum&#x3D;$sum+$i</span><br><span class="line">done  &amp;emsp; &amp;emsp;打印所有奇数的和</span><br><span class="line"></span><br><span class="line">echo &quot;1-100的奇数和是:$sum&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>方法1：</strong></p>
+<pre><code>#!/bin/bash
+sum=0
+for i in &#123;1..100..2&#125;
+do
+    sum=$[$i+$sum]
+done
+echo &quot;1-100的奇数和为:$sum&quot;</code></pre>
+<p><strong>方法2：</strong></p>
+<pre><code>#!/bin/bash
+sum=0
+for ((i=1;i&lt;=100;i+=2))
+do
+    let sum=$i+$sum
+done
+echo &quot;1-100的奇数和为:$sum&quot;</code></pre>
+<p><strong>方法3：</strong></p>
+<pre><code>#!/bin/bash
+sum=0
+for ((i=1;i&lt;=100;i++))
+do
+    if [ $[$i%2] -ne 0 ];then
+    let sum=$sum+$i
+    fi  </code></pre>
+<p><code>或者 </code>   </p>
+<pre><code>test $[$i%2] -ne 0 &amp;&amp; let sum=$sum+$i
+
+done
+echo &quot;1-100的奇数和为:$sum&quot;</code></pre>
+<p><strong>方法4：</strong>  </p>
+<pre><code>sum=0
+for ((i=1;i&lt;=100;i++))
+do
+    if [ $[$i%2] -eq 0 ];then
+    continue
+    else
+    let sum=$sum+$i
+    fi
+done
+echo &quot;1-100的奇数和为:$sum&quot;
+
+#!/bin/bash
+sum=0
+for ((i=1;i&lt;=100;i++))
+do
+    test $[$i%2] -eq 0 &amp;&amp; continue || let sum=sum+$i
+done
+echo &quot;1-100的奇数和是:$sum&quot;</code></pre>
+<h4 id="③-循环控制语句"><a href="#③-循环控制语句" class="headerlink" title="③ 循环控制语句"></a>③ 循环控制语句</h4><p><strong>循环体：</strong> do….done之间的内容</p>
+<ul>
+<li>continue：继续；表示循环体内下面的代码不执行，重新开始下一次循环</li>
+<li>break：打断；马上停止执行本次循环，执行循环体后面的代码</li>
+<li>exit：表示直接跳出程序</li>
+</ul>
+<p>shell   </p>
+<pre><code>[root@server ~]# cat for5.sh 
+#!/bin/bash
+for i in &#123;1..5&#125;
+do
+    test $i -eq 2 &amp;&amp; break || touch /tmp/file$i
+done
+echo hello hahahah</code></pre>
+<h3 id="㈡-判断所输整数是否为质数"><a href="#㈡-判断所输整数是否为质数" class="headerlink" title="㈡ 判断所输整数是否为质数"></a>㈡ 判断所输整数是否为质数</h3><p><strong>质数(素数)：</strong>只能被1和它本身整除的数叫质数。   </p>
+<p>2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97</p>
+<h4 id="①-思路-1"><a href="#①-思路-1" class="headerlink" title="① 思路"></a>① 思路</h4><ol>
+<li>让用户输入一个数，保存到一个变量里   <code>read -p &quot;请输入一个正整数:&quot; num</code></li>
+<li>如果能被其他数整除就不是质数——&gt;<code>$num%$i </code>是否等于0    <code>$i=2到​$num-1</code></li>
+<li>如果输入的数是1或者2取模根据上面判断又不符合，所以先排除1和2</li>
+<li>测试序列从2开始，输入的数是4——&gt;得出结果<code>$num</code>不能和<code>$i</code>相等，并且<code>$num</code>不能小于<code>$i</code></li>
+</ol>
+<h4 id="②-落地实现"><a href="#②-落地实现" class="headerlink" title="② 落地实现"></a>② 落地实现</h4><pre><code>powershell
+#!/bin/env bash
+#定义变量来保存用户所输入数字
+read -p &quot;请输入一个正整数字:&quot; number
+
+#先排除用户输入的数字1和2
+[ $number -eq 1 ] &amp;&amp; echo &quot;$number不是质数&quot; &amp;&amp; exit
+[ $number -eq 2 ] &amp;&amp; echo &quot;$number是质数&quot; &amp;&amp; exit
+
+#循环判断用户所输入的数字是否质数
+
+for i in `seq 2 $[$number-1]`
+    do
+     [ $[$number%$i] -eq 0 ] &amp;&amp; echo &quot;$number不是质数&quot; &amp;&amp; exit
+    done
+echo &quot;$number是质数&quot;</code></pre>
+<p>优化思路：没有必要全部产生2~$[$number-1]序列，只需要产生一半即可。</p>
+<p>更好解决办法：类C风格完美避开了生成序列的坑</p>
+<pre><code>for (( i=2;i&lt;=$[$number-1];i++))
+do
+        [ $[$number%$i] -eq 0 ] &amp;&amp; echo &quot;$number不是质数&quot; &amp;&amp; exit
+
+done
+echo &quot;$number是质数&quot;</code></pre>
+<h3 id="㈢-批量创建用户"><a href="#㈢-批量创建用户" class="headerlink" title="㈢ 批量创建用户"></a>㈢ 批量创建用户</h3><p><strong>需求：</strong>批量加5个新用户，以u1到u5命名，并统一加一个新组，组名为class,统一改密码为123</p>
+<h4 id="①-思路-2"><a href="#①-思路-2" class="headerlink" title="① 思路"></a>① 思路</h4><ol>
+<li><p>添加用户的命令    <code>useradd -G class</code></p>
+</li>
+<li><p>判断class组是否存在  <code>grep -w ^class /etc/group</code> 或者<code>groupadd class</code></p>
+</li>
+<li><p>根据题意，判断该脚本循环5次来添加用户  <code>for</code></p>
+</li>
+<li><p>给用户设置密码，应该放到循环体里面</p>
+<h4 id="②-落地实现-1"><a href="#②-落地实现-1" class="headerlink" title="② 落地实现"></a>② 落地实现</h4> <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">	<span class="comment">#!/bin/env bash</span></span><br><span class="line">	<span class="comment">#判断class组是否存在</span></span><br><span class="line">	grep <span class="literal">-w</span> ^<span class="class"><span class="keyword">class</span> /<span class="title">etc</span>/<span class="title">group</span> &amp;&gt;/<span class="title">dev</span>/<span class="title">null</span></span></span><br><span class="line"><span class="class">	<span class="title">test</span> $? -<span class="title">ne</span> 0 &amp;&amp; <span class="title">groupadd</span> <span class="title">class</span></span></span><br><span class="line"><span class="class">	</span></span><br><span class="line"><span class="class">	#循环创建用户</span></span><br><span class="line"><span class="class">	<span class="title">for</span> ((<span class="title">i</span>=1;<span class="title">i</span>&lt;=5;<span class="title">i</span>++))</span></span><br><span class="line"><span class="class">	<span class="title">do</span></span></span><br><span class="line"><span class="class">		<span class="title">useradd</span> -<span class="title">G</span> <span class="title">class</span> <span class="title">u</span>$<span class="title">i</span></span></span><br><span class="line"><span class="class">		<span class="title">echo</span> 123|<span class="title">passwd</span> --<span class="title">stdin</span> <span class="title">u</span>$<span class="title">i</span></span></span><br><span class="line"><span class="class">	<span class="title">done</span></span></span><br><span class="line"><span class="class">	#用户创建信息保存日志文件</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">**方法一：**  </span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">	#!/<span class="title">bin</span>/<span class="title">bash</span></span></span><br><span class="line"><span class="class">	</span></span><br><span class="line"><span class="class">	<span class="title">grep</span> -<span class="title">w</span> <span class="title">class</span> /<span class="title">etc</span>/<span class="title">group</span> &amp;&gt;/<span class="title">dev</span>/<span class="title">null</span>  #判断<span class="title">class</span>组是否存在</span></span><br><span class="line"><span class="class">	[ $? -<span class="title">ne</span> 0 ] &amp;&amp; <span class="title">groupadd</span> <span class="title">class</span></span></span><br><span class="line"><span class="class">	</span></span><br><span class="line"><span class="class">	<span class="title">for</span> <span class="title">i</span> <span class="title">in</span></span> &#123;<span class="number">1</span>..<span class="number">5</span>&#125;  <span class="comment">#批量创建5个用户</span></span><br><span class="line">	<span class="keyword">do</span></span><br><span class="line">		useradd <span class="literal">-G</span> <span class="class"><span class="keyword">class</span> <span class="title">u</span>$<span class="title">i</span></span></span><br><span class="line"><span class="class">		<span class="title">echo</span> 123|<span class="title">passwd</span> --<span class="title">stdin</span> <span class="title">u</span>$<span class="title">i</span></span></span><br><span class="line"><span class="class">	<span class="title">done</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">**方法二：**  </span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">	#!/<span class="title">bin</span>/<span class="title">bash</span></span></span><br><span class="line"><span class="class">	#判断<span class="title">class</span>组是否存在</span></span><br><span class="line"><span class="class">	<span class="title">cut</span> -<span class="title">d</span>: -<span class="title">f1</span> /<span class="title">etc</span>/<span class="title">group</span>|<span class="title">grep</span> -<span class="title">w</span> <span class="title">class</span> &amp;&gt;/<span class="title">dev</span>/<span class="title">null</span></span></span><br><span class="line"><span class="class">	[ $? -<span class="title">ne</span> 0 ] &amp;&amp; <span class="title">groupadd</span> <span class="title">class</span></span></span><br><span class="line"><span class="class">	</span></span><br><span class="line"><span class="class">	#循环增加用户，循环次数5次，<span class="title">for</span>循环,给用户设定密码</span></span><br><span class="line"><span class="class">	<span class="title">for</span> ((<span class="title">i</span>=1;<span class="title">i</span>&lt;=5;<span class="title">i</span>++))</span></span><br><span class="line"><span class="class">	<span class="title">do</span></span></span><br><span class="line"><span class="class">		<span class="title">useradd</span> <span class="title">u</span>$<span class="title">i</span> -<span class="title">G</span> <span class="title">class</span></span></span><br><span class="line"><span class="class">		<span class="title">echo</span> 123|<span class="title">passwd</span> --<span class="title">stdin</span> <span class="title">u</span>$<span class="title">i</span></span></span><br><span class="line"><span class="class">	<span class="title">done</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">**方法三：**</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">	#!/<span class="title">bin</span>/<span class="title">bash</span></span></span><br><span class="line"><span class="class">	<span class="title">grep</span> -<span class="title">w</span> <span class="title">class</span> /<span class="title">etc</span>/<span class="title">group</span> &amp;&gt;/<span class="title">dev</span>/<span class="title">null</span></span></span><br><span class="line"><span class="class">	<span class="title">test</span> $? -<span class="title">ne</span> 0 &amp;&amp; <span class="title">groupadd</span> <span class="title">class</span>    </span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">	或者  </span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">	<span class="title">groupadd</span> <span class="title">class</span> &amp;&gt;/<span class="title">dev</span>/<span class="title">null</span></span></span><br><span class="line"><span class="class">	<span class="title">for</span> ((<span class="title">i</span>=1;<span class="title">i</span>&lt;=5;<span class="title">i</span>++))</span></span><br><span class="line"><span class="class">	<span class="title">do</span></span></span><br><span class="line"><span class="class">	<span class="title">useradd</span> -<span class="title">G</span> <span class="title">class</span> <span class="title">u</span>$<span class="title">i</span> &amp;&amp; <span class="title">echo</span> 123|<span class="title">passwd</span> --<span class="title">stdin</span> <span class="title">u</span>$<span class="title">i</span></span></span><br><span class="line"><span class="class">	<span class="title">done</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">### （四）判断局域网内主机网络通讯</span></span><br><span class="line"><span class="class">**需求：**</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">写一个脚本，局域网内，把能<span class="title">ping</span>通的<span class="title">IP</span>和不能<span class="title">ping</span>通的<span class="title">IP</span>分类，并保存到两个文本文件里  </span></span><br><span class="line"><span class="class">以10.1.1.1~10.1.1.10为例</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">```<span class="title">powershell</span></span></span><br><span class="line"><span class="class">10.1.1.1~10.1.1.254</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">	#!/<span class="title">bin</span>/<span class="title">bash</span></span></span><br><span class="line"><span class="class">	#定义变量</span></span><br><span class="line"><span class="class">	<span class="title">ip</span>=10.1.1</span></span><br><span class="line"><span class="class">	#循环去<span class="title">ping</span>主机的<span class="title">IP</span></span></span><br><span class="line"><span class="class">	<span class="title">for</span> ((<span class="title">i</span>=1;<span class="title">i</span>&lt;=10;<span class="title">i</span>++))</span></span><br><span class="line"><span class="class">	<span class="title">do</span></span></span><br><span class="line"><span class="class">		<span class="title">ping</span> -<span class="title">c1</span> $<span class="title">ip</span>.$<span class="title">i</span> &amp;&gt;/<span class="title">dev</span>/<span class="title">null</span></span></span><br><span class="line"><span class="class">		<span class="title">if</span> [ $? -<span class="title">eq</span> 0 ];<span class="title">then</span></span></span><br><span class="line"><span class="class">			<span class="title">echo</span> &quot;$<span class="title">ip</span>.$<span class="title">i</span> <span class="title">is</span> <span class="title">ok</span>&quot; &gt;&gt; /<span class="title">tmp</span>/<span class="title">ip_up</span>.<span class="title">txt</span></span></span><br><span class="line"><span class="class">		<span class="title">else</span></span></span><br><span class="line"><span class="class">			<span class="title">echo</span> &quot;$<span class="title">ip</span>.$<span class="title">i</span> <span class="title">is</span> <span class="title">down</span>&quot; &gt;&gt; /<span class="title">tmp</span>/<span class="title">ip_down</span>.<span class="title">txt</span></span></span><br><span class="line"><span class="class">		<span class="title">fi</span>  </span></span><br></pre></td></tr></table></figure>
+<pre><code> 或者  </code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">	[ $? -eq 0 ] &amp;&amp; echo &quot;$ip.$i is ok&quot; &gt;&gt; &#x2F;tmp&#x2F;ip_up.txt || echo &quot;$ip.$i is down&quot; &gt;&gt; &#x2F;tmp&#x2F;ip_down.txt</span><br><span class="line">		done</span><br><span class="line"></span><br><span class="line">[root@server shell03]# time .&#x2F;ping.sh         </span><br><span class="line"></span><br><span class="line">real    0m24.129s</span><br><span class="line">user    0m0.006s</span><br><span class="line">sys     0m0.005s</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p><strong>延伸扩展：shell脚本并发</strong></p>
+<p>powershell<br>并行执行：<br>{程序}&amp;表示将程序放到后台并行执行，如果需要等待程序执行完毕再进行下面内容，需要加wait</p>
+<pre><code>#!/bin/bash
+#定义变量
+ip=10.1.1
+#循环去ping主机的IP
+for ((i=1;i&lt;=10;i++))
+do
+&#123;
+
+        ping -c1 $ip.$i &amp;&gt;/dev/null
+        if [ $? -eq 0 ];then
+                echo &quot;$ip.$i is ok&quot; &gt;&gt; /tmp/ip_up.txt
+        else
+                echo &quot;$ip.$i is down&quot; &gt;&gt; /tmp/ip_down.txt
+        fi
+&#125;&amp;
+done
+wait
+echo &quot;ip is ok....&quot;
+
+[root@server ~]# time ./ping.sh 
+ip is ok...
+
+real    0m3.091s
+user    0m0.001s
+sys     0m0.008s</code></pre>
+<h3 id="㈢-判断闰年"><a href="#㈢-判断闰年" class="headerlink" title="㈢ 判断闰年"></a>㈢ 判断闰年</h3><p><strong>需求3：</strong></p>
+<p>输入一个年份，判断是否是润年（能被4整除但不能被100整除，或能被400整除的年份即为闰年）</p>
+<pre><code class="powershell">
+    #!/bin/bash
+    read -p &quot;Please input year:(2017)&quot; year
+    if [ $[$year%4] -eq 0 -a $[$year%100] -ne 0 ];then
+        echo &quot;$year is leap year&quot;
+    elif [ $[$year%400] -eq 0 ];then
+        echo &quot;$year is leap year&quot;
+    else
+        echo &quot;$year is not leap year&quot;
+    fi
+
+</code></pre>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="lx-navigation">
+	<div class="lx-cover prev lx-cover-sm" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/images/footer-l.jpeg)">
+		<div class="overlay"></div>
+		<a class="copy" href="/2020/11/10/node%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E6%A8%A1%E5%9D%97-1/">
+			<div class="display-t">
+				<div class="display-tc">
+					<div>
+						<span>Next</span>
+						<h3>node重新安...</h3>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+        <div class="lx-cover next lx-cover-sm" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/images/footer-r.jpeg)">
+		<div class="overlay"></div>
+		<a class="copy" href="/2020/10/20/shell%E7%BC%96%E7%A8%8B%E4%B9%8B%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89/">
+			<div class="display-t">
+				<div class="display-tc">
+					<div>
+						<span>Prev</span>
+						<h3>shell变量定义</h3>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+</div>
+
+</div>
+
+<footer>
+  <div>
+  Copyright &copy; 2019.<a href="/">ming-2000</a><br>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme <a href="https://lx.js.org" target="_blank">Lx</a><br>
+  </div>
+</footer>
+
+</div>
+
+<button class="hamburger hamburger--arrow-r" type="button">
+    <div class="hamburger-box">
+      <div class="hamburger-inner"></div>
+    </div>
+</button> 
+<div class="menu visibility">
+  <div class="menu-head">
+    <span class="layer">
+      <div class="col">
+        <div class="row for-pic">
+          <div class="profile-pic">
+            <a href="/"><img src="/images/avatar.jpeg" alt="Ming hongping"/></a>
+          </div>
+        </div>
+        <div class="row for-name">
+          <p>Ming hongping</p>
+          <span class="tagline">Hello!</span>
+        </div>
+      </div>
+    </span>
+  </div>
+  <nav class="menu-container">
+  <ul class="menu-items">
+    <li><a href="/"><i class="fa fa-home fa-fw"></i>首页</a></li>
+    <li><a href="/archives/"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+    
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-bookmark fa-fw"></i>页面</span>
+        <ul>
+          <li><a href="/guestbook/">Guestbook</a></li>
+        <li><a href="/about/">About</a></li>
+        </ul>
+    </li>
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-link fa-fw"></i>友链</span>
+        <ul>
+          <li> <a href="https://lx.js.org" target="_blank">Theme-Lx</a></li>
+        </ul>
+    </li>
+  </ul>
+  </nav>
+</div>
+
+<div class="gototop js-top">
+  <a href="#" class="js-gotop"><i class="fa fa-arrow-up"></i></a>
+</div>
+<script src="//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/js/jquery.easing.min.js"></script>
+<script>
+(function () {
+	"use strict";
+	var goToTop = function() {
+		$(".js-gotop").on("click", function(event){
+			event.preventDefault();
+			$("html, body").animate({
+				scrollTop: $("html").offset().top
+			}, 500, "easeInOutExpo");
+			return false;
+		});
+		$(window).scroll(function(){
+			var $win = $(window);
+			if ($win.scrollTop() > 200) {
+				$(".js-top").addClass("active");
+			} else {
+				$(".js-top").removeClass("active");
+			}
+		});
+	};
+	$(function(){
+		goToTop();
+	});
+}());
+</script>
+
+
+</body>
+</html>
