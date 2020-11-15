@@ -1,95 +1,251 @@
+
+
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh" data-default-color-scheme=&#34;auto&#34;>
+
+
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="theme-color" content=#58b77a>
-  <title>shell-case语句 | ming-2000</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
   <meta name="author" content="Ming hongping">
   <meta name="keywords" content="">
-  <meta name="description" content="">
-  <script id="hexo-configurations">
-  var CONFIG = {
-    root: '/',
-    theme: 'lx0.3.9',
-    version: '0.3.9',
-    localsearch:{
-      "enable": false,
-      "trigger": "auto",
-      "top_n_per_article": 1,
-      "unescape": false,
-      "preload": false
-      },
-    path: '-'
-  };
-</script>
+  <title>shell-case语句 - ming-2000</title>
 
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/css/main.min.css">
-  <style type="text/css">
-    pre,
-    code {
-      font-family: 'Fira Code', monospace;
-    }
-    html {
-      font-family: sans-serif;
-    }
-    body {
-      font-family: sans-serif;
-    }
-    h1, h2, h3, h4, h5, figure {
-      font-family: sans-serif;
-    }
-    .menu-container{
-      font-family: sans-serif;
-    }
-  </style>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
-  <script src="//cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/js/jquery.jside.menu.js"></script>
-	<script>
-	$(document).ready(function(){
-	$(".menu-container").jSideMenu({
-	    jSidePosition: "position-right",
-	    jSideSticky: true,
-	    jSideSkin: "greenish",
-	     });
-	}); 
-	</script>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
   
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="ming-2000" type="application/atom+xml">
 </head>
+
+
 <body>
-<div class="single">
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
 
-<div id="page">
-<div id="lx-aside" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/images/post_cover.jpeg)" data-stellar-background-ratio="0.5">
-  <div class="overlay">
-  <div class="page-title">
-    <div class="avatar"><a href="/"><img src="/images/avatar.jpeg"></a></div>
-    <span>2020-10-18</span>
-    <h2>shell-case语句</h2>
-    
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Startseite
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archiv
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Kategorie
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Etiketten
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                Über mich
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
-</div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="shell-case语句">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-10-18 14:26" pubdate>
+        October 18, 2020 pm
+      </time>
+    </span>
+  
 </div>
 
-<div id="lx-main-content">
-  <div class="lx-post">
-    <div class="lx-entry padding">
-      <div>
-        <h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="1-什么是函数？"><a href="#1-什么是函数？" class="headerlink" title="1. 什么是函数？"></a>1. 什么是函数？</h2><ul>
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      21
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">shell-case语句</h1>
+            
+            <div class="markdown-body">
+              <h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="1-什么是函数？"><a href="#1-什么是函数？" class="headerlink" title="1. 什么是函数？"></a>1. 什么是函数？</h2><ul>
 <li>shell中允许将<strong>一组命令集合</strong>或<strong>语句</strong>形成一段<strong>可用代码</strong>，这些代码块称为shell函数</li>
 <li>给这段代码起个名字称为函数名，后续可以直接调用该段代码的功能</li>
 </ul>
 <h2 id="2-如何定义函数？"><a href="#2-如何定义函数？" class="headerlink" title="2. 如何定义函数？"></a>2. 如何定义函数？</h2><p><strong>方法1：</strong></p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">函数名()</span><br><span class="line">&#123;</span><br><span class="line">  函数体（一堆命令的集合，来实现某个功能）   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs powershell">函数名()
+&#123;
+  函数体（一堆命令的集合，来实现某个功能）   
+&#125;</code></pre>
 
 <p><strong>方法2：</strong></p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> 函数名<span class="params">()</span></span></span><br><span class="line">&#123;</span><br><span class="line">   函数体（一堆命令的集合，来实现某个功能）</span><br><span class="line">   <span class="built_in">echo</span> hello</span><br><span class="line">   <span class="built_in">echo</span> world</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs powershell"><span class="hljs-function"><span class="hljs-keyword">function</span> 函数名<span class="hljs-params">()</span></span>
+&#123;
+   函数体（一堆命令的集合，来实现某个功能）
+   <span class="hljs-built_in">echo</span> hello
+   <span class="hljs-built_in">echo</span> world
+&#125;
+</code></pre>
 
 <p><strong>函数中return说明:</strong></p>
 <ol>
@@ -97,11 +253,64 @@
 <li>return默认返回函数中最后一个命令状态值，也可以给定参数值，范围是0-256之间。</li>
 <li>如果没有return命令，函数将返回最后一个指令的退出状态值。</li>
 </ol>
-<h2 id="3-函数如何调用？"><a href="#3-函数如何调用？" class="headerlink" title="3. 函数如何调用？"></a>3. 函数如何调用？</h2><h3 id="㈠-当前命令行调用"><a href="#㈠-当前命令行调用" class="headerlink" title="㈠ 当前命令行调用"></a>㈠ 当前命令行调用</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> <span class="type">shell04</span>]<span class="comment"># cat fun1.sh </span></span><br><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line">hello()&#123;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;hello lilei <span class="variable">$1</span>&quot;</span></span><br><span class="line">hostname</span><br><span class="line">&#125;</span><br><span class="line">menu()&#123;</span><br><span class="line"><span class="built_in">cat</span> &lt;&lt;<span class="literal">-EOF</span></span><br><span class="line"><span class="number">1</span>. mysql</span><br><span class="line"><span class="number">2</span>. web</span><br><span class="line"><span class="number">3</span>. app</span><br><span class="line"><span class="number">4</span>. <span class="keyword">exit</span></span><br><span class="line">EOF</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> <span class="type">shell04</span>]<span class="comment"># source fun1.sh </span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> <span class="type">shell04</span>]<span class="comment"># . fun1.sh </span></span><br><span class="line"></span><br><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> <span class="type">shell04</span>]<span class="comment"># hello 888</span></span><br><span class="line">hello lilei <span class="number">888</span></span><br><span class="line">MissHou.itcast.cc</span><br><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> <span class="type">shell04</span>]<span class="comment"># menu</span></span><br><span class="line"><span class="number">1</span>. mysql</span><br><span class="line"><span class="number">2</span>. web</span><br><span class="line"><span class="number">3</span>. app</span><br><span class="line"><span class="number">4</span>. <span class="keyword">exit</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="3-函数如何调用？"><a href="#3-函数如何调用？" class="headerlink" title="3. 函数如何调用？"></a>3. 函数如何调用？</h2><h3 id="㈠-当前命令行调用"><a href="#㈠-当前命令行调用" class="headerlink" title="㈠ 当前命令行调用"></a>㈠ 当前命令行调用</h3><pre><code class="hljs powershell">[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> <span class="hljs-type">shell04</span>]<span class="hljs-comment"># cat fun1.sh </span>
+<span class="hljs-comment">#!/bin/bash</span>
+hello()&#123;
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;hello lilei <span class="hljs-variable">$1</span>&quot;</span>
+hostname
+&#125;
+menu()&#123;
+<span class="hljs-built_in">cat</span> &lt;&lt;<span class="hljs-literal">-EOF</span>
+<span class="hljs-number">1</span>. mysql
+<span class="hljs-number">2</span>. web
+<span class="hljs-number">3</span>. app
+<span class="hljs-number">4</span>. <span class="hljs-keyword">exit</span>
+EOF
+&#125;
 
-<h3 id="㈡-定义到用户的环境变量中"><a href="#㈡-定义到用户的环境变量中" class="headerlink" title="㈡ 定义到用户的环境变量中"></a>㈡ 定义到用户的环境变量中</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> <span class="type">shell05</span>]<span class="comment"># vim ~/.bashrc </span></span><br><span class="line">文件中增加如下内容：</span><br><span class="line">hello()&#123;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;hello lilei <span class="variable">$1</span>&quot;</span></span><br><span class="line">hostname</span><br><span class="line">&#125;</span><br><span class="line">menu()&#123;</span><br><span class="line"><span class="built_in">cat</span> &lt;&lt;<span class="literal">-EOF</span></span><br><span class="line"><span class="number">1</span>. mysql</span><br><span class="line"><span class="number">2</span>. web</span><br><span class="line"><span class="number">3</span>. app</span><br><span class="line"><span class="number">4</span>. <span class="keyword">exit</span></span><br><span class="line">EOF</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> <span class="hljs-type">shell04</span>]<span class="hljs-comment"># source fun1.sh </span>
+[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> <span class="hljs-type">shell04</span>]<span class="hljs-comment"># . fun1.sh </span>
+
+[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> <span class="hljs-type">shell04</span>]<span class="hljs-comment"># hello 888</span>
+hello lilei <span class="hljs-number">888</span>
+MissHou.itcast.cc
+[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> <span class="hljs-type">shell04</span>]<span class="hljs-comment"># menu</span>
+<span class="hljs-number">1</span>. mysql
+<span class="hljs-number">2</span>. web
+<span class="hljs-number">3</span>. app
+<span class="hljs-number">4</span>. <span class="hljs-keyword">exit</span>
+</code></pre>
+
+<h3 id="㈡-定义到用户的环境变量中"><a href="#㈡-定义到用户的环境变量中" class="headerlink" title="㈡ 定义到用户的环境变量中"></a>㈡ 定义到用户的环境变量中</h3><pre><code class="hljs powershell">[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> <span class="hljs-type">shell05</span>]<span class="hljs-comment"># vim ~/.bashrc </span>
+文件中增加如下内容：
+hello()&#123;
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;hello lilei <span class="hljs-variable">$1</span>&quot;</span>
+hostname
+&#125;
+menu()&#123;
+<span class="hljs-built_in">cat</span> &lt;&lt;<span class="hljs-literal">-EOF</span>
+<span class="hljs-number">1</span>. mysql
+<span class="hljs-number">2</span>. web
+<span class="hljs-number">3</span>. app
+<span class="hljs-number">4</span>. <span class="hljs-keyword">exit</span>
+EOF
+&#125;</code></pre>
 <p>注意：当用户打开bash的时候会读取该文件</p>
-<h3 id="㈢-脚本中调用"><a href="#㈢-脚本中调用" class="headerlink" title="㈢ 脚本中调用"></a>㈢ 脚本中调用</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="comment">#打印菜单</span></span><br><span class="line">source ./fun1.sh</span><br><span class="line">menu()&#123;</span><br><span class="line"><span class="built_in">cat</span> &lt;&lt;<span class="literal">-END</span></span><br><span class="line">	<span class="built_in">h</span>	显示命令帮助</span><br><span class="line">	f	显示磁盘分区</span><br><span class="line">	d	显示磁盘挂载</span><br><span class="line">	m	查看内存使用</span><br><span class="line">	u	查看系统负载</span><br><span class="line">	q	退出程序</span><br><span class="line">	<span class="keyword">END</span></span><br><span class="line">&#125;</span><br><span class="line">menu		//调用函数</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="㈢-脚本中调用"><a href="#㈢-脚本中调用" class="headerlink" title="㈢ 脚本中调用"></a>㈢ 脚本中调用</h3><pre><code class="hljs powershell"><span class="hljs-comment">#!/bin/bash</span>
+<span class="hljs-comment">#打印菜单</span>
+source ./fun1.sh
+menu()&#123;
+<span class="hljs-built_in">cat</span> &lt;&lt;<span class="hljs-literal">-END</span>
+	<span class="hljs-built_in">h</span>	显示命令帮助
+	f	显示磁盘分区
+	d	显示磁盘挂载
+	m	查看内存使用
+	u	查看系统负载
+	q	退出程序
+	<span class="hljs-keyword">END</span>
+&#125;
+menu		//调用函数
+</code></pre>
 
 <h2 id="4-应用案例"><a href="#4-应用案例" class="headerlink" title="4. 应用案例"></a>4. 应用案例</h2><p><strong>具体需求：</strong></p>
 <ol>
@@ -122,13 +331,63 @@
 </li>
 </ol>
 <p><strong>代码实现：</strong></p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="comment">#该函数实现用户如果不输入内容则一直循环直到用户输入为止，并且将用户输入的内容打印出来</span></span><br><span class="line">input_fun()</span><br><span class="line">&#123;</span><br><span class="line">  input_var=<span class="string">&quot;&quot;</span></span><br><span class="line">  output_var=<span class="variable">$1</span></span><br><span class="line">  <span class="keyword">while</span> [ -<span class="type">z</span> <span class="variable">$input_var</span> ]</span><br><span class="line">	<span class="keyword">do</span></span><br><span class="line">	read <span class="literal">-p</span> <span class="string">&quot;<span class="variable">$output_var</span>&quot;</span> input_var</span><br><span class="line">	done</span><br><span class="line">	<span class="built_in">echo</span> <span class="variable">$input_var</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">input_fun 请输入你的姓名:</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs powershell"><span class="hljs-comment">#!/bin/bash</span>
+<span class="hljs-comment">#该函数实现用户如果不输入内容则一直循环直到用户输入为止，并且将用户输入的内容打印出来</span>
+input_fun()
+&#123;
+  input_var=<span class="hljs-string">&quot;&quot;</span>
+  output_var=<span class="hljs-variable">$1</span>
+  <span class="hljs-keyword">while</span> [ -<span class="hljs-type">z</span> <span class="hljs-variable">$input_var</span> ]
+	<span class="hljs-keyword">do</span>
+	read <span class="hljs-literal">-p</span> <span class="hljs-string">&quot;<span class="hljs-variable">$output_var</span>&quot;</span> input_var
+	done
+	<span class="hljs-built_in">echo</span> <span class="hljs-variable">$input_var</span>
+&#125;
+
+input_fun 请输入你的姓名:</code></pre>
 
 <p>或者</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">fun()</span><br><span class="line">&#123;</span><br><span class="line">	read -p &quot;$1&quot; var</span><br><span class="line">	if [ -z $var ];then</span><br><span class="line">		fun $1</span><br><span class="line">	else</span><br><span class="line">		echo $var</span><br><span class="line">	fi</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#调用函数并且获取用户的姓名、性别、年龄分别赋值给name、sex、age变量</span><br><span class="line">name&#x3D;$(input_fun 请输入你的姓名:)</span><br><span class="line">sex&#x3D;$(input_fun 请输入你的性别:)</span><br><span class="line">age&#x3D;$(input_fun 请输入你的年龄:)</span><br><span class="line"></span><br><span class="line">#根据用户输入的性别进行匹配判断</span><br><span class="line">case $sex in</span><br><span class="line">			man)</span><br><span class="line">			if [ $age -gt 18 -a $age -le 35 ];then</span><br><span class="line">				echo &quot;中年大叔你油腻了吗？加油&quot;</span><br><span class="line">			elif [ $age -gt 35 ];then</span><br><span class="line">				echo &quot;保温杯里泡枸杞&quot;</span><br><span class="line">			else</span><br><span class="line">				echo &quot;年轻有为。。。&quot;</span><br><span class="line">			fi</span><br><span class="line">			;;</span><br><span class="line">			woman)</span><br><span class="line">			xxx</span><br><span class="line">			;;</span><br><span class="line">			*)</span><br><span class="line">			xxx</span><br><span class="line">			;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs #!/bin/bash">fun()
+&#123;
+	read -p &quot;$1&quot; var
+	if [ -z $var ];then
+		fun $1
+	else
+		echo $var
+	fi
+&#125;
+
+#调用函数并且获取用户的姓名、性别、年龄分别赋值给name、sex、age变量
+name&#x3D;$(input_fun 请输入你的姓名:)
+sex&#x3D;$(input_fun 请输入你的性别:)
+age&#x3D;$(input_fun 请输入你的年龄:)
+
+#根据用户输入的性别进行匹配判断
+case $sex in
+			man)
+			if [ $age -gt 18 -a $age -le 35 ];then
+				echo &quot;中年大叔你油腻了吗？加油&quot;
+			elif [ $age -gt 35 ];then
+				echo &quot;保温杯里泡枸杞&quot;
+			else
+				echo &quot;年轻有为。。。&quot;
+			fi
+			;;
+			woman)
+			xxx
+			;;
+			*)
+			xxx
+			;;
+esac</code></pre>
 
 <p><strong>扩展延伸：</strong></p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">描述以下代码含义：	</span><br><span class="line">:()</span><br><span class="line">&#123;</span><br><span class="line">   :|:&amp;</span><br><span class="line">&#125;</span><br><span class="line">:</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs powershell">描述以下代码含义：	
+:()
+&#123;
+   :|:&amp;
+&#125;
+:</code></pre>
 
 <h1 id="综合案例"><a href="#综合案例" class="headerlink" title="综合案例"></a>综合案例</h1><h2 id="1-任务背景"><a href="#1-任务背景" class="headerlink" title="1. 任务背景"></a>1. 任务背景</h2><p>现有的跳板机虽然实现了统一入口来访问生产服务器，yunwei用户权限太大可以操作跳板机上的所有目录文件，存在数据被误删的安全隐患，所以希望你做一些安全策略来保证跳板机的正常使用。</p>
 <h2 id="2-具体要求"><a href="#2-具体要求" class="headerlink" title="2. 具体要求"></a>2. 具体要求</h2><ol>
@@ -136,7 +395,13 @@
 <li>公司运维人员远程通过yunwei用户连接跳板机时，跳出以下菜单供选择：</li>
 </ol>
 <p>powershell</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">欢迎使用Jumper-server，请选择你要操作的主机：</span><br><span class="line">1. DB1-Master</span><br><span class="line">2. DB2-Slave</span><br><span class="line">3. Web1</span><br><span class="line">4. Web2</span><br><span class="line">h. help</span><br><span class="line">q. exit</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs awk">欢迎使用Jumper-server，请选择你要操作的主机：
+<span class="hljs-number">1</span>. DB1-Master
+<span class="hljs-number">2</span>. DB2-Slave
+<span class="hljs-number">3</span>. Web1
+<span class="hljs-number">4</span>. Web2
+h. help
+q. <span class="hljs-keyword">exit</span></code></pre>
 
 <ol start="3">
 <li>当用户选择相应主机后，直接<strong>免密码登录</strong>成功</li>
@@ -150,134 +415,315 @@
 <li>使用循环来实现用户不选择一直让其选择</li>
 <li>限制用户退出后直接关闭终端  exit </li>
 </ol>
-<h2 id="4-落地实现"><a href="#4-落地实现" class="headerlink" title="4. 落地实现"></a>4. 落地实现</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="comment"># jumper-server</span></span><br><span class="line"><span class="comment"># 定义菜单打印功能的函数</span></span><br><span class="line">menu()</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">cat</span> &lt;&lt;<span class="literal">-EOF</span></span><br><span class="line">欢迎使用Jumper<span class="literal">-server</span>，请选择你要操作的主机：</span><br><span class="line"><span class="number">1</span>. DB1<span class="literal">-Master</span></span><br><span class="line"><span class="number">2</span>. DB2<span class="literal">-Slave</span></span><br><span class="line"><span class="number">3</span>. Web1</span><br><span class="line"><span class="number">4</span>. Web2</span><br><span class="line"><span class="built_in">h</span>. help</span><br><span class="line">q. <span class="keyword">exit</span></span><br><span class="line">	EOF</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 屏蔽以下信号</span></span><br><span class="line"><span class="keyword">trap</span> <span class="string">&#x27;&#x27;</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">19</span></span><br><span class="line"><span class="comment"># 调用函数来打印菜单</span></span><br><span class="line">menu</span><br><span class="line"><span class="comment">#循环等待用户选择</span></span><br><span class="line"><span class="keyword">while</span> true</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line"><span class="comment"># 菜单选择，case...esac语句</span></span><br><span class="line">read <span class="literal">-p</span> <span class="string">&quot;请选择你要访问的主机:&quot;</span> host</span><br><span class="line">case <span class="variable">$host</span> <span class="keyword">in</span></span><br><span class="line">	<span class="number">1</span>)</span><br><span class="line">	ssh root@<span class="number">10.1</span>.<span class="number">1.1</span></span><br><span class="line">	;;</span><br><span class="line">	<span class="number">2</span>)</span><br><span class="line">	ssh root@<span class="number">10.1</span>.<span class="number">1.2</span></span><br><span class="line">	;;</span><br><span class="line">	<span class="number">3</span>)</span><br><span class="line">	ssh root@<span class="number">10.1</span>.<span class="number">1.3</span></span><br><span class="line">	;;</span><br><span class="line">	<span class="built_in">h</span>)</span><br><span class="line">	<span class="built_in">clear</span>;menu</span><br><span class="line">	;;</span><br><span class="line">	q)</span><br><span class="line">	<span class="keyword">exit</span></span><br><span class="line">	;;</span><br><span class="line">esac</span><br><span class="line">done</span><br><span class="line">将脚本放到yunwei用户家目录里的.bashrc里执行：</span><br><span class="line">bash ~/jumper<span class="literal">-server</span>.sh</span><br><span class="line"><span class="keyword">exit</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-落地实现"><a href="#4-落地实现" class="headerlink" title="4. 落地实现"></a>4. 落地实现</h2><pre><code class="hljs powershell"><span class="hljs-comment">#!/bin/bash</span>
+<span class="hljs-comment"># jumper-server</span>
+<span class="hljs-comment"># 定义菜单打印功能的函数</span>
+menu()
+&#123;
+<span class="hljs-built_in">cat</span> &lt;&lt;<span class="hljs-literal">-EOF</span>
+欢迎使用Jumper<span class="hljs-literal">-server</span>，请选择你要操作的主机：
+<span class="hljs-number">1</span>. DB1<span class="hljs-literal">-Master</span>
+<span class="hljs-number">2</span>. DB2<span class="hljs-literal">-Slave</span>
+<span class="hljs-number">3</span>. Web1
+<span class="hljs-number">4</span>. Web2
+<span class="hljs-built_in">h</span>. help
+q. <span class="hljs-keyword">exit</span>
+	EOF
+&#125;
+<span class="hljs-comment"># 屏蔽以下信号</span>
+<span class="hljs-keyword">trap</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">19</span>
+<span class="hljs-comment"># 调用函数来打印菜单</span>
+menu
+<span class="hljs-comment">#循环等待用户选择</span>
+<span class="hljs-keyword">while</span> true
+<span class="hljs-keyword">do</span>
+<span class="hljs-comment"># 菜单选择，case...esac语句</span>
+read <span class="hljs-literal">-p</span> <span class="hljs-string">&quot;请选择你要访问的主机:&quot;</span> host
+case <span class="hljs-variable">$host</span> <span class="hljs-keyword">in</span>
+	<span class="hljs-number">1</span>)
+	ssh root@<span class="hljs-number">10.1</span>.<span class="hljs-number">1.1</span>
+	;;
+	<span class="hljs-number">2</span>)
+	ssh root@<span class="hljs-number">10.1</span>.<span class="hljs-number">1.2</span>
+	;;
+	<span class="hljs-number">3</span>)
+	ssh root@<span class="hljs-number">10.1</span>.<span class="hljs-number">1.3</span>
+	;;
+	<span class="hljs-built_in">h</span>)
+	<span class="hljs-built_in">clear</span>;menu
+	;;
+	q)
+	<span class="hljs-keyword">exit</span>
+	;;
+esac
+done
+将脚本放到yunwei用户家目录里的.bashrc里执行：
+bash ~/jumper<span class="hljs-literal">-server</span>.sh
+<span class="hljs-keyword">exit</span></code></pre>
 
 <p><strong>进一步完善需求</strong></p>
 <p>为了进一步增强跳板机的安全性，工作人员通过跳板机访问生产环境，但是不能在跳板机上停留。</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="comment">#公钥推送成功</span></span><br><span class="line"><span class="keyword">trap</span> <span class="string">&#x27;&#x27;</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">19</span></span><br><span class="line"><span class="comment">#打印菜单用户选择</span></span><br><span class="line">menu()&#123;</span><br><span class="line"><span class="built_in">cat</span> &lt;&lt;<span class="literal">-EOF</span></span><br><span class="line">欢迎使用Jumper<span class="literal">-server</span>，请选择你要操作的主机：</span><br><span class="line"><span class="number">1</span>. DB1<span class="literal">-Master</span></span><br><span class="line"><span class="number">2</span>. DB2<span class="literal">-Slave</span></span><br><span class="line"><span class="number">3</span>. Web1</span><br><span class="line"><span class="number">4</span>. Web2</span><br><span class="line"><span class="built_in">h</span>. help</span><br><span class="line">q. <span class="keyword">exit</span></span><br><span class="line">EOF</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#调用函数来打印菜单</span></span><br><span class="line">menu</span><br><span class="line"><span class="keyword">while</span> true</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">read <span class="literal">-p</span> <span class="string">&quot;请输入你要选择的主机[h for help]：&quot;</span> host</span><br><span class="line"></span><br><span class="line"><span class="comment">#通过case语句来匹配用户所输入的主机</span></span><br><span class="line">case <span class="variable">$host</span> <span class="keyword">in</span></span><br><span class="line">	<span class="number">1</span>|DB1)</span><br><span class="line">	ssh root@<span class="number">10.1</span>.<span class="number">1.1</span></span><br><span class="line">	;;</span><br><span class="line">	<span class="number">2</span>|DB2)</span><br><span class="line">	ssh root@<span class="number">10.1</span>.<span class="number">1.2</span></span><br><span class="line">	;;</span><br><span class="line">	<span class="number">3</span>|web1)</span><br><span class="line">	ssh root@<span class="number">10.1</span>.<span class="number">1.250</span></span><br><span class="line">	;;</span><br><span class="line">	<span class="built_in">h</span>|help)</span><br><span class="line">	<span class="built_in">clear</span>;menu</span><br><span class="line">	;;</span><br><span class="line">	q|quit)</span><br><span class="line">	<span class="keyword">exit</span></span><br><span class="line">	;;</span><br><span class="line">esac</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs powershell"><span class="hljs-comment">#!/bin/bash</span>
+<span class="hljs-comment">#公钥推送成功</span>
+<span class="hljs-keyword">trap</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">19</span>
+<span class="hljs-comment">#打印菜单用户选择</span>
+menu()&#123;
+<span class="hljs-built_in">cat</span> &lt;&lt;<span class="hljs-literal">-EOF</span>
+欢迎使用Jumper<span class="hljs-literal">-server</span>，请选择你要操作的主机：
+<span class="hljs-number">1</span>. DB1<span class="hljs-literal">-Master</span>
+<span class="hljs-number">2</span>. DB2<span class="hljs-literal">-Slave</span>
+<span class="hljs-number">3</span>. Web1
+<span class="hljs-number">4</span>. Web2
+<span class="hljs-built_in">h</span>. help
+q. <span class="hljs-keyword">exit</span>
+EOF
+&#125;
+
+<span class="hljs-comment">#调用函数来打印菜单</span>
+menu
+<span class="hljs-keyword">while</span> true
+<span class="hljs-keyword">do</span>
+read <span class="hljs-literal">-p</span> <span class="hljs-string">&quot;请输入你要选择的主机[h for help]：&quot;</span> host
+
+<span class="hljs-comment">#通过case语句来匹配用户所输入的主机</span>
+case <span class="hljs-variable">$host</span> <span class="hljs-keyword">in</span>
+	<span class="hljs-number">1</span>|DB1)
+	ssh root@<span class="hljs-number">10.1</span>.<span class="hljs-number">1.1</span>
+	;;
+	<span class="hljs-number">2</span>|DB2)
+	ssh root@<span class="hljs-number">10.1</span>.<span class="hljs-number">1.2</span>
+	;;
+	<span class="hljs-number">3</span>|web1)
+	ssh root@<span class="hljs-number">10.1</span>.<span class="hljs-number">1.250</span>
+	;;
+	<span class="hljs-built_in">h</span>|help)
+	<span class="hljs-built_in">clear</span>;menu
+	;;
+	q|quit)
+	<span class="hljs-keyword">exit</span>
+	;;
+esac
+done</code></pre>
 <p>自己完善功能：</p>
 <ol>
 <li>用户选择主机后，需要事先推送公钥；如何判断公钥是否已推</li>
 <li>比如选择web1时，再次提示需要做的操作，比如：<br>clean log<br>重启服务<br>kill某个进程</li>
 </ol>
 <p><strong>回顾信号：</strong></p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>) SIGHUP 			重新加载配置    </span><br><span class="line"><span class="number">2</span>) SIGINT			键盘中断^C</span><br><span class="line"><span class="number">3</span>) SIGQUIT      	键盘退出</span><br><span class="line"><span class="number">9</span>) SIGKILL		 	强制终止</span><br><span class="line"><span class="number">15</span>) SIGTERM	    	终止（正常结束），缺省信号</span><br><span class="line"><span class="number">18</span>) SIGCONT	   	    继续</span><br><span class="line"><span class="number">19</span>) SIGSTOP	   	    停止</span><br><span class="line"><span class="number">20</span>) SIGTSTP     	暂停^Z</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs powershell"><span class="hljs-number">1</span>) SIGHUP 			重新加载配置    
+<span class="hljs-number">2</span>) SIGINT			键盘中断^C
+<span class="hljs-number">3</span>) SIGQUIT      	键盘退出
+<span class="hljs-number">9</span>) SIGKILL		 	强制终止
+<span class="hljs-number">15</span>) SIGTERM	    	终止（正常结束），缺省信号
+<span class="hljs-number">18</span>) SIGCONT	   	    继续
+<span class="hljs-number">19</span>) SIGSTOP	   	    停止
+<span class="hljs-number">20</span>) SIGTSTP     	暂停^Z</code></pre>
 
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Shell/">Shell</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/10/20/shell%E7%BC%96%E7%A8%8B%E4%B9%8B%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">shell变量定义</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/10/16/shell%E7%BC%96%E7%A8%8Bcase/">
+                        <span class="hidden-mobile">shell-case语句</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
-<div class="lx-navigation">
-	<div class="lx-cover prev lx-cover-sm" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/images/footer-l.jpeg)">
-		<div class="overlay"></div>
-		<a class="copy" href="/2020/10/20/shell%E7%BC%96%E7%A8%8B%E4%B9%8B%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89/">
-			<div class="display-t">
-				<div class="display-tc">
-					<div>
-						<span>Next</span>
-						<h3>shell变量定义</h3>
-					</div>
-				</div>
-			</div>
-		</a>
-	</div>
-        <div class="lx-cover next lx-cover-sm" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/images/footer-r.jpeg)">
-		<div class="overlay"></div>
-		<a class="copy" href="/2020/10/16/shell%E7%BC%96%E7%A8%8Bcase/">
-			<div class="display-t">
-				<div class="display-tc">
-					<div>
-						<span>Prev</span>
-						<h3>shell-c...</h3>
-					</div>
-				</div>
-			</div>
-		</a>
-	</div>
-</div>
+    
 
-</div>
+    
+  </main>
 
-<footer>
-  <div>
-  Copyright &copy; 2019.<a href="/">ming-2000</a><br>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme <a href="https://lx.js.org" target="_blank">Lx</a><br>
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
   </div>
+  
+
+  
+
+  
 </footer>
 
-</div>
+<!-- SCRIPTS -->
 
-<button class="hamburger hamburger--arrow-r" type="button">
-    <div class="hamburger-box">
-      <div class="hamburger-inner"></div>
-    </div>
-</button> 
-<div class="menu visibility">
-  <div class="menu-head">
-    <span class="layer">
-      <div class="col">
-        <div class="row for-pic">
-          <div class="profile-pic">
-            <a href="/"><img src="/images/avatar.jpeg" alt="Ming hongping"/></a>
-          </div>
-        </div>
-        <div class="row for-name">
-          <p>Ming hongping</p>
-          <span class="tagline">Hello!</span>
-        </div>
-      </div>
-    </span>
-  </div>
-  <nav class="menu-container">
-  <ul class="menu-items">
-    <li><a href="/"><i class="fa fa-home fa-fw"></i>首页</a></li>
-    <li><a href="/archives/"><i class="fa fa-archive fa-fw"></i>归档</a></li>
-    
-    <li class="has-sub"><span class="dropdown-heading">
-      <i class="fa fa-bookmark fa-fw"></i>页面</span>
-        <ul>
-          <li><a href="/guestbook/">Guestbook</a></li>
-        <li><a href="/about/">About</a></li>
-        </ul>
-    </li>
-    <li class="has-sub"><span class="dropdown-heading">
-      <i class="fa fa-link fa-fw"></i>友链</span>
-        <ul>
-          <li> <a href="https://lx.js.org" target="_blank">Theme-Lx</a></li>
-        </ul>
-    </li>
-  </ul>
-  </nav>
-</div>
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
 
-<div class="gototop js-top">
-  <a href="#" class="js-gotop"><i class="fa fa-arrow-up"></i></a>
-</div>
-<script src="//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/js/jquery.easing.min.js"></script>
-<script>
-(function () {
-	"use strict";
-	var goToTop = function() {
-		$(".js-gotop").on("click", function(event){
-			event.preventDefault();
-			$("html, body").animate({
-				scrollTop: $("html").offset().top
-			}, 500, "easeInOutExpo");
-			return false;
-		});
-		$(window).scroll(function(){
-			var $win = $(window);
-			if ($win.scrollTop() > 200) {
-				$(".js-top").addClass("active");
-			} else {
-				$(".js-top").removeClass("active");
-			}
-		});
-	};
-	$(function(){
-		goToTop();
-	});
-}());
-</script>
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
 
 
 </body>

@@ -1,87 +1,234 @@
+
+
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh" data-default-color-scheme=&#34;auto&#34;>
+
+
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="theme-color" content=#58b77a>
-  <title>shell变量定义 | ming-2000</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
   <meta name="author" content="Ming hongping">
   <meta name="keywords" content="">
-  <meta name="description" content="">
-  <script id="hexo-configurations">
-  var CONFIG = {
-    root: '/',
-    theme: 'lx0.3.9',
-    version: '0.3.9',
-    localsearch:{
-      "enable": false,
-      "trigger": "auto",
-      "top_n_per_article": 1,
-      "unescape": false,
-      "preload": false
-      },
-    path: '-'
-  };
-</script>
+  <title>shell变量定义 - ming-2000</title>
 
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/css/main.min.css">
-  <style type="text/css">
-    pre,
-    code {
-      font-family: 'Fira Code', monospace;
-    }
-    html {
-      font-family: sans-serif;
-    }
-    body {
-      font-family: sans-serif;
-    }
-    h1, h2, h3, h4, h5, figure {
-      font-family: sans-serif;
-    }
-    .menu-container{
-      font-family: sans-serif;
-    }
-  </style>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
-  <script src="//cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/js/jquery.jside.menu.js"></script>
-	<script>
-	$(document).ready(function(){
-	$(".menu-container").jSideMenu({
-	    jSidePosition: "position-right",
-	    jSideSticky: true,
-	    jSideSkin: "greenish",
-	     });
-	}); 
-	</script>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
   
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="ming-2000" type="application/atom+xml">
 </head>
+
+
 <body>
-<div class="single">
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
 
-<div id="page">
-<div id="lx-aside" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/images/post_cover.jpeg)" data-stellar-background-ratio="0.5">
-  <div class="overlay">
-  <div class="page-title">
-    <div class="avatar"><a href="/"><img src="/images/avatar.jpeg"></a></div>
-    <span>2020-10-20</span>
-    <h2>shell变量定义</h2>
-    
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Startseite
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archiv
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Kategorie
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Etiketten
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                Über mich
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
-</div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="shell变量定义">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-10-20 20:26" pubdate>
+        October 20, 2020 pm
+      </time>
+    </span>
+  
 </div>
 
-<div id="lx-main-content">
-  <div class="lx-post">
-    <div class="lx-entry padding">
-      <div>
-        <p>① Shell的基本语法结构</p>
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      39
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">shell变量定义</h1>
+            
+            <div class="markdown-body">
+              <p>① Shell的基本语法结构</p>
 <p>  如：变量定义、条件判断、循环语句(for、until、while)、分支语句、函数和数组等； </p>
 <p>  ② 基本正则表达式的运用;</p>
 <p>  ③ 文件处理三剑客：grep、sed、awk工具的使用；</p>
@@ -108,7 +255,19 @@
 <li>shell就是人机交互的一个桥梁</li>
 <li>shell的种类</li>
 </ul>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># cat /etc/shells   </span></span><br><span class="line"></span><br><span class="line">/bin/sh			    &amp;emsp;<span class="comment">#是bash的一个快捷方式  </span></span><br><span class="line"></span><br><span class="line">/bin/bash			&amp;emsp;<span class="comment">#bash是大多数Linux默认的shell，包含的功能几乎可以涵盖shell所有的功能  </span></span><br><span class="line"></span><br><span class="line">/sbin/nologin		&amp;emsp;<span class="comment">#表示非交互，不能登录操作系统  </span></span><br><span class="line"></span><br><span class="line">/bin/dash			&amp;emsp;<span class="comment">#小巧，高效，功能相比少一些</span></span><br><span class="line"></span><br><span class="line">/bin/csh			&amp;emsp;<span class="comment">#具有C语言风格的一种shell，具有许多特性，但也有一些缺陷  </span></span><br><span class="line"></span><br><span class="line">/bin/tcsh			&amp;emsp;<span class="comment">#是csh的增强版，完全兼容csh</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs powershell">[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># cat /etc/shells   </span>
+
+/bin/sh			    &amp;emsp;<span class="hljs-comment">#是bash的一个快捷方式  </span>
+
+/bin/bash			&amp;emsp;<span class="hljs-comment">#bash是大多数Linux默认的shell，包含的功能几乎可以涵盖shell所有的功能  </span>
+
+/sbin/nologin		&amp;emsp;<span class="hljs-comment">#表示非交互，不能登录操作系统  </span>
+
+/bin/dash			&amp;emsp;<span class="hljs-comment">#小巧，高效，功能相比少一些</span>
+
+/bin/csh			&amp;emsp;<span class="hljs-comment">#具有C语言风格的一种shell，具有许多特性，但也有一些缺陷  </span>
+
+/bin/tcsh			&amp;emsp;<span class="hljs-comment">#是csh的增强版，完全兼容csh</span></code></pre>
 
 
 
@@ -130,13 +289,25 @@
 <p><code>#!/bin/bash</code>  表示以下内容使用bash解释器解析  </p>
 <p><strong>注意：</strong><br>如果直接将解释器路径写死在脚本里，可能在某些系统就会存在找不到解释器的兼容性问题，所以可以使用:<code>#!/bin/env 解释器</code></p>
 <p>2）<strong>脚本第二部分</strong>，注释(#号)说明，对脚本的基本信息进行描述【可选】</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">	<span class="comment">#!/bin/env bash</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment"># 以下内容是对脚本的基本信息的描述</span></span><br><span class="line">	<span class="comment"># Name: 名字</span></span><br><span class="line">	<span class="comment"># Desc:描述describe</span></span><br><span class="line">	<span class="comment"># Path:存放路径</span></span><br><span class="line">	<span class="comment"># Usage:用法</span></span><br><span class="line">	<span class="comment"># Update:更新时间</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#下面就是脚本的具体内容</span></span><br><span class="line">commands</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs powershell">
+	<span class="hljs-comment">#!/bin/env bash</span>
+	
+	<span class="hljs-comment"># 以下内容是对脚本的基本信息的描述</span>
+	<span class="hljs-comment"># Name: 名字</span>
+	<span class="hljs-comment"># Desc:描述describe</span>
+	<span class="hljs-comment"># Path:存放路径</span>
+	<span class="hljs-comment"># Usage:用法</span>
+	<span class="hljs-comment"># Update:更新时间</span>
+
+<span class="hljs-comment">#下面就是脚本的具体内容</span>
+commands</code></pre>
 
 <p>3）<strong>脚本第三部分</strong>，脚本要实现的具体代码内容</p>
 <h3 id="（五）-shell脚本的执行方法"><a href="#（五）-shell脚本的执行方法" class="headerlink" title="（五） shell脚本的执行方法"></a>（五） shell脚本的执行方法</h3><ul>
 <li>标准脚本执行方法（建议）</li>
 </ul>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>) 编写人生第一个shell脚本</span><br><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> <span class="type">shell01</span>]<span class="comment"># cat first_shell.sh</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs powershell"><span class="hljs-number">1</span>) 编写人生第一个shell脚本
+[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> <span class="hljs-type">shell01</span>]<span class="hljs-comment"># cat first_shell.sh</span></code></pre>
 <pre><code>#!/bin/env bash
 
 # 以下内容是对脚本的基本信息的描述
@@ -149,10 +320,39 @@
 echo &quot;hello world&quot;
 echo &quot;hello world&quot;
 echo &quot;hello world&quot;</code></pre>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#96;&#96;&#96;</span><br><span class="line">2) 脚本增加可执行权限</span><br><span class="line">&#96;[root@MissHou shell01]# chmod +x first_shell.sh&#96;</span><br><span class="line"></span><br><span class="line">3) 标准方式执行脚本</span><br><span class="line">&#96;[root@MissHou shell01]# pwd&#96;</span><br><span class="line">&#96;&#x2F;shell01&#96;</span><br><span class="line">&#96;[root@MissHou shell01]# &#x2F;shell01&#x2F;first_shell.sh&#96;</span><br><span class="line">或者</span><br><span class="line">&#96;[root@MissHou shell01]# .&#x2F;first_shell.sh&#96;</span><br><span class="line"></span><br><span class="line">注意：标准执行方式脚本必须要有可执行权限。</span><br><span class="line"></span><br><span class="line">- 非标准的执行方法（不建议）</span><br><span class="line"></span><br><span class="line">1. 直接在命令行指定解释器执行</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;powershell</span><br><span class="line">[root@MissHou shell01]# bash first_shell.sh</span><br><span class="line">[root@MissHou shell01]# sh first_shell.sh</span><br><span class="line">[root@MissHou shell01]# bash -x first_shell.sh</span><br><span class="line">+ echo &#39;hello world&#39;</span><br><span class="line">hello world</span><br><span class="line">+ echo &#39;hello world&#39;</span><br><span class="line">hello world</span><br><span class="line">+ echo &#39;hello world&#39;</span><br><span class="line">hello world</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs mel"><span class="hljs-string">``</span><span class="hljs-string">`</span>
+<span class="hljs-string">2) 脚本增加可执行权限</span>
+<span class="hljs-string">`</span>[root@MissHou shell01]# chmod +x first_shell.sh<span class="hljs-string">`</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">3) 标准方式执行脚本</span>
+<span class="hljs-string">`</span>[root@MissHou shell01]# <span class="hljs-keyword">pwd</span><span class="hljs-string">`</span>
+<span class="hljs-string">`</span>/shell01<span class="hljs-string">`</span>
+<span class="hljs-string">`</span>[root@MissHou shell01]# /shell01/first_shell.sh<span class="hljs-string">`</span>
+<span class="hljs-string">或者</span>
+<span class="hljs-string">`</span>[root@MissHou shell01]# ./first_shell.sh<span class="hljs-string">`</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">注意：标准执行方式脚本必须要有可执行权限。</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">- 非标准的执行方法（不建议）</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">1. 直接在命令行指定解释器执行</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">`</span><span class="hljs-string">``</span>powershell
+[root@MissHou shell01]# bash first_shell.sh
+[root@MissHou shell01]# sh first_shell.sh
+[root@MissHou shell01]# bash -x first_shell.sh
++ echo <span class="hljs-string">&#x27;hello world&#x27;</span>
+hello world
++ echo <span class="hljs-string">&#x27;hello world&#x27;</span>
+hello world
++ echo <span class="hljs-string">&#x27;hello world&#x27;</span>
+hello world</code></pre>
 <p><code>-x</code>:一般用于排错，查看脚本的执行过程<br><code>-n</code>:用来查看脚本的语法是否有问题</p>
 <ol start="2">
-<li>使用<code>source</code>命令读取脚本文件,执行文件里的代码<br>powershell  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@MissHou shell01]# source first_shell.sh</span><br><span class="line">hello world</span><br><span class="line">hello world</span><br><span class="line">hello world</span><br></pre></td></tr></table></figure>
+<li>使用<code>source</code>命令读取脚本文件,执行文件里的代码<br>powershell  <pre><code class="hljs properties"><span class="hljs-meta">[root@MissHou</span> <span class="hljs-string">shell01]# source first_shell.sh</span>
+<span class="hljs-attr">hello</span> <span class="hljs-string">world</span>
+<span class="hljs-attr">hello</span> <span class="hljs-string">world</span>
+<span class="hljs-attr">hello</span> <span class="hljs-string">world</span></code></pre>
 
 
 </li>
@@ -171,11 +371,26 @@ echo &quot;hello world&quot;</code></pre>
 <li><p>变量值：就是临时的可变化的数据</p>
 </li>
 </ul>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># A=hello		定义变量A</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># echo $A		调用变量A，要给钱的，不是人民币是美元&quot;$&quot;</span></span><br><span class="line">hello</span><br><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># echo $&#123;A&#125;		还可以这样调用，不管你的姿势多优雅，总之要给钱</span></span><br><span class="line">hello</span><br><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># A=world		因为是变量所以可以变，移情别恋是常事</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># echo $A		不管你是谁，只要调用就要给钱</span></span><br><span class="line">world</span><br><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># unset A		不跟你玩了，取消变量</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># echo $A		从此，我单身了，你可以给我介绍任何人</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs powershell">
+[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># A=hello		定义变量A</span>
+[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $A		调用变量A，要给钱的，不是人民币是美元&quot;$&quot;</span>
+hello
+[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $&#123;A&#125;		还可以这样调用，不管你的姿势多优雅，总之要给钱</span>
+hello
+[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># A=world		因为是变量所以可以变，移情别恋是常事</span>
+[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $A		不管你是谁，只要调用就要给钱</span>
+world
+[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># unset A		不跟你玩了，取消变量</span>
+[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $A		从此，我单身了，你可以给我介绍任何人</span></code></pre>
 
 <h2 id="4-变量的定义规则"><a href="#4-变量的定义规则" class="headerlink" title="4. 变量的定义规则"></a>4. 变量的定义规则</h2><p>虽然可以给变量（变量名）赋予任何值；但是，对于==变量名==也是要求的！:unamused:</p>
 <h3 id="㈠-变量名区分大小写"><a href="#㈠-变量名区分大小写" class="headerlink" title="㈠ 变量名区分大小写"></a>㈠ 变量名区分大小写</h3><p>owershell  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@MissHou ~]# A&#x3D;hello</span><br><span class="line">[root@MissHou ~]# a&#x3D;world</span><br><span class="line">[root@MissHou ~]# echo $A</span><br><span class="line">hello</span><br><span class="line">[root@MissHou ~]# echo $a</span><br><span class="line">world</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs coffeescript">[root@MissHou ~]<span class="hljs-comment"># A=hello</span>
+[root@MissHou ~]<span class="hljs-comment"># a=world</span>
+[root@MissHou ~]<span class="hljs-comment"># echo $A</span>
+hello
+[root@MissHou ~]<span class="hljs-comment"># echo $a</span>
+world</code></pre>
 
 <h3 id="㈡-变量名不能有特殊符号"><a href="#㈡-变量名不能有特殊符号" class="headerlink" title="㈡ 变量名不能有特殊符号"></a>㈡ 变量名不能有特殊符号</h3><p>powershell  </p>
 <pre><code>    [root@MissHou ~]# *A=hello
@@ -185,14 +400,65 @@ echo &quot;hello world&quot;</code></pre>
     [root@MissHou ~]# @A=hello
     -bash: @A=hello: command not found
 
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">		特别说明：对于有空格的字符串给变量赋值时，要用引号引起来&#96;&#96;&#96;</span><br><span class="line">		[root@MissHou ~]# A&#x3D;hello world</span><br><span class="line">		-bash: world: command not found</span><br><span class="line">		[root@MissHou ~]# A&#x3D;&quot;hello world&quot;</span><br><span class="line">		[root@MissHou ~]# A&#x3D;&#39;hello world&#39;</span><br><span class="line"></span><br><span class="line">### ㈢ 变量名不能以数字开头</span><br><span class="line">&#96;&#96;&#96;powershell  </span><br><span class="line"></span><br><span class="line">	[root@MissHou ~]# 1A&#x3D;hello</span><br><span class="line">	-bash: 1A&#x3D;hello: command not found</span><br><span class="line">	[root@MissHou ~]# A1&#x3D;hello</span><br><span class="line">	</span><br><span class="line">注意：不能以数字开头并不代表变量名中不能包含数字呦。</span><br></pre></td></tr></table></figure></code></pre>
-<h3 id="㈣-等号两边不能有任何空格"><a href="#㈣-等号两边不能有任何空格" class="headerlink" title="㈣ 等号两边不能有任何空格"></a>㈣ 等号两边不能有任何空格</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">	[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># A =123</span></span><br><span class="line">	<span class="literal">-bash</span>: A: command not found</span><br><span class="line">	[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># A= 123</span></span><br><span class="line">	<span class="literal">-bash</span>: <span class="number">123</span>: command not found</span><br><span class="line">	[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># A = 123</span></span><br><span class="line">	<span class="literal">-bash</span>: A: command not found</span><br><span class="line">	[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># A=123</span></span><br><span class="line">	[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># echo $A</span></span><br><span class="line"><span class="number">123</span></span><br></pre></td></tr></table></figure>
+    <pre><code class="hljs autoit">		特别说明：对于有空格的字符串给变量赋值时，要用引号引起来```
+		[root<span class="hljs-symbol">@MissHou</span> ~]<span class="hljs-meta"># A=hello world</span>
+		-bash: world: command <span class="hljs-literal">not</span> found
+		[root<span class="hljs-symbol">@MissHou</span> ~]<span class="hljs-meta"># A=<span class="hljs-string">&quot;hello world&quot;</span></span>
+		[root<span class="hljs-symbol">@MissHou</span> ~]<span class="hljs-meta"># A=<span class="hljs-string">&#x27;hello world&#x27;</span></span>
 
-<h3 id="㈤-变量名尽量做到见名知意"><a href="#㈤-变量名尽量做到见名知意" class="headerlink" title="㈤ 变量名尽量做到见名知意"></a>㈤ 变量名尽量做到见名知意</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">	NTP_IP=<span class="number">10.1</span>.<span class="number">1.1</span></span><br><span class="line">	<span class="built_in">DIR</span>=/u01/app1</span><br><span class="line">	TMP_FILE=/var/log/<span class="number">1</span>.log</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<span class="hljs-meta">### ㈢ 变量名不能以数字开头</span>
+```powershell  
+
+	[root<span class="hljs-symbol">@MissHou</span> ~]<span class="hljs-meta"># 1A=hello</span>
+	-bash: <span class="hljs-number">1</span>A=hello: command <span class="hljs-literal">not</span> found
+	[root<span class="hljs-symbol">@MissHou</span> ~]<span class="hljs-meta"># A1=hello</span>
+	
+注意：不能以数字开头并不代表变量名中不能包含数字呦。</code></pre></code></pre>
+<h3 id="㈣-等号两边不能有任何空格"><a href="#㈣-等号两边不能有任何空格" class="headerlink" title="㈣ 等号两边不能有任何空格"></a>㈣ 等号两边不能有任何空格</h3><pre><code class="hljs powershell">
+	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># A =123</span>
+	<span class="hljs-literal">-bash</span>: A: command not found
+	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># A= 123</span>
+	<span class="hljs-literal">-bash</span>: <span class="hljs-number">123</span>: command not found
+	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># A = 123</span>
+	<span class="hljs-literal">-bash</span>: A: command not found
+	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># A=123</span>
+	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $A</span>
+<span class="hljs-number">123</span></code></pre>
+
+<h3 id="㈤-变量名尽量做到见名知意"><a href="#㈤-变量名尽量做到见名知意" class="headerlink" title="㈤ 变量名尽量做到见名知意"></a>㈤ 变量名尽量做到见名知意</h3><pre><code class="hljs powershell">
+	NTP_IP=<span class="hljs-number">10.1</span>.<span class="hljs-number">1.1</span>
+	<span class="hljs-built_in">DIR</span>=/u01/app1
+	TMP_FILE=/var/log/<span class="hljs-number">1</span>.log
+...</code></pre>
 <p>说明：一般变量名使用大写（小写也可以），不要同一个脚本中变量全是a,b,c等不容易阅读</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#96;&#96;&#96;</span><br><span class="line"></span><br><span class="line">## 5. 变量的定义方式有哪些？</span><br><span class="line"></span><br><span class="line">### ㈠ 基本方式</span><br><span class="line"></span><br><span class="line">&gt; 直接赋值给一个变量</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;powershell  </span><br><span class="line"></span><br><span class="line">	[root@MissHou ~]# A&#x3D;1234567</span><br><span class="line">	[root@MissHou ~]# echo $A</span><br><span class="line">	1234567</span><br><span class="line">	[root@MissHou ~]# echo $&#123;A:2:4&#125;		表示从A变量中第3个字符开始截取，截取4个字符</span><br><span class="line">	3456</span><br><span class="line"></span><br><span class="line">说明：</span><br><span class="line">$变量名 和 $&#123;变量名&#125;的异同</span><br><span class="line">相同点：都可以调用变量</span><br><span class="line">不同点：$&#123;变量名&#125;可以只截取变量的一部分，而$变量名不可以</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs ruby"><span class="hljs-string">``</span><span class="hljs-string">`</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">## 5. 变量的定义方式有哪些？</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">### ㈠ 基本方式</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">&gt; 直接赋值给一个变量</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">`</span><span class="hljs-string">``</span>powershell  
 
-<h3 id="㈡-命令执行结果赋值给变量"><a href="#㈡-命令执行结果赋值给变量" class="headerlink" title="㈡ 命令执行结果赋值给变量"></a>㈡ 命令执行结果赋值给变量</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># B=`date +%F`</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># echo $B</span></span><br><span class="line"><span class="number">2019</span><span class="literal">-04</span><span class="literal">-16</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># C=$(uname -r)</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># echo $C</span></span><br><span class="line"><span class="number">2.6</span>.<span class="number">32</span><span class="literal">-696</span>.el6.x86_64</span><br></pre></td></tr></table></figure>
+	[root@MissHou ~]<span class="hljs-comment"># A=1234567</span>
+	[root@MissHou ~]<span class="hljs-comment"># echo $A</span>
+	<span class="hljs-number">1234567</span>
+	[root@MissHou ~]<span class="hljs-comment"># echo $&#123;A:2:4&#125;		表示从A变量中第3个字符开始截取，截取4个字符</span>
+	<span class="hljs-number">3456</span>
+
+说明：
+$变量名 和 $&#123;变量名&#125;的异同
+相同点：都可以调用变量
+不同点：$&#123;变量名&#125;可以只截取变量的一部分，而$变量名不可以</code></pre>
+
+<h3 id="㈡-命令执行结果赋值给变量"><a href="#㈡-命令执行结果赋值给变量" class="headerlink" title="㈡ 命令执行结果赋值给变量"></a>㈡ 命令执行结果赋值给变量</h3><pre><code class="hljs powershell">
+[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># B=`date +%F`</span>
+[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $B</span>
+<span class="hljs-number">2019</span><span class="hljs-literal">-04</span><span class="hljs-literal">-16</span>
+[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># C=$(uname -r)</span>
+[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $C</span>
+<span class="hljs-number">2.6</span>.<span class="hljs-number">32</span><span class="hljs-literal">-696</span>.el6.x86_64</code></pre>
 
 <h3 id="㈢-交互式定义变量-read"><a href="#㈢-交互式定义变量-read" class="headerlink" title="㈢ 交互式定义变量(read)"></a>㈢ 交互式定义变量(read)</h3><p><strong>目的：</strong>让==用户自己==给变量赋值，比较灵活。</p>
 <p><strong>语法：</strong><code>read [选项] 变量名</code></p>
@@ -222,7 +488,26 @@ echo &quot;hello world&quot;</code></pre>
 </tr>
 </tbody></table>
 <p><strong>举例说明：</strong></p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">用法<span class="number">1</span>：用户自己定义变量值  </span><br><span class="line"></span><br><span class="line">	[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># read name</span></span><br><span class="line">	harry</span><br><span class="line">	[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># echo $name</span></span><br><span class="line">	harry</span><br><span class="line">	[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># read -p &quot;Input your name:&quot; name</span></span><br><span class="line">	Input your name:tom</span><br><span class="line">	[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># echo $name</span></span><br><span class="line">	tom</span><br><span class="line"></span><br><span class="line">用法<span class="number">2</span>：变量值来自文件  </span><br><span class="line">	[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># cat 1.txt </span></span><br><span class="line">	<span class="number">10.1</span>.<span class="number">1.1</span> <span class="number">255.255</span>.<span class="number">255.0</span></span><br><span class="line">	</span><br><span class="line">	[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># read ip mask &lt; 1.txt </span></span><br><span class="line">	[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># echo $ip</span></span><br><span class="line">	<span class="number">10.1</span>.<span class="number">1.1</span></span><br><span class="line">	[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># echo $mask</span></span><br><span class="line">	<span class="number">255.255</span>.<span class="number">255.0</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs powershell">用法<span class="hljs-number">1</span>：用户自己定义变量值  
+
+	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># read name</span>
+	harry
+	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $name</span>
+	harry
+	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># read -p &quot;Input your name:&quot; name</span>
+	Input your name:tom
+	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $name</span>
+	tom
+
+用法<span class="hljs-number">2</span>：变量值来自文件  
+	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># cat 1.txt </span>
+	<span class="hljs-number">10.1</span>.<span class="hljs-number">1.1</span> <span class="hljs-number">255.255</span>.<span class="hljs-number">255.0</span>
+	
+	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># read ip mask &lt; 1.txt </span>
+	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $ip</span>
+	<span class="hljs-number">10.1</span>.<span class="hljs-number">1.1</span>
+	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $mask</span>
+	<span class="hljs-number">255.255</span>.<span class="hljs-number">255.0</span></code></pre>
 
 <h3 id="㈣-定义有类型的变量-declare"><a href="#㈣-定义有类型的变量-declare" class="headerlink" title="㈣ 定义有类型的变量(declare)"></a>㈣ 定义有类型的变量(declare)</h3><p><strong>目的：</strong>给变量做一些限制，固定变量的类型，比如：整型、只读</p>
 <p><strong>用法：</strong><code>declare 选项 变量名=变量值</code></p>
@@ -262,7 +547,20 @@ echo &quot;hello world&quot;</code></pre>
 </tr>
 </tbody></table>
 <p><strong>举例说明：</strong></p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># declare -i A=123</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># echo $A</span></span><br><span class="line"><span class="number">123</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># A=hello</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># echo $A</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"></span><br><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># declare -r B=hello</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># echo $B</span></span><br><span class="line">hello</span><br><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># B=world</span></span><br><span class="line"><span class="literal">-bash</span>: B: readonly variable</span><br><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># unset B</span></span><br><span class="line"><span class="literal">-bash</span>: unset: B: cannot unset: readonly variable</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs powershell">[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># declare -i A=123</span>
+[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $A</span>
+<span class="hljs-number">123</span>
+[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># A=hello</span>
+[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $A</span>
+<span class="hljs-number">0</span>
+
+[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># declare -r B=hello</span>
+[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $B</span>
+hello
+[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># B=world</span>
+<span class="hljs-literal">-bash</span>: B: readonly variable
+[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># unset B</span>
+<span class="hljs-literal">-bash</span>: unset: B: cannot unset: readonly variable</code></pre>
 
 <h2 id="6-变量的分类"><a href="#6-变量的分类" class="headerlink" title="6. 变量的分类"></a>6. 变量的分类</h2><h3 id="㈠-本地变量"><a href="#㈠-本地变量" class="headerlink" title="㈠ 本地变量"></a>㈠ 本地变量</h3><ul>
 <li>**==本地变量==**：当前用户自定义的变量。当前进程中有效，其他进程及当前进程的子进程无效。</li>
@@ -272,7 +570,20 @@ echo &quot;hello world&quot;</code></pre>
 <p> <code>env</code>查看当前用户的环境变量<br> <code>set</code>查询当前用户的所有变量(临时变量与环境变量)<br> <code>export 变量名=变量值</code>    或者  <code>变量名=变量值；export 变量名</code></p>
 </li>
 </ul>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">	[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># export A=hello  临时将一个本地变量（临时变量）变成环境变量</span></span><br><span class="line">	[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># env|grep ^A</span></span><br><span class="line">	A=hello</span><br><span class="line"></span><br><span class="line">永久生效：</span><br><span class="line">vim /etc/profile 或者 ~/.bashrc</span><br><span class="line">export A=hello</span><br><span class="line">或者</span><br><span class="line">A=hello</span><br><span class="line">export A</span><br><span class="line"></span><br><span class="line">说明：系统中有一个变量PATH，环境变量</span><br><span class="line">export PATH=/usr/local/mysql/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs powershell">
+	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># export A=hello  临时将一个本地变量（临时变量）变成环境变量</span>
+	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># env|grep ^A</span>
+	A=hello
+
+永久生效：
+vim /etc/profile 或者 ~/.bashrc
+export A=hello
+或者
+A=hello
+export A
+
+说明：系统中有一个变量PATH，环境变量
+export PATH=/usr/local/mysql/bin:<span class="hljs-variable">$PATH</span></code></pre>
 
 <h3 id="㈢-全局变量"><a href="#㈢-全局变量" class="headerlink" title="㈢ 全局变量"></a>㈢ 全局变量</h3><ul>
 <li><p><strong>全局变量</strong>：全局所有的用户和程序都能调用，且继承，新建的用户也默认能调用.</p>
@@ -384,131 +695,252 @@ echo &quot;hello world&quot;</code></pre>
 <ul>
 <li>进一步了解位置参数<code>$1~$&#123;n&#125;</code></li>
 </ul>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="comment">#了解shell内置变量中的位置参数含义</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;\<span class="variable">$0</span> = <span class="variable">$0</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;\<span class="variable">$</span># = <span class="variable">$</span>#&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;\<span class="variable">$</span>* = <span class="variable">$</span>*&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;\<span class="variable">$</span>@ = <span class="variable">$</span>@&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;\<span class="variable">$1</span> = <span class="variable">$1</span>&quot;</span> </span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;\<span class="variable">$2</span> = <span class="variable">$2</span>&quot;</span> </span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;\<span class="variable">$3</span> = <span class="variable">$3</span>&quot;</span> </span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;\<span class="variable">$11</span> = <span class="variable">$</span>&#123;11&#125;&quot;</span> </span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;\<span class="variable">$12</span> = <span class="variable">$</span>&#123;12&#125;&quot;</span> </span><br></pre></td></tr></table></figure>
+<pre><code class="hljs powershell">
+<span class="hljs-comment">#!/bin/bash</span>
+<span class="hljs-comment">#了解shell内置变量中的位置参数含义</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;\<span class="hljs-variable">$0</span> = <span class="hljs-variable">$0</span>&quot;</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;\<span class="hljs-variable">$</span># = <span class="hljs-variable">$</span>#&quot;</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;\<span class="hljs-variable">$</span>* = <span class="hljs-variable">$</span>*&quot;</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;\<span class="hljs-variable">$</span>@ = <span class="hljs-variable">$</span>@&quot;</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;\<span class="hljs-variable">$1</span> = <span class="hljs-variable">$1</span>&quot;</span> 
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;\<span class="hljs-variable">$2</span> = <span class="hljs-variable">$2</span>&quot;</span> 
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;\<span class="hljs-variable">$3</span> = <span class="hljs-variable">$3</span>&quot;</span> 
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;\<span class="hljs-variable">$11</span> = <span class="hljs-variable">$</span>&#123;11&#125;&quot;</span> 
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;\<span class="hljs-variable">$12</span> = <span class="hljs-variable">$</span>&#123;12&#125;&quot;</span></code></pre>
 
 <ul>
 <li>进一步了解$*和​$@的区别</li>
 </ul>
 <p><code>$*</code>：表示将变量看成一个整体<br><code>$@</code>：表示变量是独立的</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$</span>@&quot;</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line">done</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;======我是分割线=======&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$</span>*&quot;</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">[<span class="type">root</span>@<span class="type">MissHou</span> ~]<span class="comment"># bash 3.sh a b c</span></span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line">c</span><br><span class="line">======我是分割线=======</span><br><span class="line">a b c</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs powershell">
+<span class="hljs-comment">#!/bin/bash</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-string">&quot;<span class="hljs-variable">$</span>@&quot;</span>
+<span class="hljs-keyword">do</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-variable">$i</span>
+done
+
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;======我是分割线=======&quot;</span>
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-string">&quot;<span class="hljs-variable">$</span>*&quot;</span>
+<span class="hljs-keyword">do</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-variable">$i</span>
+done
+
+[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># bash 3.sh a b c</span>
+a
+b
+c
+======我是分割线=======
+a b c
+</code></pre>
 
 
 
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/shell/">shell</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/10/26/shell-for%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95%E7%BB%93%E6%9E%84/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">shell-for</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/10/18/%E5%87%BD%E6%95%B0/">
+                        <span class="hidden-mobile">shell-case语句</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
-<div class="lx-navigation">
-	<div class="lx-cover prev lx-cover-sm" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/images/footer-l.jpeg)">
-		<div class="overlay"></div>
-		<a class="copy" href="/2020/10/26/shell-for%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95%E7%BB%93%E6%9E%84/">
-			<div class="display-t">
-				<div class="display-tc">
-					<div>
-						<span>Next</span>
-						<h3>shell-f...</h3>
-					</div>
-				</div>
-			</div>
-		</a>
-	</div>
-        <div class="lx-cover next lx-cover-sm" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/images/footer-r.jpeg)">
-		<div class="overlay"></div>
-		<a class="copy" href="/2020/10/18/%E5%87%BD%E6%95%B0/">
-			<div class="display-t">
-				<div class="display-tc">
-					<div>
-						<span>Prev</span>
-						<h3>shell-c...</h3>
-					</div>
-				</div>
-			</div>
-		</a>
-	</div>
-</div>
+    
 
-</div>
+    
+  </main>
 
-<footer>
-  <div>
-  Copyright &copy; 2019.<a href="/">ming-2000</a><br>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme <a href="https://lx.js.org" target="_blank">Lx</a><br>
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
   </div>
+  
+
+  
+
+  
 </footer>
 
-</div>
+<!-- SCRIPTS -->
 
-<button class="hamburger hamburger--arrow-r" type="button">
-    <div class="hamburger-box">
-      <div class="hamburger-inner"></div>
-    </div>
-</button> 
-<div class="menu visibility">
-  <div class="menu-head">
-    <span class="layer">
-      <div class="col">
-        <div class="row for-pic">
-          <div class="profile-pic">
-            <a href="/"><img src="/images/avatar.jpeg" alt="Ming hongping"/></a>
-          </div>
-        </div>
-        <div class="row for-name">
-          <p>Ming hongping</p>
-          <span class="tagline">Hello!</span>
-        </div>
-      </div>
-    </span>
-  </div>
-  <nav class="menu-container">
-  <ul class="menu-items">
-    <li><a href="/"><i class="fa fa-home fa-fw"></i>首页</a></li>
-    <li><a href="/archives/"><i class="fa fa-archive fa-fw"></i>归档</a></li>
-    
-    <li class="has-sub"><span class="dropdown-heading">
-      <i class="fa fa-bookmark fa-fw"></i>页面</span>
-        <ul>
-          <li><a href="/guestbook/">Guestbook</a></li>
-        <li><a href="/about/">About</a></li>
-        </ul>
-    </li>
-    <li class="has-sub"><span class="dropdown-heading">
-      <i class="fa fa-link fa-fw"></i>友链</span>
-        <ul>
-          <li> <a href="https://lx.js.org" target="_blank">Theme-Lx</a></li>
-        </ul>
-    </li>
-  </ul>
-  </nav>
-</div>
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
 
-<div class="gototop js-top">
-  <a href="#" class="js-gotop"><i class="fa fa-arrow-up"></i></a>
-</div>
-<script src="//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/js/jquery.easing.min.js"></script>
-<script>
-(function () {
-	"use strict";
-	var goToTop = function() {
-		$(".js-gotop").on("click", function(event){
-			event.preventDefault();
-			$("html, body").animate({
-				scrollTop: $("html").offset().top
-			}, 500, "easeInOutExpo");
-			return false;
-		});
-		$(window).scroll(function(){
-			var $win = $(window);
-			if ($win.scrollTop() > 200) {
-				$(".js-top").addClass("active");
-			} else {
-				$(".js-top").removeClass("active");
-			}
-		});
-	};
-	$(function(){
-		goToTop();
-	});
-}());
-</script>
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
 
 
 </body>
