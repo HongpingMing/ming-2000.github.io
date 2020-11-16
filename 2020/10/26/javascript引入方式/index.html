@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Ming hongping">
   <meta name="keywords" content="">
-  <title>我的第一篇博客文章 - ming-2000</title>
+  <title>网页中引入javascript方式 - ming-2000</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="我的第一篇博客文章">
+            <span class="h2" id="subtitle" title="网页中引入javascript方式">
               
             </span>
 
@@ -173,8 +173,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-10-07 19:35" pubdate>
-        October 7, 2020 pm
+      <time datetime="2020-10-26 10:30" pubdate>
+        October 26, 2020 am
       </time>
     </span>
   
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      0 字
+      425 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      6
        分钟
     </span>
   
@@ -225,14 +225,61 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">我的第一篇博客文章</h1>
+            <h1 style="display: none">网页中引入javascript方式</h1>
             
             <div class="markdown-body">
-              
+              <a id="more"></a>
+
+<h3 id="㈠-使用-lt-script-gt-lt-script-gt"><a href="#㈠-使用-lt-script-gt-lt-script-gt" class="headerlink" title="㈠ 使用&lt;script&gt;...&lt;/script&gt;"></a>㈠ 使用<code>&lt;script&gt;...&lt;/script&gt;</code></h3><p> 使用 <code>&lt;script&gt;...&lt;/script&gt;</code> 标签将JavaScript代码嵌入MTML文档中，也是最常用的方法。</p>
+<h4 id="基本语法格式"><a href="#基本语法格式" class="headerlink" title="基本语法格式"></a>基本语法格式</h4><pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+......
+&lt;/script&gt;</code></pre>
+<h4 id="举例说明"><a href="#举例说明" class="headerlink" title="举例说明"></a>举例说明</h4><pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    var t1,t2,htime,sum=0;
+
+    t1=new Date();
+        document.write(&quot;循环当前时间是：&quot;
+                       +t1.toLocaleString()+&quot;:&quot;+t1.getMilliseconds()+&quot;&lt;/br&gt;&quot;);
+
+        for(var i=1;i&lt;=10000;i++)&#123;
+
+            sum+=i;
+        &#125;
+
+    t2=new Date();
+        document.write(&quot;循环当前时间是：&quot;
+                       +t2.toLocaleString()+&quot;:&quot;+t2.getMilliseconds()+&quot;&lt;/br&gt;&quot;);
+        htime = t2.getTime()-t1.getTime();
+
+        document.write(&quot;执行10000次循环用时：&quot;+htime+&quot;毫秒&quot;);
+
+&lt;/script&gt;</code></pre>
+<h4 id="注"><a href="#注" class="headerlink" title="注:"></a>注:</h4><p><strong>1.<code>&lt;script&gt;...&lt;/script&gt;</code>标签位置不固定，可以在<code>&lt;head&gt;...&lt;/head&gt;</code>或者<code>&lt;body&gt;...&lt;/body&gt;</code>中的任何位置</strong></p>
+<p><strong>2.这种方式常用于<code>JavaScript</code>脚本代码较少，并且网站中每个页面使用的<code>JavaScript</code>脚本代码均不同的情况。</strong>  </p>
+<h3 id="㈡链接外部JavaScript文件"><a href="#㈡链接外部JavaScript文件" class="headerlink" title="㈡链接外部JavaScript文件"></a>㈡链接外部JavaScript文件</h3><p>外部JavaScript文件是将JavaScript写入一个外部文件中，以<code>.js</code>为文件后缀名，然后通过<code>&lt;script&gt;</code>标签的src属性嵌入到HTML文档中</p>
+<h4 id="举例说明-1"><a href="#举例说明-1" class="headerlink" title="举例说明"></a>举例说明</h4><pre><code>&lt;head&gt;
+  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;./1.css&quot;&gt;
+
+  &lt;script type=&quot;text/javascript&quot; src=&quot;./1.js&quot;&gt;&lt;/script&gt;  //外链式 文件名：1.js
+&lt;/head&gt;</code></pre>
+<h4 id="注-1"><a href="#注-1" class="headerlink" title="注:"></a>注:</h4><p><strong>1.外部文件中不能包含<code>&lt;script&gt;</code>标签</strong></p>
+<h3 id="㈢JavaScript伪URL引入"><a href="#㈢JavaScript伪URL引入" class="headerlink" title="㈢JavaScript伪URL引入"></a>㈢JavaScript伪URL引入</h3><p><strong>格式：</strong>JavaScript：JavaScript脚本代码</p>
+<h4 id="举例说明-2"><a href="#举例说明-2" class="headerlink" title="举例说明"></a>举例说明</h4><pre><code> &lt;p&gt;伪URL地址引入JavaScript脚本代码实例：&lt;/p&gt;
+ &lt;form name=&quot;MyForm&quot;&gt;
+    &lt;input type=&quot;text&quot; name=&quot;MyText&quot; value=&quot;鼠标单击&quot; onclick=&quot;javascript:alert(&#39;鼠标已单击文本框！&#39;)&quot;
+ &lt;/form&gt;</code></pre>
+
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/JavaScript/">JavaScript</a>
+                    
+                  </div>
                 
                 
               </div>
@@ -244,15 +291,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/10/10/shell%E7%BC%96%E7%A8%8B%E4%B9%8B%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89/">
+                      <a href="/2020/11/10/node%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E6%A8%A1%E5%9D%97-1/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">shell变量定义</span>
+                        <span class="hidden-mobile">node重新安装依赖模块</span>
                         <span class="visible-mobile">Vorheriger</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2020/10/26/shell-for%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95%E7%BB%93%E6%9E%84/">
+                        <span class="hidden-mobile">shell-for语句</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

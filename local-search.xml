@@ -44,6 +44,25 @@
   
   
   <entry>
+    <title>网页中引入javascript方式</title>
+    <link href="/2020/10/26/javascript%E5%BC%95%E5%85%A5%E6%96%B9%E5%BC%8F/"/>
+    <url>/2020/10/26/javascript%E5%BC%95%E5%85%A5%E6%96%B9%E5%BC%8F/</url>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h3 id="㈠-使用-lt-script-gt-lt-script-gt"><a href="#㈠-使用-lt-script-gt-lt-script-gt" class="headerlink" title="㈠ 使用&lt;script&gt;...&lt;/script&gt;"></a>㈠ 使用<code>&lt;script&gt;...&lt;/script&gt;</code></h3><p> 使用 <code>&lt;script&gt;...&lt;/script&gt;</code> 标签将JavaScript代码嵌入MTML文档中，也是最常用的方法。</p><h4 id="基本语法格式"><a href="#基本语法格式" class="headerlink" title="基本语法格式"></a>基本语法格式</h4><pre><code>&lt;script type=&quot;text/javascript&quot;&gt;......&lt;/script&gt;</code></pre><h4 id="举例说明"><a href="#举例说明" class="headerlink" title="举例说明"></a>举例说明</h4><pre><code>&lt;script type=&quot;text/javascript&quot;&gt;    var t1,t2,htime,sum=0;    t1=new Date();        document.write(&quot;循环当前时间是：&quot;                       +t1.toLocaleString()+&quot;:&quot;+t1.getMilliseconds()+&quot;&lt;/br&gt;&quot;);        for(var i=1;i&lt;=10000;i++)&#123;            sum+=i;        &#125;    t2=new Date();        document.write(&quot;循环当前时间是：&quot;                       +t2.toLocaleString()+&quot;:&quot;+t2.getMilliseconds()+&quot;&lt;/br&gt;&quot;);        htime = t2.getTime()-t1.getTime();        document.write(&quot;执行10000次循环用时：&quot;+htime+&quot;毫秒&quot;);&lt;/script&gt;</code></pre><h4 id="注"><a href="#注" class="headerlink" title="注:"></a>注:</h4><p><strong>1.<code>&lt;script&gt;...&lt;/script&gt;</code>标签位置不固定，可以在<code>&lt;head&gt;...&lt;/head&gt;</code>或者<code>&lt;body&gt;...&lt;/body&gt;</code>中的任何位置</strong></p><p><strong>2.这种方式常用于<code>JavaScript</code>脚本代码较少，并且网站中每个页面使用的<code>JavaScript</code>脚本代码均不同的情况。</strong>  </p><h3 id="㈡链接外部JavaScript文件"><a href="#㈡链接外部JavaScript文件" class="headerlink" title="㈡链接外部JavaScript文件"></a>㈡链接外部JavaScript文件</h3><p>外部JavaScript文件是将JavaScript写入一个外部文件中，以<code>.js</code>为文件后缀名，然后通过<code>&lt;script&gt;</code>标签的src属性嵌入到HTML文档中</p><h4 id="举例说明-1"><a href="#举例说明-1" class="headerlink" title="举例说明"></a>举例说明</h4><pre><code>&lt;head&gt;  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;./1.css&quot;&gt;  &lt;script type=&quot;text/javascript&quot; src=&quot;./1.js&quot;&gt;&lt;/script&gt;  //外链式 文件名：1.js&lt;/head&gt;</code></pre><h4 id="注-1"><a href="#注-1" class="headerlink" title="注:"></a>注:</h4><p><strong>1.外部文件中不能包含<code>&lt;script&gt;</code>标签</strong></p><h3 id="㈢JavaScript伪URL引入"><a href="#㈢JavaScript伪URL引入" class="headerlink" title="㈢JavaScript伪URL引入"></a>㈢JavaScript伪URL引入</h3><p><strong>格式：</strong>JavaScript：JavaScript脚本代码</p><h4 id="举例说明-2"><a href="#举例说明-2" class="headerlink" title="举例说明"></a>举例说明</h4><pre><code> &lt;p&gt;伪URL地址引入JavaScript脚本代码实例：&lt;/p&gt; &lt;form name=&quot;MyForm&quot;&gt;    &lt;input type=&quot;text&quot; name=&quot;MyText&quot; value=&quot;鼠标单击&quot; onclick=&quot;javascript:alert(&#39;鼠标已单击文本框！&#39;)&quot; &lt;/form&gt;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>shell-for语句</title>
     <link href="/2020/10/26/shell-for%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95%E7%BB%93%E6%9E%84/"/>
     <url>/2020/10/26/shell-for%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95%E7%BB%93%E6%9E%84/</url>
@@ -63,7 +82,7 @@
   
   
   <entry>
-    <title>shell函数</title>
+    <title>shell-function函数</title>
     <link href="/2020/10/18/case-function/"/>
     <url>/2020/10/18/case-function/</url>
     
@@ -105,7 +124,7 @@
     <link href="/2020/10/11/Red-hat%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81/"/>
     <url>/2020/10/11/Red-hat%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81/</url>
     
-    <content type="html"><![CDATA[<img src="/2020/10/11/Red-hat%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81/timg.jpg" class><a id="more"></a><p>忘记root密码这个问题出现的几率是很高的，不过，在linux下解决这个问题也很简单，只需重启linux系统，然后引导进入linux的单用户模式（init1），由于单用户模式是不需要输入登录密码的，因此，可以直接登录系统，修改root密码即可解决问题。</p><h3 id="1、进入GRUB页面，选择相应的内核，按下’e’键；-备注：第一行为内核；第二行为援救模式"><a href="#1、进入GRUB页面，选择相应的内核，按下’e’键；-备注：第一行为内核；第二行为援救模式" class="headerlink" title="1、进入GRUB页面，选择相应的内核，按下’e’键；(备注：第一行为内核；第二行为援救模式)"></a>1、进入GRUB页面，选择相应的内核，按下’e’键；(备注：第一行为内核；第二行为援救模式)</h3><img src="/2020/10/11/Red-hat%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81/1.jpg" class><h3 id="2、进入内核修改信息界面，找到Linux16这一行；"><a href="#2、进入内核修改信息界面，找到Linux16这一行；" class="headerlink" title="2、进入内核修改信息界面，找到Linux16这一行；"></a>2、进入内核修改信息界面，找到Linux16这一行；</h3><img src="/2020/10/11/Red-hat%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81/2.jpg" class><p>在这一行的末尾加上init=/bin/sh</p><p>按下’Ctrl + x’进入单用户模式</p><h3 id="3、进入单用户后，重新挂载根目录，使其可写；"><a href="#3、进入单用户后，重新挂载根目录，使其可写；" class="headerlink" title="3、进入单用户后，重新挂载根目录，使其可写；"></a>3、进入单用户后，重新挂载根目录，使其可写；</h3><p>执行<code>mount -o remount,rw /</code></p><h3 id="4、修改密码-输入两遍"><a href="#4、修改密码-输入两遍" class="headerlink" title="4、修改密码(输入两遍)"></a>4、修改密码(输入两遍)</h3><h3 id="5、当selinux防火墙启动时，修改密码后要创建文件touch-autorelabel"><a href="#5、当selinux防火墙启动时，修改密码后要创建文件touch-autorelabel" class="headerlink" title="5、当selinux防火墙启动时，修改密码后要创建文件touch /.autorelabel"></a>5、当selinux防火墙启动时，修改密码后要创建文件touch /.autorelabel</h3><img src="/2020/10/11/Red-hat%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81/3.png" class><h3 id="6、重启系统"><a href="#6、重启系统" class="headerlink" title="6、重启系统"></a>6、重启系统</h3><img src="/2020/10/11/Red-hat%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81/3.png" class>]]></content>
+    <content type="html"><![CDATA[<a id="more"></a><p>忘记root密码这个问题出现的几率是很高的，不过，在linux下解决这个问题也很简单，只需重启linux系统，然后引导进入linux的单用户模式（init1），由于单用户模式是不需要输入登录密码的，因此，可以直接登录系统，修改root密码即可解决问题。</p><h3 id="1、进入GRUB页面，选择相应的内核，按下’e’键；-备注：第一行为内核；第二行为援救模式"><a href="#1、进入GRUB页面，选择相应的内核，按下’e’键；-备注：第一行为内核；第二行为援救模式" class="headerlink" title="1、进入GRUB页面，选择相应的内核，按下’e’键；(备注：第一行为内核；第二行为援救模式)"></a>1、进入GRUB页面，选择相应的内核，按下’e’键；(备注：第一行为内核；第二行为援救模式)</h3><img src="/2020/10/11/Red-hat%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81/1.jpg" class><h3 id="2、进入内核修改信息界面，找到Linux16这一行；"><a href="#2、进入内核修改信息界面，找到Linux16这一行；" class="headerlink" title="2、进入内核修改信息界面，找到Linux16这一行；"></a>2、进入内核修改信息界面，找到Linux16这一行；</h3><img src="/2020/10/11/Red-hat%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81/2.jpg" class><p>在这一行的末尾加上init=/bin/sh</p><p>按下’Ctrl + x’进入单用户模式</p><h3 id="3、进入单用户后，重新挂载根目录，使其可写；"><a href="#3、进入单用户后，重新挂载根目录，使其可写；" class="headerlink" title="3、进入单用户后，重新挂载根目录，使其可写；"></a>3、进入单用户后，重新挂载根目录，使其可写；</h3><p>执行<code>mount -o remount,rw /</code></p><h3 id="4、修改密码-输入两遍"><a href="#4、修改密码-输入两遍" class="headerlink" title="4、修改密码(输入两遍)"></a>4、修改密码(输入两遍)</h3><h3 id="5、当selinux防火墙启动时，修改密码后要创建文件touch-autorelabel"><a href="#5、当selinux防火墙启动时，修改密码后要创建文件touch-autorelabel" class="headerlink" title="5、当selinux防火墙启动时，修改密码后要创建文件touch /.autorelabel"></a>5、当selinux防火墙启动时，修改密码后要创建文件touch /.autorelabel</h3><img src="/2020/10/11/Red-hat%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81/3.png" class><h3 id="6、重启系统"><a href="#6、重启系统" class="headerlink" title="6、重启系统"></a>6、重启系统</h3><img src="/2020/10/11/Red-hat%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81/3.png" class>]]></content>
     
     
     <categories>
