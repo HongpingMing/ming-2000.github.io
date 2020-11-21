@@ -1,234 +1,472 @@
-
-
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
-
+<!DOCTYPE HTML>
+<html lang="zh-CN">
 
 
 <head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
-  <meta name="author" content="Ming hongping">
-  <meta name="keywords" content="">
-  <title>shell变量定义 - 明红平的博客</title>
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+    <meta charset="utf-8">
+    <meta name="keywords" content="shell变量定义, 明红平的博客">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+    <title>shell变量定义 | 明红平的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/github-gist.min.css" />
-    
-  
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
 
-  
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-  
+    <script src="/libs/jquery/jquery.min.js"></script>
 
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-<!-- 自定义样式保持在最底部 -->
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="明红平的博客" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
 
 
 <body>
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>Ming hongping</strong>&nbsp;</a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
-          </li>
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-    <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="shell变量定义">
-              
-            </span>
-
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <span class="logo-span">明红平的博客</span>
+                </a>
+            </div>
             
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-10-10 20:26" pubdate>
-        2020年10月10日 晚上
-      </time>
-    </span>
-  
-</div>
 
-<div class="mt-1">
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
   
+  <li class="hide-on-med-and-down nav-item">
     
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      3.2k 字
-    </span>
-  
-
-  
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
     
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
       
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
       
-      39
-       分钟
-    </span>
+      <span>标签</span>
+    </a>
+    
+  </li>
   
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
 
-  
-  
-</div>
 
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <div class="logo-name">明红平的博客</div>
+        <div class="logo-desc">
             
-          </div>
-
-          
+            Never really desperate, only the lost of the soul.
+            
         </div>
-      </div>
     </div>
-  </header>
 
-  <main>
     
-      
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">shell变量定义</h1>
-            
-            <div class="markdown-body">
-              <p>① Shell的基本语法结构</p>
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">shell变量定义</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Shell/" class="post-category">
+                                Shell
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-10-10
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>① Shell的基本语法结构</p>
 <p>  如：变量定义、条件判断、循环语句(for、until、while)、分支语句、函数和数组等； </p>
 <p>  ② 基本正则表达式的运用;</p>
 <p>  ③ 文件处理三剑客：grep、sed、awk工具的使用；</p>
@@ -255,22 +493,18 @@
 <li>shell就是人机交互的一个桥梁</li>
 <li>shell的种类</li>
 </ul>
-<pre><code class="hljs powershell">[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># cat /etc/shells   </span>
+<p>powershell<br>    [root@MissHou ~]# cat /etc/shells   </p>
+<pre><code>/bin/sh                &amp;emsp;#是bash的一个快捷方式  
 
-/bin/sh			    &amp;emsp;<span class="hljs-comment">#是bash的一个快捷方式  </span>
+/bin/bash            &amp;emsp;#bash是大多数Linux默认的shell，包含的功能几乎可以涵盖shell所有的功能  
 
-/bin/bash			&amp;emsp;<span class="hljs-comment">#bash是大多数Linux默认的shell，包含的功能几乎可以涵盖shell所有的功能  </span>
+/sbin/nologin        &amp;emsp;#表示非交互，不能登录操作系统  
 
-/sbin/nologin		&amp;emsp;<span class="hljs-comment">#表示非交互，不能登录操作系统  </span>
+/bin/dash            &amp;emsp;#小巧，高效，功能相比少一些
 
-/bin/dash			&amp;emsp;<span class="hljs-comment">#小巧，高效，功能相比少一些</span>
+/bin/csh            &amp;emsp;#具有C语言风格的一种shell，具有许多特性，但也有一些缺陷  
 
-/bin/csh			&amp;emsp;<span class="hljs-comment">#具有C语言风格的一种shell，具有许多特性，但也有一些缺陷  </span>
-
-/bin/tcsh			&amp;emsp;<span class="hljs-comment">#是csh的增强版，完全兼容csh</span></code></pre>
-
-
-
+/bin/tcsh            &amp;emsp;#是csh的增强版，完全兼容csh</code></pre>
 <h2 id="3-shell脚本"><a href="#3-shell脚本" class="headerlink" title="3. shell脚本"></a>3. shell脚本</h2><h3 id="㈠-什么是shell脚本？"><a href="#㈠-什么是shell脚本？" class="headerlink" title="㈠ 什么是shell脚本？"></a>㈠ 什么是shell脚本？</h3><ul>
 <li>一句话概括</li>
 </ul>
@@ -289,74 +523,60 @@
 <p><code>#!/bin/bash</code>  表示以下内容使用bash解释器解析  </p>
 <p><strong>注意：</strong><br>如果直接将解释器路径写死在脚本里，可能在某些系统就会存在找不到解释器的兼容性问题，所以可以使用:<code>#!/bin/env 解释器</code></p>
 <p>2）<strong>脚本第二部分</strong>，注释(#号)说明，对脚本的基本信息进行描述【可选】</p>
-<pre><code class="hljs powershell">
-	<span class="hljs-comment">#!/bin/env bash</span>
-	
-	<span class="hljs-comment"># 以下内容是对脚本的基本信息的描述</span>
-	<span class="hljs-comment"># Name: 名字</span>
-	<span class="hljs-comment"># Desc:描述describe</span>
-	<span class="hljs-comment"># Path:存放路径</span>
-	<span class="hljs-comment"># Usage:用法</span>
-	<span class="hljs-comment"># Update:更新时间</span>
-
-<span class="hljs-comment">#下面就是脚本的具体内容</span>
-commands</code></pre>
-
-<p>3）<strong>脚本第三部分</strong>，脚本要实现的具体代码内容</p>
-<h3 id="（五）-shell脚本的执行方法"><a href="#（五）-shell脚本的执行方法" class="headerlink" title="（五） shell脚本的执行方法"></a>（五） shell脚本的执行方法</h3><ul>
-<li>标准脚本执行方法（建议）</li>
-</ul>
-<pre><code class="hljs powershell"><span class="hljs-number">1</span>) 编写人生第一个shell脚本
-[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> <span class="hljs-type">shell01</span>]<span class="hljs-comment"># cat first_shell.sh</span></code></pre>
+<p>powershell</p>
 <pre><code>#!/bin/env bash
 
-# 以下内容是对脚本的基本信息的描述
-# Name: first_shell.sh
-# Desc: num1
-# Path: /shell01/first_shell.sh
-# Usage:/shell01/first_shell.sh
-# Update:2019-05-05
-
-echo &quot;hello world&quot;
-echo &quot;hello world&quot;
-echo &quot;hello world&quot;</code></pre>
-<pre><code class="hljs mel"><span class="hljs-string">``</span><span class="hljs-string">`</span>
-<span class="hljs-string">2) 脚本增加可执行权限</span>
-<span class="hljs-string">`</span>[root@MissHou shell01]# chmod +x first_shell.sh<span class="hljs-string">`</span>
-<span class="hljs-string"></span>
-<span class="hljs-string">3) 标准方式执行脚本</span>
-<span class="hljs-string">`</span>[root@MissHou shell01]# <span class="hljs-keyword">pwd</span><span class="hljs-string">`</span>
-<span class="hljs-string">`</span>/shell01<span class="hljs-string">`</span>
-<span class="hljs-string">`</span>[root@MissHou shell01]# /shell01/first_shell.sh<span class="hljs-string">`</span>
-<span class="hljs-string">或者</span>
-<span class="hljs-string">`</span>[root@MissHou shell01]# ./first_shell.sh<span class="hljs-string">`</span>
-<span class="hljs-string"></span>
-<span class="hljs-string">注意：标准执行方式脚本必须要有可执行权限。</span>
-<span class="hljs-string"></span>
-<span class="hljs-string">- 非标准的执行方法（不建议）</span>
-<span class="hljs-string"></span>
-<span class="hljs-string">1. 直接在命令行指定解释器执行</span>
-<span class="hljs-string"></span>
-<span class="hljs-string">`</span><span class="hljs-string">``</span>powershell
-[root@MissHou shell01]# bash first_shell.sh
+ 以下内容是对脚本的基本信息的描述
+ Name: 名字
+ Desc:描述describe
+ Path:存放路径
+ Usage:用法
+ Update:更新时间</code></pre>
+<p>#下面就是脚本的具体内容<br>commands</p>
+<p>3）<strong>脚本第三部分</strong>，脚本要实现的具体代码内容</p>
+<h3 id="（五）-shell脚本的执行方法"><a href="#（五）-shell脚本的执行方法" class="headerlink" title="（五） shell脚本的执行方法"></a>（五） shell脚本的执行方法</h3><ul>
+<li>标准脚本执行方法（建议）  </li>
+</ul>
+<p>powershell  </p>
+<ol>
+<li><p>编写人生第一个shell脚本    </p>
+<p> [root@MissHou shell01]# cat first_shell.sh<br> #!/bin/env bash<br> 以下内容是对脚本的基本信息的描述<br> Name: first_shell.sh<br> Desc: num1<br> Path: /shell01/first_shell.sh<br> Usage:/shell01/first_shell.sh<br> Update:2019-05-05<br> echo “hello world”<br> echo “hello world”<br> echo “hello world”</p>
+</li>
+</ol>
+<ol start="2">
+<li><p>脚本增加可执行权限  </p>
+<p> [root@MissHou shell01]# chmod +x first_shell.sh</p>
+</li>
+<li><p>标准方式执行脚本  </p>
+<p> [root@MissHou shell01]# pwd<br> /shell01<br> [root@MissHou shell01]# /shell01/first_shell.sh<br>或者<br> [root@MissHou shell01]# ./first_shell.sh</p>
+</li>
+</ol>
+<p>注意：标准执行方式脚本必须要有可执行权限。</p>
+<ul>
+<li>非标准的执行方法（不建议）</li>
+</ul>
+<ol>
+<li>直接在命令行指定解释器执行</li>
+</ol>
+<p>powershell  </p>
+<pre><code>[root@MissHou shell01]# bash first_shell.sh
 [root@MissHou shell01]# sh first_shell.sh
 [root@MissHou shell01]# bash -x first_shell.sh
-+ echo <span class="hljs-string">&#x27;hello world&#x27;</span>
++ echo &#39;hello world&#39;
 hello world
-+ echo <span class="hljs-string">&#x27;hello world&#x27;</span>
++ echo &#39;hello world&#39;
 hello world
-+ echo <span class="hljs-string">&#x27;hello world&#x27;</span>
++ echo &#39;hello world&#39;
 hello world</code></pre>
 <p><code>-x</code>:一般用于排错，查看脚本的执行过程<br><code>-n</code>:用来查看脚本的语法是否有问题</p>
 <ol start="2">
-<li>使用<code>source</code>命令读取脚本文件,执行文件里的代码<br>powershell  <pre><code class="hljs properties"><span class="hljs-meta">[root@MissHou</span> <span class="hljs-string">shell01]# source first_shell.sh</span>
-<span class="hljs-attr">hello</span> <span class="hljs-string">world</span>
-<span class="hljs-attr">hello</span> <span class="hljs-string">world</span>
-<span class="hljs-attr">hello</span> <span class="hljs-string">world</span></code></pre>
-
-
-</li>
+<li>使用<code>source</code>命令读取脚本文件,执行文件里的代码  </li>
 </ol>
+<p>powershell   </p>
+<pre><code> [root@MissHou shell01]# source first_shell.sh
+hello world
+hello world
+hello world</code></pre>
 <h1 id="二、变量的定义"><a href="#二、变量的定义" class="headerlink" title="二、变量的定义"></a>二、变量的定义</h1><h2 id="1-变量是什么？"><a href="#1-变量是什么？" class="headerlink" title="1. 变量是什么？"></a>1. 变量是什么？</h2><ul>
 <li>一句话概括：变量是用来临时保存数据的，该数据是可以变化的数据。</li>
 </ul>
@@ -368,98 +588,67 @@ hello world</code></pre>
 <ul>
 <li><p>变量名：用来临时保存数据的</p>
 </li>
-<li><p>变量值：就是临时的可变化的数据</p>
+<li><p>变量值：就是临时的可变化的数据  </p>
+</li>
+<li><p>  powershell<br>  [root@MissHou ~]# A=hello        定义变量A<br>  [root@MissHou ~]# echo $A        调用变量A，要给钱的，不是人民币是美元”$”<br>  hello<br>  [root@MissHou ~]# echo ${A}        还可以这样调用，不管你的姿势多优雅，总之要给钱<br>  hello<br>  [root@MissHou ~]# A=world        因为是变量所以可以变，移情别恋是常事<br>  [root@MissHou ~]# echo $A        不管你是谁，只要调用就要给钱<br>  world<br>  [root@MissHou ~]# unset A        不跟你玩了，取消变量<br>  [root@MissHou ~]# echo $A        从此，我单身了，你可以给我介绍任何人  </p>
 </li>
 </ul>
-<pre><code class="hljs powershell">
-[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># A=hello		定义变量A</span>
-[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $A		调用变量A，要给钱的，不是人民币是美元&quot;$&quot;</span>
-hello
-[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $&#123;A&#125;		还可以这样调用，不管你的姿势多优雅，总之要给钱</span>
-hello
-[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># A=world		因为是变量所以可以变，移情别恋是常事</span>
-[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $A		不管你是谁，只要调用就要给钱</span>
-world
-[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># unset A		不跟你玩了，取消变量</span>
-[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $A		从此，我单身了，你可以给我介绍任何人</span></code></pre>
-
 <h2 id="4-变量的定义规则"><a href="#4-变量的定义规则" class="headerlink" title="4. 变量的定义规则"></a>4. 变量的定义规则</h2><p>虽然可以给变量（变量名）赋予任何值；但是，对于==变量名==也是要求的！:unamused:</p>
 <h3 id="㈠-变量名区分大小写"><a href="#㈠-变量名区分大小写" class="headerlink" title="㈠ 变量名区分大小写"></a>㈠ 变量名区分大小写</h3><p>owershell  </p>
-<pre><code class="hljs coffeescript">[root@MissHou ~]<span class="hljs-comment"># A=hello</span>
-[root@MissHou ~]<span class="hljs-comment"># a=world</span>
-[root@MissHou ~]<span class="hljs-comment"># echo $A</span>
+<pre><code>[root@MissHou ~]# A=hello
+[root@MissHou ~]# a=world
+[root@MissHou ~]# echo $A
 hello
-[root@MissHou ~]<span class="hljs-comment"># echo $a</span>
+[root@MissHou ~]# echo $a
 world</code></pre>
-
-<h3 id="㈡-变量名不能有特殊符号"><a href="#㈡-变量名不能有特殊符号" class="headerlink" title="㈡ 变量名不能有特殊符号"></a>㈡ 变量名不能有特殊符号</h3><p>powershell  </p>
-<pre><code>    [root@MissHou ~]# *A=hello
-    -bash: *A=hello: command not found
-    [root@MissHou ~]# ?A=hello
-    -bash: ?A=hello: command not found
-    [root@MissHou ~]# @A=hello
-    -bash: @A=hello: command not found
-
-    <pre><code class="hljs autoit">		特别说明：对于有空格的字符串给变量赋值时，要用引号引起来```
-		[root<span class="hljs-symbol">@MissHou</span> ~]<span class="hljs-meta"># A=hello world</span>
-		-bash: world: command <span class="hljs-literal">not</span> found
-		[root<span class="hljs-symbol">@MissHou</span> ~]<span class="hljs-meta"># A=<span class="hljs-string">&quot;hello world&quot;</span></span>
-		[root<span class="hljs-symbol">@MissHou</span> ~]<span class="hljs-meta"># A=<span class="hljs-string">&#x27;hello world&#x27;</span></span>
-
-<span class="hljs-meta">### ㈢ 变量名不能以数字开头</span>
-```powershell  
-
-	[root<span class="hljs-symbol">@MissHou</span> ~]<span class="hljs-meta"># 1A=hello</span>
-	-bash: <span class="hljs-number">1</span>A=hello: command <span class="hljs-literal">not</span> found
-	[root<span class="hljs-symbol">@MissHou</span> ~]<span class="hljs-meta"># A1=hello</span>
-	
-注意：不能以数字开头并不代表变量名中不能包含数字呦。</code></pre></code></pre>
-<h3 id="㈣-等号两边不能有任何空格"><a href="#㈣-等号两边不能有任何空格" class="headerlink" title="㈣ 等号两边不能有任何空格"></a>㈣ 等号两边不能有任何空格</h3><pre><code class="hljs powershell">
-	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># A =123</span>
-	<span class="hljs-literal">-bash</span>: A: command not found
-	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># A= 123</span>
-	<span class="hljs-literal">-bash</span>: <span class="hljs-number">123</span>: command not found
-	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># A = 123</span>
-	<span class="hljs-literal">-bash</span>: A: command not found
-	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># A=123</span>
-	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $A</span>
-<span class="hljs-number">123</span></code></pre>
-
-<h3 id="㈤-变量名尽量做到见名知意"><a href="#㈤-变量名尽量做到见名知意" class="headerlink" title="㈤ 变量名尽量做到见名知意"></a>㈤ 变量名尽量做到见名知意</h3><pre><code class="hljs powershell">
-	NTP_IP=<span class="hljs-number">10.1</span>.<span class="hljs-number">1.1</span>
-	<span class="hljs-built_in">DIR</span>=/u01/app1
-	TMP_FILE=/var/log/<span class="hljs-number">1</span>.log
+<h3 id="㈡-变量名不能有特殊符号"><a href="#㈡-变量名不能有特殊符号" class="headerlink" title="㈡ 变量名不能有特殊符号"></a>㈡ 变量名不能有特殊符号</h3><p>powershell   </p>
+<pre><code>[root@MissHou ~]# *A=hello
+-bash: *A=hello: command not found
+[root@MissHou ~]# ?A=hello
+-bash: ?A=hello: command not found
+[root@MissHou ~]# @A=hello
+-bash: @A=hello: command not found    </code></pre>
+<p>特别说明：对于有空格的字符串给变量赋值时，要用引号引起来    </p>
+<pre><code>[root@MissHou ~]# A=hello world 
+-bash: world: command not found
+[root@MissHou ~]# A=&quot;hello world&quot;
+[root@MissHou ~]# A=&#39;hello world&#39;</code></pre>
+<h3 id="㈢-变量名不能以数字开头"><a href="#㈢-变量名不能以数字开头" class="headerlink" title="㈢ 变量名不能以数字开头"></a>㈢ 变量名不能以数字开头</h3><p>powershell  </p>
+<pre><code>[root@MissHou ~]# 1A=hello
+bash: 1A=hello: command not found
+[root@MissHou ~]# A1=hello</code></pre>
+<p>注意：不能以数字开头并不代表变量名中不能包含数字呦。</p>
+<h3 id="㈣-等号两边不能有任何空格"><a href="#㈣-等号两边不能有任何空格" class="headerlink" title="㈣ 等号两边不能有任何空格"></a>㈣ 等号两边不能有任何空格</h3><p>powershell  </p>
+<pre><code>[root@MissHou ~]# A =123
+-bash: A: command not found
+[root@MissHou ~]# A= 123
+-bash: 123: command not found
+[root@MissHou ~]# A = 123
+-bash: A: command not found
+[root@MissHou ~]# A=123
+[root@MissHou ~]# echo $A
+123</code></pre>
+<h3 id="㈤-变量名尽量做到见名知意"><a href="#㈤-变量名尽量做到见名知意" class="headerlink" title="㈤ 变量名尽量做到见名知意"></a>㈤ 变量名尽量做到见名知意</h3><p>powershell  </p>
+<pre><code>NTP_IP=10.1.1.1
+DIR=/u01/app1
+TMP_FILE=/var/log/1.log
 ...</code></pre>
 <p>说明：一般变量名使用大写（小写也可以），不要同一个脚本中变量全是a,b,c等不容易阅读</p>
-<pre><code class="hljs ruby"><span class="hljs-string">``</span><span class="hljs-string">`</span>
-<span class="hljs-string"></span>
-<span class="hljs-string">## 5. 变量的定义方式有哪些？</span>
-<span class="hljs-string"></span>
-<span class="hljs-string">### ㈠ 基本方式</span>
-<span class="hljs-string"></span>
-<span class="hljs-string">&gt; 直接赋值给一个变量</span>
-<span class="hljs-string"></span>
-<span class="hljs-string">`</span><span class="hljs-string">``</span>powershell  
-
-	[root@MissHou ~]<span class="hljs-comment"># A=1234567</span>
-	[root@MissHou ~]<span class="hljs-comment"># echo $A</span>
-	<span class="hljs-number">1234567</span>
-	[root@MissHou ~]<span class="hljs-comment"># echo $&#123;A:2:4&#125;		表示从A变量中第3个字符开始截取，截取4个字符</span>
-	<span class="hljs-number">3456</span>
-
-说明：
-$变量名 和 $&#123;变量名&#125;的异同
-相同点：都可以调用变量
-不同点：$&#123;变量名&#125;可以只截取变量的一部分，而$变量名不可以</code></pre>
-
-<h3 id="㈡-命令执行结果赋值给变量"><a href="#㈡-命令执行结果赋值给变量" class="headerlink" title="㈡ 命令执行结果赋值给变量"></a>㈡ 命令执行结果赋值给变量</h3><pre><code class="hljs powershell">
-[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># B=`date +%F`</span>
-[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $B</span>
-<span class="hljs-number">2019</span><span class="hljs-literal">-04</span><span class="hljs-literal">-16</span>
-[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># C=$(uname -r)</span>
-[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $C</span>
-<span class="hljs-number">2.6</span>.<span class="hljs-number">32</span><span class="hljs-literal">-696</span>.el6.x86_64</code></pre>
-
+<h2 id="5-变量的定义方式有哪些？"><a href="#5-变量的定义方式有哪些？" class="headerlink" title="5. 变量的定义方式有哪些？"></a>5. 变量的定义方式有哪些？</h2><h3 id="㈠-基本方式"><a href="#㈠-基本方式" class="headerlink" title="㈠ 基本方式"></a>㈠ 基本方式</h3><p>直接赋值给一个变量</p>
+<p>powershell  </p>
+<pre><code>[root@MissHou ~]# A=1234567
+[root@MissHou ~]# echo $A
+1234567
+[root@MissHou ~]# echo $&#123;A:2:4&#125;        表示从A变量中第3个字符开始截取，截取4个字符
+3456</code></pre>
+<p>说明：<br>$变量名 和 ${变量名}的异同<br>相同点：都可以调用变量<br>不同点：${变量名}可以只截取变量的一部分，而$变量名不可以</p>
+<h3 id="㈡-命令执行结果赋值给变量"><a href="#㈡-命令执行结果赋值给变量" class="headerlink" title="㈡ 命令执行结果赋值给变量"></a>㈡ 命令执行结果赋值给变量</h3><p>powershell  </p>
+<pre><code>[root@MissHou ~]# B=`date +%F`
+[root@MissHou ~]# echo $B
+2019-04-16
+[root@MissHou ~]# C=$(uname -r)
+[root@MissHou ~]# echo $C
+2.6.32-696.el6.x86_64</code></pre>
 <h3 id="㈢-交互式定义变量-read"><a href="#㈢-交互式定义变量-read" class="headerlink" title="㈢ 交互式定义变量(read)"></a>㈢ 交互式定义变量(read)</h3><p><strong>目的：</strong>让==用户自己==给变量赋值，比较灵活。</p>
 <p><strong>语法：</strong><code>read [选项] 变量名</code></p>
 <p><strong>常见选项：</strong></p>
@@ -487,28 +676,24 @@ $变量名 和 $&#123;变量名&#125;的异同
 <td>定义超时时间，默认单位为秒（限制用户输入变量值的超时时间）</td>
 </tr>
 </tbody></table>
-<p><strong>举例说明：</strong></p>
-<pre><code class="hljs powershell">用法<span class="hljs-number">1</span>：用户自己定义变量值  
+<p><strong>举例说明：</strong><br>powershell<br>用法1：用户自己定义变量值  </p>
+<pre><code>[root@MissHou ~]# read name
+harry
+[root@MissHou ~]# echo $name
+harry
+[root@MissHou ~]# read -p &quot;Input your name:&quot; name
+Input your name:tom
+[root@MissHou ~]# echo $name
+tom</code></pre>
+<p>用法2：变量值来自文件  </p>
+<pre><code>[root@MissHou ~]# cat 1.txt 
+10.1.1.1 255.255.255.0
 
-	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># read name</span>
-	harry
-	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $name</span>
-	harry
-	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># read -p &quot;Input your name:&quot; name</span>
-	Input your name:tom
-	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $name</span>
-	tom
-
-用法<span class="hljs-number">2</span>：变量值来自文件  
-	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># cat 1.txt </span>
-	<span class="hljs-number">10.1</span>.<span class="hljs-number">1.1</span> <span class="hljs-number">255.255</span>.<span class="hljs-number">255.0</span>
-	
-	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># read ip mask &lt; 1.txt </span>
-	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $ip</span>
-	<span class="hljs-number">10.1</span>.<span class="hljs-number">1.1</span>
-	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $mask</span>
-	<span class="hljs-number">255.255</span>.<span class="hljs-number">255.0</span></code></pre>
-
+[root@MissHou ~]# read ip mask &lt; 1.txt 
+[root@MissHou ~]# echo $ip
+10.1.1.1
+[root@MissHou ~]# echo $mask
+255.255.255.0</code></pre>
 <h3 id="㈣-定义有类型的变量-declare"><a href="#㈣-定义有类型的变量-declare" class="headerlink" title="㈣ 定义有类型的变量(declare)"></a>㈣ 定义有类型的变量(declare)</h3><p><strong>目的：</strong>给变量做一些限制，固定变量的类型，比如：整型、只读</p>
 <p><strong>用法：</strong><code>declare 选项 变量名=变量值</code></p>
 <p><strong>常用选项：</strong></p>
@@ -547,21 +732,21 @@ $变量名 和 $&#123;变量名&#125;的异同
 </tr>
 </tbody></table>
 <p><strong>举例说明：</strong></p>
-<pre><code class="hljs powershell">[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># declare -i A=123</span>
-[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $A</span>
-<span class="hljs-number">123</span>
-[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># A=hello</span>
-[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $A</span>
-<span class="hljs-number">0</span>
+<pre><code>powershell
+[root@MissHou ~]# declare -i A=123
+[root@MissHou ~]# echo $A
+123
+[root@MissHou ~]# A=hello
+[root@MissHou ~]# echo $A
+0
 
-[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># declare -r B=hello</span>
-[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># echo $B</span>
+[root@MissHou ~]# declare -r B=hello
+[root@MissHou ~]# echo $B
 hello
-[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># B=world</span>
-<span class="hljs-literal">-bash</span>: B: readonly variable
-[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># unset B</span>
-<span class="hljs-literal">-bash</span>: unset: B: cannot unset: readonly variable</code></pre>
-
+[root@MissHou ~]# B=world
+-bash: B: readonly variable
+[root@MissHou ~]# unset B
+-bash: unset: B: cannot unset: readonly variable</code></pre>
 <h2 id="6-变量的分类"><a href="#6-变量的分类" class="headerlink" title="6. 变量的分类"></a>6. 变量的分类</h2><h3 id="㈠-本地变量"><a href="#㈠-本地变量" class="headerlink" title="㈠ 本地变量"></a>㈠ 本地变量</h3><ul>
 <li>**==本地变量==**：当前用户自定义的变量。当前进程中有效，其他进程及当前进程的子进程无效。</li>
 </ul>
@@ -570,21 +755,13 @@ hello
 <p> <code>env</code>查看当前用户的环境变量<br> <code>set</code>查询当前用户的所有变量(临时变量与环境变量)<br> <code>export 变量名=变量值</code>    或者  <code>变量名=变量值；export 变量名</code></p>
 </li>
 </ul>
-<pre><code class="hljs powershell">
-	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># export A=hello  临时将一个本地变量（临时变量）变成环境变量</span>
-	[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># env|grep ^A</span>
-	A=hello
-
-永久生效：
-vim /etc/profile 或者 ~/.bashrc
-export A=hello
-或者
-A=hello
-export A
-
-说明：系统中有一个变量PATH，环境变量
-export PATH=/usr/local/mysql/bin:<span class="hljs-variable">$PATH</span></code></pre>
-
+<p>powershell  </p>
+<pre><code>[root@MissHou ~]# export A=hello  临时将一个本地变量（临时变量）变成环境变量
+[root@MissHou ~]# env|grep ^A
+A=hello</code></pre>
+<p>永久生效：<br>    vim /etc/profile 或者 ~/.bashrc<br>    export A=hello<br>    或者<br>    A=hello<br>    export A</p>
+<p>说明：系统中有一个变量PATH，环境变量</p>
+<pre><code>export PATH=/usr/local/mysql/bin:$PATH</code></pre>
 <h3 id="㈢-全局变量"><a href="#㈢-全局变量" class="headerlink" title="㈢ 全局变量"></a>㈢ 全局变量</h3><ul>
 <li><p><strong>全局变量</strong>：全局所有的用户和程序都能调用，且继承，新建的用户也默认能调用.</p>
 </li>
@@ -693,255 +870,690 @@ export PATH=/usr/local/mysql/bin:<span class="hljs-variable">$PATH</span></code>
 </tr>
 </tbody></table>
 <ul>
-<li>进一步了解位置参数<code>$1~$&#123;n&#125;</code></li>
+<li>进一步了解位置参数<code>$1~$&#123;n&#125;</code>  </li>
+<li></li>
 </ul>
-<pre><code class="hljs powershell">
-<span class="hljs-comment">#!/bin/bash</span>
-<span class="hljs-comment">#了解shell内置变量中的位置参数含义</span>
-<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;\<span class="hljs-variable">$0</span> = <span class="hljs-variable">$0</span>&quot;</span>
-<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;\<span class="hljs-variable">$</span># = <span class="hljs-variable">$</span>#&quot;</span>
-<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;\<span class="hljs-variable">$</span>* = <span class="hljs-variable">$</span>*&quot;</span>
-<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;\<span class="hljs-variable">$</span>@ = <span class="hljs-variable">$</span>@&quot;</span>
-<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;\<span class="hljs-variable">$1</span> = <span class="hljs-variable">$1</span>&quot;</span> 
-<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;\<span class="hljs-variable">$2</span> = <span class="hljs-variable">$2</span>&quot;</span> 
-<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;\<span class="hljs-variable">$3</span> = <span class="hljs-variable">$3</span>&quot;</span> 
-<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;\<span class="hljs-variable">$11</span> = <span class="hljs-variable">$</span>&#123;11&#125;&quot;</span> 
-<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;\<span class="hljs-variable">$12</span> = <span class="hljs-variable">$</span>&#123;12&#125;&quot;</span></code></pre>
-
+<p>powershell  </p>
+<pre><code>~#!/bin/bash
+~#了解shell内置变量中的位置参数含义  
+echo &quot;\$0 = $0&quot;
+echo &quot;\$# = $#&quot;
+echo &quot;\$* = $*&quot;
+echo &quot;\$@ = $@&quot;
+echo &quot;\$1 = $1&quot; 
+echo &quot;\$2 = $2&quot; 
+echo &quot;\$3 = $3&quot; 
+echo &quot;\$11 = $&#123;11&#125;&quot; 
+echo &quot;\$12 = $&#123;12&#125;&quot; </code></pre>
 <ul>
 <li>进一步了解$*和​$@的区别</li>
 </ul>
 <p><code>$*</code>：表示将变量看成一个整体<br><code>$@</code>：表示变量是独立的</p>
-<pre><code class="hljs powershell">
-<span class="hljs-comment">#!/bin/bash</span>
-<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-string">&quot;<span class="hljs-variable">$</span>@&quot;</span>
-<span class="hljs-keyword">do</span>
-<span class="hljs-built_in">echo</span> <span class="hljs-variable">$i</span>
+<p>powershell  </p>
+<pre><code>#!/bin/bash
+for i in &quot;$@&quot;
+do
+echo $i
 done
 
-<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;======我是分割线=======&quot;</span>
+echo &quot;======我是分割线=======&quot;
 
-<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-string">&quot;<span class="hljs-variable">$</span>*&quot;</span>
-<span class="hljs-keyword">do</span>
-<span class="hljs-built_in">echo</span> <span class="hljs-variable">$i</span>
+for i in &quot;$*&quot;
+do
+echo $i
 done
 
-[<span class="hljs-type">root</span>@<span class="hljs-type">MissHou</span> ~]<span class="hljs-comment"># bash 3.sh a b c</span>
+[root@MissHou ~]# bash 3.sh a b c
 a
 b
 c
 ======我是分割线=======
-a b c
-</code></pre>
-
-
+a b c</code></pre>
 
             </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/shell/">shell</a>
-                    
-                  </div>
-                
-                
-              </div>
-              
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
-              
-              
-                <div class="post-prevnext row">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2020/10/11/Red-hat%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Red hat单用户修改密码</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2020/10/07/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">
-                        <span class="hidden-mobile">我的第一篇博客文章</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
+            <hr/>
 
             
-          </article>
-        </div>
-      </div>
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Ming hongping</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://example.com/2020/10/10/shell%E7%BC%96%E7%A8%8B%E4%B9%8B%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89/">http://example.com/2020/10/10/shell%E7%BC%96%E7%A8%8B%E4%B9%8B%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">Ming hongping</a>
+                    !
+                </span>
+            </div>
+        
     </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
     
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
 </div>
 
-      </div>
-    
-  </div>
-</div>
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
 
-<!-- Custom -->
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
 
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
 
-    
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
 
-    
-      <a id="scroll-top-button" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
 
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
     </div>
-  </div>
 </div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
     
 
     
-  </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <a href="https://github.com/ming-2000" target="_blank" rel="nofollow noopener"><span>Ming hongping</span></a> 
-  </div>
-  
+    
 
-  
+    
 
-  
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/10/11/Red-hat%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="/medias/featureimages/10.jpg" class="responsive-img" alt="RHEL7环境修改root密码">
+                        
+                        <span class="card-title">RHEL7环境修改root密码</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            忘记root密码这个问题出现的几率是很高的，不过，在linux下解决这个问题也很简单，只需重启linux系统，然后引导进入linux的单用户模式
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-11
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/10/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="/medias/featureimages/17.jpg" class="responsive-img" alt="我的第一篇博客文章">
+                        
+                        <span class="card-title">我的第一篇博客文章</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Ming hongping
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2020</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">Ming hongping</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2952565009@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2952565009" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2952565009" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
 </footer>
 
-<!-- SCRIPTS -->
-
-  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
-    NProgress.start()
-    document.addEventListener('DOMContentLoaded', function() {
-      window.NProgress && window.NProgress.inc();
-    })
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
+<div class="progress-bar"></div>
 
 
-<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
 
-<!-- Plugins -->
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
 
-
-  
-    <script  src="/js/lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-
-
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
 
 
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+    <!-- Baidu Analytics -->
 
+    <!-- Baidu Push -->
 
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-      typing(title)
-      
-    })(window, document);
-  </script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
-  <script>
+<script>
     (function () {
-      var path = "/local-search.xml";
-      var inputArea = document.querySelector("#local-search-input");
-      inputArea.onclick = function () {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-        this.onclick = null
-      }
-    })()
-  </script>
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
 
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
 
+    
 
+    
 
+	
+    
 
+    
 
+    
 
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
 
+<script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(n){n.imageLazyLoadSetting.processImages=i;var e=n.imageLazyLoadSetting.isSPA,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight||document.documentElement.clientHeight)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},n.src=i}()}i(),n.addEventListener("scroll",function(){var t,e;t=i,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
 
-
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
-<script  src="/js/boot.js" ></script>
-
-
-
-</body>
 </html>
