@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>明红平的博客</title>
-  
-  
+  <icon>http://example.com/icon.png</icon>
+  <subtitle>文件传输助手</subtitle>
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
@@ -24,7 +24,7 @@
     <updated>2020-11-21T10:16:10.766Z</updated>
     
     
-    <summary type="html">&lt;p&gt;JavaScript 是一种轻量级的编程语言。JavaScript 是可插入 HTML 页面的编程代码。JavaScript 插入 HTML 页面后，可由所有的现代浏览器执行。&lt;/p&gt;</summary>
+    <summary type="html">&lt;p&gt;JavaScript 是一种轻量级的编程语言。JavaScript 是可插入 HTML 页面的编程代码。JavaScript 插入 HTML 页面后，可由所有的现代浏览器执行。</summary>
     
     
     
@@ -61,7 +61,7 @@
     <updated>2020-11-21T10:16:13.054Z</updated>
     
     
-    <summary type="html">&lt;p&gt;Node.js 是一个基于Chrome JavaScript 运行时建立的一个平台。Node.js是一个事件驱动I/O服务端JavaScript环境，基于Google的V8引擎，V8引擎执行Javascript的速度非常快，性能非常好。&lt;/p&gt;</summary>
+    <summary type="html">&lt;p&gt;Node.js 是一个基于Chrome JavaScript 运行时建立的一个平台。Node.js是一个事件驱动I/O服务端JavaScript环境，基于Google的V8引擎，V8引擎执行Javascript的速度非常快，性能非常好。</summary>
     
     
     
@@ -78,7 +78,7 @@
     <updated>2020-11-21T10:16:12.726Z</updated>
     
     
-    <summary type="html">&lt;p&gt;yum（全称为 Yellow dog Updater, Modified）是一个在Fedora和RedHat以及CentOS中的Shell前端软件包管理器，类似Windows下软件管家。&lt;/p&gt;</summary>
+    <summary type="html">&lt;p&gt;yum（全称为 Yellow dog Updater, Modified）是一个在Fedora和RedHat以及CentOS中的Shell前端软件包管理器，类似Windows下软件管家。</summary>
     
     
     
@@ -95,7 +95,7 @@
     <updated>2020-11-21T10:16:10.610Z</updated>
     
     
-    <summary type="html">&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;Git是一个分布式的版本控制系统，它功能强大、操作简单，并且能很好地解决以上问题。目前，熟练地使用Git已经成了一个软件开发从业者必备的技能。&lt;/p&gt;</summary>
+    <summary type="html">&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;Git是一个分布式的版本控制系统，它功能强大、操作简单，并且能很好地解决以上问题。目前，熟练地使用Git已经成了一个软件开发从业者必备的技能。</summary>
     
     
     
@@ -112,7 +112,7 @@
     <updated>2020-11-21T10:16:16.290Z</updated>
     
     
-    <summary type="html">&lt;p&gt;git的一大特点就是，能为不同的系统下的开发者提供一个合作开发平台。而团队如果要基于Git进行协同开发，就必须依赖远程版本库&lt;/p&gt;</summary>
+    <summary type="html">&lt;p&gt;git的一大特点就是，能为不同的系统下的开发者提供一个合作开发平台。而团队如果要基于Git进行协同开发，就必须依赖远程版本库</summary>
     
     
     
@@ -129,7 +129,7 @@
     <updated>2020-11-21T10:16:14.654Z</updated>
     
     
-    <summary type="html">&lt;p&gt;DNS（Domain Name System，域名系统）技术应运而生。这是一项用于管理和解析域名与 IP 地址对应关系的技术就是能够接受用户输入的域名或 IP 地址&lt;/p&gt;</summary>
+    <summary type="html">&lt;p&gt;DNS（Domain Name System，域名系统）技术应运而生。这是一项用于管理和解析域名与 IP 地址对应关系的技术就是能够接受用户输入的域名或 IP 地址</summary>
     
     
     
@@ -148,7 +148,7 @@
     
     <summary type="html">&lt;p&gt;linux shell 可以用户定义函数，然后在shell脚本中可以随便调用。&lt;/p&gt;
 &lt;h2 id=&quot;1-什么是函数？&quot;&gt;&lt;a href=&quot;#1-什么是函数？&quot; class=&quot;headerlink&quot; title=&quot;1. 什么是函数？&quot;&gt;&lt;/a&gt;1. 什么是函数？&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;shell中允许将&lt;strong&gt;一组命令集合&lt;/strong&gt;或&lt;strong&gt;语句&lt;/strong&gt;形&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;</summary>
+&lt;li&gt;&lt;p&gt;shell中允许将&lt;strong&gt;一组命令集合&lt;/strong&gt;或&lt;strong&gt;语句&lt;/strong&gt;形</summary>
     
     
     
@@ -165,7 +165,7 @@
     <updated>2020-11-21T10:16:11.194Z</updated>
     
     
-    <summary type="html">&lt;p&gt;Samba是在Linux和UNIX系统上实现SMB协议的一个免费软件，由服务器及客户端程序构成。SMB（Server Messages Block，信息服务块）是一种在局域网上共享文件和打印机的一种通信协议&lt;/p&gt;</summary>
+    <summary type="html">&lt;p&gt;Samba是在Linux和UNIX系统上实现SMB协议的一个免费软件，由服务器及客户端程序构成。SMB（Server Messages Block，信息服务块）是一种在局域网上共享文件和打印机的一种通信协议</summary>
     
     
     
@@ -180,7 +180,7 @@
     <updated>2020-11-21T12:20:27.819Z</updated>
     
     
-    <summary type="html">&lt;p&gt;Shell case语句为多选择语句。可以用case语句匹配一个值与一个模式，如果匹配成功，执行相匹配的命令&lt;/p&gt;</summary>
+    <summary type="html">&lt;p&gt;Shell case语句为多选择语句。可以用case语句匹配一个值与一个模式，如果匹配成功，执行相匹配的命令</summary>
     
     
     
@@ -197,7 +197,7 @@
     <updated>2020-11-21T10:16:13.434Z</updated>
     
     
-    <summary type="html">&lt;p&gt;忘记root密码这个问题出现的几率是很高的，不过，在linux下解决这个问题也很简单，只需重启linux系统，然后引导进入linux的单用户模式&lt;/p&gt;</summary>
+    <summary type="html">&lt;p&gt;忘记root密码这个问题出现的几率是很高的，不过，在linux下解决这个问题也很简单，只需重启linux系统，然后引导进入linux的单用户模式</summary>
     
     
     
