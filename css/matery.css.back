@@ -34,11 +34,12 @@
 }
 
 body {
-    /* background-color: #eaeaea; */
-    background: linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35)) 0% 0% / cover, url("https://user-images.githubusercontent.com/72534193/100347737-c9f07d80-3020-11eb-94f9-2857f9a45776.jpg");
-    background-attachment: fixed;
+    /*background-color改*/
+    background-color: #eaeaea;
     margin: 0;
-    color: #7F95D1;
+    color: #34495e;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 h1 {
@@ -2173,45 +2174,3 @@ footer .copy-right {
     padding: 0px;
     margin: 0px;
 }
-
-
-
-/* 滚动条 */
-::-webkit-scrollbar-thumb {
-    background-color: #FF2A68;
-    background-image: -webkit-linear-gradient(45deg,rgba(255,255,255,.4) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.4) 50%,rgba(255,255,255,.4) 75%,transparent 75%,transparent);
-    border-radius: 3em;
-}
-::-webkit-scrollbar-track {
-    background-color: #ffcacaff;
-    border-radius: 3em;
-}
-::-webkit-scrollbar {
-    width: 8px;
-    height: 15px;
-}
-
-/*直达评论按钮样式*/
-.comment-scroll {
-    position: fixed;
-    right: 15px;
-    bottom: 135px;
-    padding-top: 15px;
-    margin-bottom: 0;
-    z-index: 998;
-}
-
-.comment-scroll .btn-floating {
-    background: linear-gradient(to bottom right, #FF9999 0%, #ff6666 100%);
-    width: 48px;
-    height: 48px;
-}
-
-.comment-scroll .btn-floating i {
-    line-height: 48px;
-    font-size: 1.8rem;
-}
-
-
-
-
