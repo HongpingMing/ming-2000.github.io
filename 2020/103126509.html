@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="shell-function函数, 明红平的博客">
+    <meta name="keywords" content="node重新安装依赖模块, 明红平的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>shell-function函数 | 明红平的博客</title>
+    <title>node重新安装依赖模块 | 明红平的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -246,12 +246,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">shell-function函数</h1>
+                    <h1 class="description center-align post-title">node重新安装依赖模块</h1>
                 </div>
             </div>
         </div>
@@ -379,8 +379,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Shell/" class="post-category">
-                                Shell
+                            <a href="/categories/node/" class="post-category">
+                                node
                             </a>
                         
                     </div>
@@ -392,7 +392,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-18
+                    2020-10-31
                 </div>
                 
 
@@ -401,14 +401,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.7k
+                    131
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    1 分
                 </div>
                 
 
@@ -418,282 +418,11 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>linux shell 可以用户定义函数，然后在shell脚本中可以随便调用。</p>
-<h2 id="1-什么是函数？"><a href="#1-什么是函数？" class="headerlink" title="1. 什么是函数？"></a>1. 什么是函数？</h2><ul>
-<li><p>shell中允许将<strong>一组命令集合</strong>或<strong>语句</strong>形<a id="more"></a><br>成一段<strong>可用代码</strong>，这些代码块称为shell函数</p>
-</li>
-<li><p>给这段代码起个名字称为函数名，后续可以直接调用该段代码的功能</p>
-</li>
-</ul>
-<h2 id="2-如何定义函数？"><a href="#2-如何定义函数？" class="headerlink" title="2. 如何定义函数？"></a>2. 如何定义函数？</h2><p><strong>方法1：</strong><br>powershell  </p>
-<pre><code>函数名()
-&#123;
-  函数体（一堆命令的集合，来实现某个功能）   
-&#125;</code></pre>
-<p><strong>方法2：</strong></p>
-<pre><code>powershell
-function 函数名()
-&#123;
-   函数体（一堆命令的集合，来实现某个功能）
-   echo hello
-   echo world
-&#125;</code></pre>
-<p><strong>函数中return说明:</strong></p>
-<ol>
-<li>return可以结束一个函数。类似于循环控制语句break(结束当前循环，执行循环体后面的代码)。</li>
-<li>return默认返回函数中最后一个命令状态值，也可以给定参数值，范围是0-256之间。</li>
-<li>如果没有return命令，函数将返回最后一个指令的退出状态值。</li>
-</ol>
-<h2 id="3-函数如何调用？"><a href="#3-函数如何调用？" class="headerlink" title="3. 函数如何调用？"></a>3. 函数如何调用？</h2><h3 id="㈠-当前命令行调用"><a href="#㈠-当前命令行调用" class="headerlink" title="㈠ 当前命令行调用"></a>㈠ 当前命令行调用</h3><p>powershell  </p>
-<pre><code>[root@MissHou shell04]# cat fun1.sh 
-#!/bin/bash
-hello()&#123;
-echo &quot;hello lilei $1&quot;
-hostname
-&#125;
-menu()&#123;
-cat &lt;&lt;-EOF
-1. mysql
-2. web
-3. app
-4. exit
-EOF
-&#125;
-
-[root@MissHou shell04]# source fun1.sh 
-[root@MissHou shell04]# . fun1.sh 
-
-[root@MissHou shell04]# hello 888
-hello lilei 888
-MissHou.itcast.cc
-[root@MissHou shell04]# menu  
-
-1. mysql
-2. web
-3. app
-4. exit</code></pre>
-<h3 id="㈡-定义到用户的环境变量中"><a href="#㈡-定义到用户的环境变量中" class="headerlink" title="㈡ 定义到用户的环境变量中"></a>㈡ 定义到用户的环境变量中</h3><p>powershell  </p>
-<pre><code>[root@MissHou shell05]# vim ~/.bashrc 
-文件中增加如下内容：
-hello()&#123;
-echo &quot;hello lilei $1&quot;
-hostname
-&#125;
-menu()&#123;
-cat &lt;&lt;-EOF
-1. mysql
-2. web
-3. app
-4. exit
-EOF
-&#125;</code></pre>
-<p>注意：当用户打开bash的时候会读取该文件</p>
-<h3 id="㈢-脚本中调用"><a href="#㈢-脚本中调用" class="headerlink" title="㈢ 脚本中调用"></a>㈢ 脚本中调用</h3><pre><code>powershell
-#!/bin/bash
-#打印菜单
-source ./fun1.sh
-menu()&#123;
-cat &lt;&lt;-END
-    h    显示命令帮助
-    f    显示磁盘分区
-    d    显示磁盘挂载
-    m    查看内存使用
-    u    查看系统负载
-    q    退出程序
-    END
-&#125;
-menu        //调用函数</code></pre>
-<h2 id="4-应用案例"><a href="#4-应用案例" class="headerlink" title="4. 应用案例"></a>4. 应用案例</h2><p><strong>具体需求：</strong></p>
-<ol>
-<li>写一个脚本收集用户输入的基本信息(姓名，性别，年龄)，如不输入一直提示输入</li>
-<li>最后根据用户的信息输出相对应的内容</li>
-</ol>
-<p><strong>思路：</strong></p>
-<ol>
-<li><p>交互式定义多个变量来保存用户信息  姓名、性别、年龄</p>
-</li>
-<li><p>如果不输一直提示输入  </p>
-<ul>
-<li>循环直到输入字符串不为空  while  判断输入字符串是否为空</li>
-<li>每个信息都必须不能为空，该功能可以定义为一个函数，方便下面脚本调用</li>
-</ul>
-</li>
-<li><p>根据用户输入信息做出匹配判断</p>
-</li>
-</ol>
-<p><strong>代码实现：</strong></p>
-<pre><code>powershell
-#!/bin/bash
-#该函数实现用户如果不输入内容则一直循环直到用户输入为止，并且将用户输入的内容打印出来
-input_fun()
-&#123;
-  input_var=&quot;&quot;
-  output_var=$1
-  while [ -z $input_var ]
-    do
-    read -p &quot;$output_var&quot; input_var
-    done
-    echo $input_var
-&#125;
-
-input_fun 请输入你的姓名:</code></pre>
-<p>或者<br>    #!/bin/bash<br>    fun()<br>    {<br>        read -p “$1” var<br>        if [ -z $var ];then<br>            fun $1<br>        else<br>            echo $var<br>        fi<br>    }</p>
-<pre><code>#调用函数并且获取用户的姓名、性别、年龄分别赋值给name、sex、age变量
-name=$(input_fun 请输入你的姓名:)
-sex=$(input_fun 请输入你的性别:)
-age=$(input_fun 请输入你的年龄:)
-
-#根据用户输入的性别进行匹配判断
-case $sex in
-            man)
-            if [ $age -gt 18 -a $age -le 35 ];then
-                echo &quot;中年大叔你油腻了吗？加油&quot;
-            elif [ $age -gt 35 ];then
-                echo &quot;保温杯里泡枸杞&quot;
-            else
-                echo &quot;年轻有为。。。&quot;
-            fi
-            ;;
-            woman)
-            xxx
-            ;;
-            *)
-            xxx
-            ;;
-esac</code></pre>
-<p><strong>扩展延伸：</strong><br>powershell  </p>
-<pre><code>描述以下代码含义：    
-:()
-&#123;
-   :|:&amp;
-&#125;
-:</code></pre>
-<h1 id="综合案例"><a href="#综合案例" class="headerlink" title="综合案例"></a>综合案例</h1><h2 id="1-任务背景"><a href="#1-任务背景" class="headerlink" title="1. 任务背景"></a>1. 任务背景</h2><p>现有的跳板机虽然实现了统一入口来访问生产服务器，yunwei用户权限太大可以操作跳板机上的所有目录文件，存在数据被误删的安全隐患，所以希望你做一些安全策略来保证跳板机的正常使用。</p>
-<h2 id="2-具体要求"><a href="#2-具体要求" class="headerlink" title="2. 具体要求"></a>2. 具体要求</h2><ol>
-<li>只允许yunwei用户通过跳板机远程连接后台的应用服务器做一些维护操作</li>
-<li>公司运维人员远程通过yunwei用户连接跳板机时，跳出以下菜单供选择：</li>
-</ol>
-<p>powershell</p>
-<pre><code>欢迎使用Jumper-server，请选择你要操作的主机：
-1. DB1-Master
-2. DB2-Slave
-3. Web1
-4. Web2
-h. help
-q. exit</code></pre>
-<ol start="3">
-<li>当用户选择相应主机后，直接<strong>免密码登录</strong>成功</li>
-<li>如果用户不输入一直提示用户输入，直到用户选择退出</li>
-</ol>
-<h2 id="3-综合分析"><a href="#3-综合分析" class="headerlink" title="3. 综合分析"></a>3. 综合分析</h2><ol>
-<li>将脚本放到yunwei用户家目录里的.bashrc文件里（/shell05/jumper-server.sh）</li>
-<li>将菜单定义为一个函数[打印菜单]，方便后面调用</li>
-<li>用case语句来实现用户的选择【交互式定义变量】</li>
-<li>当用户选择了某一台服务器后，进一步询问用户需要做的事情  case…esac  交互式定义变量</li>
-<li>使用循环来实现用户不选择一直让其选择</li>
-<li>限制用户退出后直接关闭终端  exit </li>
-</ol>
-<h2 id="4-落地实现"><a href="#4-落地实现" class="headerlink" title="4. 落地实现"></a>4. 落地实现</h2><pre><code>powershell
-#!/bin/bash
-# jumper-server
-# 定义菜单打印功能的函数
-menu()
-&#123;
-cat &lt;&lt;-EOF
-欢迎使用Jumper-server，请选择你要操作的主机：
-1. DB1-Master
-2. DB2-Slave
-3. Web1
-4. Web2
-h. help
-q. exit
-    EOF
-&#125;
-# 屏蔽以下信号
-trap &#39;&#39; 1 2 3 19
-# 调用函数来打印菜单
-menu
-#循环等待用户选择
-while true
-do
-
-菜单选择，case...esac语句 
-
-read -p &quot;请选择你要访问的主机:&quot; host
-case $host in
-    1)
-    ssh root@10.1.1.1
-    ;;
-    2)
-    ssh root@10.1.1.2
-    ;;
-    3)
-    ssh root@10.1.1.3
-    ;;
-    h)
-    clear;menu
-    ;;
-    q)
-    exit
-    ;;
-esac
-done
-将脚本放到yunwei用户家目录里的.bashrc里执行：
-bash ~/jumper-server.sh
-exit</code></pre>
-<p><strong>进一步完善需求</strong></p>
-<p>为了进一步增强跳板机的安全性，工作人员通过跳板机访问生产环境，但是不能在跳板机上停留。</p>
-<pre><code>powershell
-#!/bin/bash
-#公钥推送成功
-trap &#39;&#39; 1 2 3 19
-#打印菜单用户选择
-menu()&#123;
-cat &lt;&lt;-EOF
-欢迎使用Jumper-server，请选择你要操作的主机：
-1. DB1-Master
-2. DB2-Slave
-3. Web1
-4. Web2
-h. help
-q. exit
-EOF
-&#125;</code></pre>
-<p>调用函数来打印菜单<br>    menu<br>    while true<br>    do<br>    read -p “请输入你要选择的主机[h for help]：” host</p>
-<pre><code>#通过case语句来匹配用户所输入的主机
-case $host in
-    1|DB1)
-    ssh root@10.1.1.1
-    ;;
-    2|DB2)
-    ssh root@10.1.1.2
-    ;;
-    3|web1)
-    ssh root@10.1.1.250
-    ;;
-    h|help)
-    clear;menu
-    ;;
-    q|quit)
-    exit
-    ;;
-esac
-done</code></pre>
-<p>自己完善功能：</p>
-<ol>
-<li>用户选择主机后，需要事先推送公钥；如何判断公钥是否已推</li>
-<li>比如选择web1时，再次提示需要做的操作，比如：<br>clean log<br>重启服务<br>kill某个进程</li>
-</ol>
-<p><strong>回顾信号：</strong></p>
-<pre><code>powershell
-1) SIGHUP             重新加载配置    
-2) SIGINT            键盘中断^C
-3) SIGQUIT          键盘退出
-9) SIGKILL             强制终止
-15) SIGTERM            终止（正常结束），缺省信号
-18) SIGCONT               继续
-19) SIGSTOP               停止
-20) SIGTSTP         暂停^Z</code></pre>
+                <p>Node.js 是一个基于Chrome JavaScript 运行时建立的一个平台。Node.js是一个事件驱动I/O服务端JavaScript环境，基于Google的V8引擎，V8引擎执行Javascript的速度非常快，性能非常好。<a id="more"></a></p>
+<h3 id="windows操作系统"><a href="#windows操作系统" class="headerlink" title="windows操作系统"></a>windows操作系统</h3><p>npm install -g rimraf<br> rimraf node_modules<br><code>rimraf package-lock.json</code></p>
+<h3 id="Linux操作系统"><a href="#Linux操作系统" class="headerlink" title="Linux操作系统"></a>Linux操作系统</h3><p><code>rm -rf node_modules</code><br><code>rm package-lock.json</code></p>
+<h3 id="2-清除缓存（非必须）下方代码不分操作系统"><a href="#2-清除缓存（非必须）下方代码不分操作系统" class="headerlink" title="2.清除缓存（非必须）下方代码不分操作系统"></a>2.清除缓存（非必须）下方代码不分操作系统</h3><p><code>npm cache clear --force</code></p>
+<h3 id="3-重新安装依赖包，安装完成会自动生成package-lock-json"><a href="#3-重新安装依赖包，安装完成会自动生成package-lock-json" class="headerlink" title="3.重新安装依赖包，安装完成会自动生成package-lock.json"></a>3.重新安装依赖包，安装完成会自动生成package-lock.json</h3><p><code>npm config install -g cnpm --registry=https://registry.npm.taobao.org</code></p>
 
             </div>
             <hr/>
@@ -719,7 +448,7 @@ done</code></pre>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2020/10/18/case-function/">http://example.com/2020/10/18/case-function/</a>
+                    <a href="http://example.com/2020/103126509.html">http://example.com/2020/103126509.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -802,31 +531,34 @@ done</code></pre>
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/10/18/RHEL-DNS%E9%85%8D%E7%BD%AE/">
+                <a href="/2020/110338103.html">
                     <div class="card-image">
                         
                         
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="/medias/featureimages/1.jpg" class="responsive-img" alt="RHEL7下搭建DNS服务器">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="/medias/featureimages/4.jpg" class="responsive-img" alt="shell-for语句">
                         
-                        <span class="card-title">RHEL7下搭建DNS服务器</span>
+                        <span class="card-title">shell-for语句</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            DNS（Domain Name System，域名系统）技术应运而生。这是一项用于管理和解析域名与 IP 地址对应关系的技术就是能够接受用户输入的域名或 IP 地址
+                            列表循环列表for循环：用于将一组命令执行知的次数基本语法格式powershell    
+for variable in &#123;list&#125;  
+
+       do
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-18
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-03
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Linux/" class="post-category">
-                                    Linux
+                            <a href="/categories/Shell/" class="post-category">
+                                    Shell
                                 </a>
                             
                             
@@ -843,29 +575,33 @@ done</code></pre>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/10/17/Linux-samba%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB/">
+                <a href="/2020/102961227.html">
                     <div class="card-image">
                         
                         
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="/medias/featureimages/22.jpg" class="responsive-img" alt="Linux-samba文件共享">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="/medias/featureimages/7.jpg" class="responsive-img" alt="Linux-yum配置">
                         
-                        <span class="card-title">Linux-samba文件共享</span>
+                        <span class="card-title">Linux-yum配置</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Samba是在Linux和UNIX系统上实现SMB协议的一个免费软件，由服务器及客户端程序构成。SMB（Server Messages Block，信息服务块）是一种在局域网上共享文件和打印机的一种通信协议
+                            yum（全称为 Yellow dog Updater, Modified）是一个在Fedora和RedHat以及CentOS中的Shell前端软件包管理器，类似Windows下软件管家。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-17
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-29
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Ming hongping
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -1072,7 +808,6 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <span id="year">2019</span>
             <a href="/about" target="_blank">Ming hongping</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
-            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span

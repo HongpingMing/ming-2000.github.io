@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-11-21T10:16:10.766Z</updated>
+  <updated>2020-11-27T12:19:04.351Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>网页中引入javascript方式</title>
-    <link href="http://example.com/2020/11/06/javascript%E5%BC%95%E5%85%A5%E6%96%B9%E5%BC%8F/"/>
-    <id>http://example.com/2020/11/06/javascript%E5%BC%95%E5%85%A5%E6%96%B9%E5%BC%8F/</id>
+    <link href="http://example.com/2020/11069049.html"/>
+    <id>http://example.com/2020/11069049.html</id>
     <published>2020-11-06T02:30:46.000Z</published>
-    <updated>2020-11-21T10:16:10.766Z</updated>
+    <updated>2020-11-27T12:19:04.351Z</updated>
     
     
     <summary type="html">&lt;p&gt;JavaScript 是一种轻量级的编程语言。JavaScript 是可插入 HTML 页面的编程代码。JavaScript 插入 HTML 页面后，可由所有的现代浏览器执行。</summary>
@@ -35,10 +35,10 @@
   
   <entry>
     <title>shell-for语句</title>
-    <link href="http://example.com/2020/11/03/shell-for%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95%E7%BB%93%E6%9E%84/"/>
-    <id>http://example.com/2020/11/03/shell-for%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95%E7%BB%93%E6%9E%84/</id>
+    <link href="http://example.com/2020/110338103.html"/>
+    <id>http://example.com/2020/110338103.html</id>
     <published>2020-11-03T05:30:46.000Z</published>
-    <updated>2020-11-21T12:54:19.590Z</updated>
+    <updated>2020-11-27T12:19:04.351Z</updated>
     
     
     <summary type="html">&lt;h3 id=&quot;列表循环&quot;&gt;&lt;a href=&quot;#列表循环&quot; class=&quot;headerlink&quot; title=&quot;列表循环&quot;&gt;&lt;/a&gt;列表循环&lt;/h3&gt;&lt;h4 id=&quot;列表for循环：用于将一组命令执行知的次数&quot;&gt;&lt;a href=&quot;#列表for循环：用于将一组命令执行知的次数&quot; class=&quot;headerlink&quot; title=&quot;列表for循环：用于将一组命令执行知的次数&quot;&gt;&lt;/a&gt;列表for循环：用于将一组命令执行知的次数&lt;/h4&gt;&lt;h4 id=&quot;基本语法格式&quot;&gt;&lt;a href=&quot;#基本语法格式&quot; class=&quot;headerlink&quot; title=&quot;基本语法格式&quot;&gt;&lt;/a&gt;基本语法格式&lt;/h4&gt;&lt;p&gt;powershell    &lt;/p&gt;
@@ -55,10 +55,10 @@
   
   <entry>
     <title>node重新安装依赖模块</title>
-    <link href="http://example.com/2020/10/31/node%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E6%A8%A1%E5%9D%97-1/"/>
-    <id>http://example.com/2020/10/31/node%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E6%A8%A1%E5%9D%97-1/</id>
+    <link href="http://example.com/2020/103126509.html"/>
+    <id>http://example.com/2020/103126509.html</id>
     <published>2020-10-31T12:26:06.000Z</published>
-    <updated>2020-11-21T10:16:13.054Z</updated>
+    <updated>2020-11-27T12:19:04.351Z</updated>
     
     
     <summary type="html">&lt;p&gt;Node.js 是一个基于Chrome JavaScript 运行时建立的一个平台。Node.js是一个事件驱动I/O服务端JavaScript环境，基于Google的V8引擎，V8引擎执行Javascript的速度非常快，性能非常好。</summary>
@@ -72,10 +72,10 @@
   
   <entry>
     <title>Linux-yum配置</title>
-    <link href="http://example.com/2020/10/29/Linux-yum%E9%85%8D%E7%BD%AE/"/>
-    <id>http://example.com/2020/10/29/Linux-yum%E9%85%8D%E7%BD%AE/</id>
+    <link href="http://example.com/2020/102961227.html"/>
+    <id>http://example.com/2020/102961227.html</id>
     <published>2020-10-29T02:30:46.000Z</published>
-    <updated>2020-11-21T10:16:12.726Z</updated>
+    <updated>2020-11-27T12:19:04.347Z</updated>
     
     
     <summary type="html">&lt;p&gt;yum（全称为 Yellow dog Updater, Modified）是一个在Fedora和RedHat以及CentOS中的Shell前端软件包管理器，类似Windows下软件管家。</summary>
@@ -89,10 +89,10 @@
   
   <entry>
     <title>Git本地版本库</title>
-    <link href="http://example.com/2020/10/26/git/"/>
-    <id>http://example.com/2020/10/26/git/</id>
+    <link href="http://example.com/2020/102632951.html"/>
+    <id>http://example.com/2020/102632951.html</id>
     <published>2020-10-26T02:30:46.000Z</published>
-    <updated>2020-11-21T10:16:10.610Z</updated>
+    <updated>2020-11-27T12:19:04.351Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;Git是一个分布式的版本控制系统，它功能强大、操作简单，并且能很好地解决以上问题。目前，熟练地使用Git已经成了一个软件开发从业者必备的技能。</summary>
@@ -106,10 +106,10 @@
   
   <entry>
     <title>GIT远程版本库</title>
-    <link href="http://example.com/2020/10/26/%E8%BF%9C%E7%A8%8Bgit/"/>
-    <id>http://example.com/2020/10/26/%E8%BF%9C%E7%A8%8Bgit/</id>
+    <link href="http://example.com/2020/102626680.html"/>
+    <id>http://example.com/2020/102626680.html</id>
     <published>2020-10-26T02:30:46.000Z</published>
-    <updated>2020-11-21T10:16:16.290Z</updated>
+    <updated>2020-11-27T12:19:04.355Z</updated>
     
     
     <summary type="html">&lt;p&gt;git的一大特点就是，能为不同的系统下的开发者提供一个合作开发平台。而团队如果要基于Git进行协同开发，就必须依赖远程版本库</summary>
@@ -123,10 +123,10 @@
   
   <entry>
     <title>RHEL7下搭建DNS服务器</title>
-    <link href="http://example.com/2020/10/18/RHEL-DNS%E9%85%8D%E7%BD%AE/"/>
-    <id>http://example.com/2020/10/18/RHEL-DNS%E9%85%8D%E7%BD%AE/</id>
+    <link href="http://example.com/2020/101810765.html"/>
+    <id>http://example.com/2020/101810765.html</id>
     <published>2020-10-18T15:30:46.000Z</published>
-    <updated>2020-11-21T10:16:14.654Z</updated>
+    <updated>2020-11-27T12:19:04.347Z</updated>
     
     
     <summary type="html">&lt;p&gt;DNS（Domain Name System，域名系统）技术应运而生。这是一项用于管理和解析域名与 IP 地址对应关系的技术就是能够接受用户输入的域名或 IP 地址</summary>
@@ -140,10 +140,10 @@
   
   <entry>
     <title>shell-function函数</title>
-    <link href="http://example.com/2020/10/18/case-function/"/>
-    <id>http://example.com/2020/10/18/case-function/</id>
+    <link href="http://example.com/2020/101834908.html"/>
+    <id>http://example.com/2020/101834908.html</id>
     <published>2020-10-18T06:26:50.000Z</published>
-    <updated>2020-11-21T12:56:44.188Z</updated>
+    <updated>2020-11-27T12:19:04.351Z</updated>
     
     
     <summary type="html">&lt;p&gt;linux shell 可以用户定义函数，然后在shell脚本中可以随便调用。&lt;/p&gt;
@@ -159,10 +159,10 @@
   
   <entry>
     <title>Linux-samba文件共享</title>
-    <link href="http://example.com/2020/10/17/Linux-samba%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB/"/>
-    <id>http://example.com/2020/10/17/Linux-samba%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB/</id>
+    <link href="http://example.com/2020/101720280.html"/>
+    <id>http://example.com/2020/101720280.html</id>
     <published>2020-10-17T03:09:58.000Z</published>
-    <updated>2020-11-21T10:16:11.194Z</updated>
+    <updated>2020-11-27T12:19:04.347Z</updated>
     
     
     <summary type="html">&lt;p&gt;Samba是在Linux和UNIX系统上实现SMB协议的一个免费软件，由服务器及客户端程序构成。SMB（Server Messages Block，信息服务块）是一种在局域网上共享文件和打印机的一种通信协议</summary>
@@ -174,10 +174,10 @@
   
   <entry>
     <title>shell-case语句</title>
-    <link href="http://example.com/2020/10/16/shell%E7%BC%96%E7%A8%8Bcase/"/>
-    <id>http://example.com/2020/10/16/shell%E7%BC%96%E7%A8%8Bcase/</id>
+    <link href="http://example.com/2020/101664138.html"/>
+    <id>http://example.com/2020/101664138.html</id>
     <published>2020-10-16T12:26:06.000Z</published>
-    <updated>2020-11-21T12:20:27.819Z</updated>
+    <updated>2020-11-27T12:19:04.355Z</updated>
     
     
     <summary type="html">&lt;p&gt;Shell case语句为多选择语句。可以用case语句匹配一个值与一个模式，如果匹配成功，执行相匹配的命令</summary>
@@ -191,10 +191,10 @@
   
   <entry>
     <title>RHEL7环境修改root密码</title>
-    <link href="http://example.com/2020/10/11/Red-hat%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81/"/>
-    <id>http://example.com/2020/10/11/Red-hat%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81/</id>
+    <link href="http://example.com/2020/101117233.html"/>
+    <id>http://example.com/2020/101117233.html</id>
     <published>2020-10-11T07:02:42.000Z</published>
-    <updated>2020-11-21T10:16:13.434Z</updated>
+    <updated>2020-11-27T12:19:04.351Z</updated>
     
     
     <summary type="html">&lt;p&gt;忘记root密码这个问题出现的几率是很高的，不过，在linux下解决这个问题也很简单，只需重启linux系统，然后引导进入linux的单用户模式</summary>
@@ -208,10 +208,10 @@
   
   <entry>
     <title>shell变量定义</title>
-    <link href="http://example.com/2020/10/10/shell%E7%BC%96%E7%A8%8B%E4%B9%8B%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89/"/>
-    <id>http://example.com/2020/10/10/shell%E7%BC%96%E7%A8%8B%E4%B9%8B%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89/</id>
+    <link href="http://example.com/2020/101045956.html"/>
+    <id>http://example.com/2020/101045956.html</id>
     <published>2020-10-10T12:26:06.000Z</published>
-    <updated>2020-11-21T12:48:51.816Z</updated>
+    <updated>2020-11-27T12:19:04.355Z</updated>
     
     
     <summary type="html">&lt;p&gt;① Shell的基本语法结构&lt;/p&gt;
@@ -228,10 +228,10 @@
   
   <entry>
     <title>我的第一篇博客文章</title>
-    <link href="http://example.com/2020/10/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/"/>
-    <id>http://example.com/2020/10/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</id>
+    <link href="http://example.com/2020/100115650.html"/>
+    <id>http://example.com/2020/100115650.html</id>
     <published>2020-10-01T11:35:27.000Z</published>
-    <updated>2020-11-21T10:48:35.192Z</updated>
+    <updated>2020-11-27T12:19:04.355Z</updated>
     
     
     
