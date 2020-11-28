@@ -129,23 +129,6 @@
   </entry>
   
   <entry>
-    <title>Linux-yum配置</title>
-    <link href="http://example.com/2020/102961227.html"/>
-    <id>http://example.com/2020/102961227.html</id>
-    <published>2020-10-29T02:30:46.000Z</published>
-    <updated>2020-11-27T12:19:04.347Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;yum（全称为 Yellow dog Updater, Modified）是一个在Fedora和RedHat以及CentOS中的Shell前端软件包管理器，类似Windows下软件管家。</summary>
-    
-    
-    
-    <category term="Linux" scheme="http://example.com/categories/Linux/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Git本地版本库</title>
     <link href="http://example.com/2020/102632951.html"/>
     <id>http://example.com/2020/102632951.html</id>
@@ -211,7 +194,7 @@
     <link href="http://example.com/2020/101834908.html"/>
     <id>http://example.com/2020/101834908.html</id>
     <published>2020-10-18T06:26:50.000Z</published>
-    <updated>2020-11-27T12:19:04.351Z</updated>
+    <updated>2020-11-28T08:02:57.197Z</updated>
     
     
     <summary type="html">&lt;p&gt;linux shell 可以用户定义函数，然后在shell脚本中可以随便调用。&lt;/p&gt;
@@ -222,6 +205,10 @@
     
     <category term="Shell" scheme="http://example.com/categories/Shell/"/>
     
+    
+    <category term="Linux" scheme="http://example.com/tags/Linux/"/>
+    
+    <category term="Shell" scheme="http://example.com/tags/Shell/"/>
     
   </entry>
   
@@ -270,7 +257,7 @@
     <link href="http://example.com/2020/101117233.html"/>
     <id>http://example.com/2020/101117233.html</id>
     <published>2020-10-11T07:02:42.000Z</published>
-    <updated>2020-11-27T12:19:04.351Z</updated>
+    <updated>2020-11-28T08:04:59.298Z</updated>
     
     
     <summary type="html">&lt;p&gt;忘记root密码这个问题出现的几率是很高的，不过，在linux下解决这个问题也很简单，只需重启linux系统，然后引导进入linux的单用户模式</summary>
@@ -280,6 +267,8 @@
     <category term="Linux" scheme="http://example.com/categories/Linux/"/>
     
     
+    <category term="Linux" scheme="http://example.com/tags/Linux/"/>
+    
   </entry>
   
   <entry>
@@ -287,7 +276,7 @@
     <link href="http://example.com/2020/101045956.html"/>
     <id>http://example.com/2020/101045956.html</id>
     <published>2020-10-10T12:26:06.000Z</published>
-    <updated>2020-11-27T12:19:04.355Z</updated>
+    <updated>2020-11-28T08:06:19.414Z</updated>
     
     
     <summary type="html">&lt;p&gt;① Shell的基本语法结构&lt;/p&gt;
@@ -299,6 +288,31 @@
     
     <category term="Shell" scheme="http://example.com/categories/Shell/"/>
     
+    
+    <category term="Linux" scheme="http://example.com/tags/Linux/"/>
+    
+    <category term="Shell" scheme="http://example.com/tags/Shell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux-yum配置</title>
+    <link href="http://example.com/2020/100361227.html"/>
+    <id>http://example.com/2020/100361227.html</id>
+    <published>2020-10-03T02:30:46.000Z</published>
+    <updated>2020-11-28T08:07:16.084Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;YUM（yellowdog updater modified）是一个RPM系统的自动更新和软件包安装/卸载器。它可以自动计算依赖和找出想要安装的软件包。这使得它更容易而不必手动更新每一个使用RPM维护机器的”软件组“。YUM有一个添加简单功能的插件接口。</summary>
+    
+    
+    
+    <category term="Linux" scheme="http://example.com/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="http://example.com/tags/Linux/"/>
+    
+    <category term="Shell" scheme="http://example.com/tags/Shell/"/>
     
   </entry>
   
