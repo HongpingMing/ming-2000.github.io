@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title>Linux调整逻辑卷容量</title>
+      <link href="2020/110933074.html"/>
+      <url>2020/110933074.html</url>
+      
+        <content type="html"><![CDATA[<p>缩减 <code>LVM</code> 之前，建议先做一个备份。<br>当你在 <code>LVM</code> 中的磁盘空间耗尽时，你可以通过缩小现有的没有使用全部空间的 <code>LVM</code>，而不是增加一个新的物理磁盘，在卷组上腾出一些空闲空间。&lt;–!more–&gt;</p><p>主要步骤：</p><ul><li>卸载文件系统  </li><li>检查文件系统是否有任何错误  </li><li>缩小文件系统的大小</li><li>缩小逻辑卷的大小</li><li>重新检查文件系统是否存在错误（可选）</li><li>挂载文件系统</li><li>检查减少后的文件系统大小</li></ul><h3 id="1-卸载文件系统"><a href="#1-卸载文件系统" class="headerlink" title="1.卸载文件系统"></a>1.卸载文件系统</h3><p>使用 <code>umount</code> 命令卸载文件系统：  </p><pre><code># umount /testlvm1</code></pre><h3 id="2-检查文件系统是否有任何错误"><a href="#2-检查文件系统是否有任何错误" class="headerlink" title="2.检查文件系统是否有任何错误"></a>2.检查文件系统是否有任何错误</h3><p>使用 <code>e2fsck</code> 命令检查文件系统是否有错误：  </p><pre><code># e2fsck -f /dev/mapper/vg01-lv002e2fsck 1.42.9 (28-Dec-2013)Pass 1: Checking inodes, blocks, and sizesPass 2: Checking directory structurePass 3: Checking directory connectivityPass 4: Checking reference countsPass 5: Checking group summary information/dev/mapper/vg01-lv002: 13/6553600 files (0.0% non-contiguous), 12231854/26212352 blocks</code></pre><h3 id="3-缩小文件系统"><a href="#3-缩小文件系统" class="headerlink" title="3.缩小文件系统"></a>3.缩小文件系统</h3><p>文件系统大小调整的常用语法<code>（resize2fs）</code>： </p><pre><code>resize2fs [现有逻辑卷名] [新的文件系统大小] </code></pre><p>实际命令如下 </p><pre><code># resize2fs /dev/mapper/vg01-lv002 80Gresize2fs 1.42.9 (28-Dec-2013)Resizing the filesystem on /dev/mapper/vg01-lv002 to 28321400 (4k) blocks.The filesystem on /dev/mapper/vg01-lv002 is now 28321400 blocks long.</code></pre><h3 id="4-减少逻辑卷-（LVM）-容量"><a href="#4-减少逻辑卷-（LVM）-容量" class="headerlink" title="4.减少逻辑卷 （LVM） 容量"></a>4.减少逻辑卷 <code>（LVM）</code> 容量</h3><p>现在使用 <code>lvreduce</code> 命令缩小逻辑卷<code>（LVM）</code> 的大小。通过下面的命令， <code>/dev/mapper/vg01-lv002 将把逻辑卷 （LVM）</code> 从 100GB 缩小到 80GB。</p><p><strong>LVM 缩减 （lvreduce） 的常用语法：</strong></p><pre><code>lvreduce [新的 LVM 大小] [现有逻辑卷名称]</code></pre><p>实际命令如下：  </p><pre><code># lvreduce -L 80G /dev/mapper/vg01-lv002WARNING: Reducing active logical volume to 80.00 GiBTHIS MAY DESTROY YOUR DATA (filesystem etc.)Do you really want to reduce lv002? [y/n]: yReducing logical volume lv002 to 80.00 GiBLogical volume lv002 successfully resized </code></pre><h3 id="5-检查文件系统是否有错误"><a href="#5-检查文件系统是否有错误" class="headerlink" title="5.检查文件系统是否有错误"></a>5.检查文件系统是否有错误</h3><pre><code># e2fsck -f /dev/mapper/vg01-lv002e2fsck 1.42.9 (28-Dec-2013)Pass 1: Checking inodes, blocks, and sizesPass 2: Checking directory structurePass 3: Checking directory connectivityPass 4: Checking reference countsPass 5: Checking group summary information/dev/mapper/vg01-lv002: 13/4853600 files (0.0% non-contiguous), 1023185/2021235 blocks</code></pre><h3 id="6-挂载文件系统并检查缩小后的大小"><a href="#6-挂载文件系统并检查缩小后的大小" class="headerlink" title="6.挂载文件系统并检查缩小后的大小"></a>6.挂载文件系统并检查缩小后的大小</h3><p>挂载：使用 <code>mount</code> 命令挂载逻辑卷 </p><pre><code># mount /testlvm1 </code></pre><p>使用 df 命令检查挂载的卷。  </p><pre><code># df -h /testlvm1Filesystem              Size Used Avail Use% Mounted on/dev/mapper/vg01-lv002  80G  15G  65G   18%  /testlvm1</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> LVM </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux 中创建配置逻辑卷</title>
+      <link href="2020/110922941.html"/>
+      <url>2020/110922941.html</url>
+      
+        <content type="html"><![CDATA[<p>逻辑卷管理<code>Logical Volume Management（LVM）</code>在 Linux 系统中扮演着重要的角色，它可以提高可用性、磁盘 I/O、性能和磁盘管理的能力。<br><code>LVM</code> 是一种被广泛使用的技术，<a id="more"></a>对于磁盘管理来说，它是非常灵活的。</p><p>它在物理磁盘和文件系统之间增加了一个额外的层，允许你创建一个逻辑卷而不是物理磁盘。</p><p><code>LVM</code> 允许你在需要的时候轻松地调整、扩展和减少逻辑卷的大小。</p><h3 id="1-创建-LVM-物理卷（pvcreate）"><a href="#1-创建-LVM-物理卷（pvcreate）" class="headerlink" title="1.创建 LVM 物理卷（pvcreate）"></a>1.创建 LVM 物理卷<code>（pvcreate）</code></h3><p>你可以使用任何磁盘、<code>RAID</code> 阵列、<code>SAN</code> 磁盘或分区作为 <code>LVM</code> 物理卷<code>Physical Volume（PV）</code>。</p><pre><code>pvcreate [物理卷名]</code></pre><p>当在系统中检测到磁盘，使用<code>pvcreate</code> 命令初始化 <code>LVM PV</code>：  </p><pre><code># pvcreate /dev/sdb /dev/sdc /dev/sddPhysical volume &quot;/dev/sdb&quot; successfully createdPhysical volume &quot;/dev/sdc&quot; successfully createdPhysical volume &quot;/dev/sdd&quot; successfully created</code></pre><p><strong>注意：</strong>  </p><p>上面的命令将删除给定磁盘 <code>/dev/sdb</code>、<code>/dev/sdc</code> 和 <code>/dev/sdd</code> 上的所有数据。  </p><p>物理磁盘可以直接添加到 <code>LVM PV</code> 中，而不必是磁盘分区。</p><p>使用 <code>pvdisplay</code> 和 <code>pvs</code> 命令来显示你创建的 PV。<code>pvs</code> 命令显示的是摘要输出，<code>pvdisplay</code> 显示的是 PV 的详细输出：  </p><pre><code># pvsPV VG Fmt Attr PSize PFree/dev/sdb lvm2 a-- 15.00g 15.00g/dev/sdc lvm2 a-- 15.00g 15.00g/dev/sdd lvm2 a-- 15.00g 15.00g</code></pre><p>pvdisplay：  </p><pre><code># pvdisplay&quot;/dev/sdb&quot; is a new physical volume of &quot;15.00 GiB&quot;--- NEW Physical volume ---PV Name               /dev/sdbVG NamePV Size               15.00 GiBAllocatable           NOPE Size               0Total PE              0Free PE               0Allocated PE          0PV UUID               69d9dd18-36be-4631-9ebb-78f05fe3217f</code></pre><h3 id="2-如何创建一个卷组（Volume-Group）"><a href="#2-如何创建一个卷组（Volume-Group）" class="headerlink" title="2.如何创建一个卷组（Volume Group）"></a>2.如何创建一个卷组<code>（Volume Group）</code></h3><p>卷组<code>Volume Group（VG）</code>是 <code>LVM</code> 结构中的另一层。基本上，卷组由你创建的 LVM 物理卷组成，你可以将物理卷添加到现有的卷组中，或者根据需要为物理卷创建新的卷组。  </p><p>语法：  </p><pre><code>vgcreate [卷组名] [物理卷名]</code></pre><p>将新的物理卷添加到新的卷组中</p><pre><code># vgcreate vg01 /dev/sdb /dev/sdc /dev/sddVolume group &quot;vg01&quot; successfully created</code></pre><p><strong>注意：</strong><br>   默认情况下，它使用 <code>4MB</code> 的物理范围<code>Physical Extent（PE）</code>，但你可以根据你的需要改变它。</p><p>使用<code>vgs</code> 和 <code>vgdisplay</code> 命令来显示你创建的 <code>VG</code> 的信息：</p><pre><code># vgs vg01  VG #PV #LV #SN Attr VSize VFreevg01 3 0 0 wz--n- 44.99g 44.99g    </code></pre><p>vgdisplay  </p><pre><code># vgdisplay vg01--- Volume group ---VG Name              vg01System IDFormat               lvm2Metadata Areas       3Metadata Sequence No 1VG Access            read/writeVG Status            resizableMAX LV               0Cur LV               0Open LV              0Max PV               0Cur PV               3Act PV               3VG Size              44.99 GiBPE Size              4.00 MiBTotal PE             11511Alloc PE / Size      0 / 0Free PE / Size       11511 / 44.99 GiBVG UUID              d17e3c31-e2c9-4f11-809c-94a549bc43b7</code></pre><h3 id="3-扩展卷组"><a href="#3-扩展卷组" class="headerlink" title="3.扩展卷组"></a>3.扩展卷组</h3><p>如果 <code>VG</code> 没有空间，请使用以下命令将新的物理卷添加到现有卷组中。</p><p>语法：</p><pre><code>vgextend [已有卷组名] [物理卷名]  </code></pre><p>如：  </p><pre><code>vgextend vg01 /dev/sdeVolume group &quot;vg01&quot; successfully extended  </code></pre><h3 id="4-创建以GB-为单位逻辑卷（Logical-Volume）"><a href="#4-创建以GB-为单位逻辑卷（Logical-Volume）" class="headerlink" title="4.创建以GB 为单位逻辑卷（Logical Volume）"></a>4.创建以GB 为单位逻辑卷<code>（Logical Volume）</code></h3><p>逻辑卷<code>Logical Volume（LV）</code>是 <code>LVM</code> 结构中的顶层。逻辑卷是由卷组创建的块设备。它作为一个虚拟磁盘分区，可以使用 <code>LVM</code> 命令轻松管理。<br>你可以使用 <code>lvcreate</code> 命令创建一个新的逻辑卷。</p><p>语法：  </p><pre><code>lvcreate –n [逻辑卷名] –L [逻辑卷大小] [要创建的 LV 所在的卷组名称]  </code></pre><p>例：创建一个大小为 10GB 的逻辑卷 <code>lv001</code>  </p><pre><code># lvcreate -n lv001 -L 10G vg01Logical volume &quot;lv001&quot; created</code></pre><p>使用 <code>lvs</code> 和 <code>lvdisplay</code> 命令来显示你所创建的 <code>LV</code> 的信息：</p><pre><code># lvs /dev/vg01/lvol01LV VG Attr LSize Pool Origin Data% Move Log Cpy%Sync Convertlv001 vg01 mwi-a-m-- 10.00g lv001_mlog 100.00</code></pre><p>lvdisplay  </p><pre><code># lvdisplay /dev/vg01/lv001--- Logical volume ---LV Path                /dev/vg01/lv001LV Name                lv001VG Name                vg01LV UUID                ca307aa4-0866-49b1-8184-004025789e63LV Write Access        read/writeLV Creation host, time localhost.localdomain, 2020-09-10 11:43:05 -0700LV Status              available# open                 0LV Size                10.00 GiBCurrent LE             2560Segments               1Allocation             inheritRead ahead sectors     auto- currently set to     256Block device           253:4</code></pre><h3 id="5-创建以PE大小逻辑卷"><a href="#5-创建以PE大小逻辑卷" class="headerlink" title="5.创建以PE大小逻辑卷"></a>5.创建以PE大小逻辑卷</h3><p>或者，你可以使用物理范围<code>（PE）</code>大小创建逻辑卷。</p><p><strong>如何计算PE值？</strong><br>默认情况下，它使用 <code>4MB</code> 的物理范围，但可以通过运行 <code>vgdisplay</code> 命令来检查正确的 PE 大小，因为这可以根据需求进行更改。  </p><pre><code>10GB = 10240MB / 4MB （PE 大小） = 2560 PE</code></pre><p>PE 大小创建逻辑卷 <code>（lvcreate）</code> 的一般语法：<br>    lvcreate –n [逻辑卷名] –l [物理扩展 （PE） 大小] [要创建的 LV 所在的卷组名称]</p><p>例：<br>使用 PE 大小创建 10GB 的逻辑卷，命令如下：  </p><pre><code># lvcreate -n lv001 -l 2560 vg01</code></pre><h3 id="6-创建文件系统"><a href="#6-创建文件系统" class="headerlink" title="6.创建文件系统"></a>6.创建文件系统</h3><p>在创建有效的文件系统之前，你不能使用逻辑卷。 </p><p><strong>语法</strong>   </p><pre><code>mkfs –t [文件系统类型] /dev/[LV 所在的卷组名称]/[LV 名称]</code></pre><p>例：<br>使用以下命令将逻辑卷 <code>lv001</code> 格式化为 <code>ext4</code> 文件系统</p><pre><code># mkfs -t ext4 /dev/vg01/lv001</code></pre><p>对于 <code>xfs</code> 文件系统：  </p><pre><code># mkfs -t xfs /dev/vg01/lv001</code></pre><h3 id="7-挂载逻辑卷"><a href="#7-挂载逻辑卷" class="headerlink" title="7.挂载逻辑卷"></a>7.挂载逻辑卷</h3><p>最后，你需要挂载逻辑卷来使用它。确保在 <code>/etc/fstab</code> 中添加一个条目，以便系统启动时自动加载。</p><p>创建一个目录来挂载逻辑卷：  </p><pre><code># mkdir /lvmtest</code></pre><p>使用挂载命令挂载逻辑卷：  </p><pre><code># mount /dev/vg01/lv001 /lvmtest  </code></pre><p>在 <code>/etc/fstab</code> 文件中添加新的逻辑卷详细信息，以便系统启动时自动挂载</p><pre><code># vi /etc/fstab/dev/vg01/lv001 /lvmtest xfs defaults 0 0</code></pre><p>使用 <code>df</code> 命令检查新挂载的卷：</p><pre><code># df -h /lvmtestFilesystem Size Used Avail Use% Mounted on/dev/mapper/vg01-lv001 15360M 34M 15326M 4% /lvmtest  </code></pre><p>注：挂载点一定存在，否则会导致系统不能正常开机</p><p>本文由 LCTT 原创编译，Linux中国 荣誉推出</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> LVM </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>网页中引入javascript方式</title>
       <link href="2020/11069049.html"/>
       <url>2020/11069049.html</url>
@@ -17,6 +71,14 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> HTML </tag>
+            
+            <tag> javascript </tag>
+            
+        </tags>
       
     </entry>
     
@@ -37,6 +99,14 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> Shell </tag>
+            
+        </tags>
+      
     </entry>
     
     
@@ -55,6 +125,12 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> node </tag>
+            
+        </tags>
       
     </entry>
     
@@ -94,6 +170,14 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> GIT </tag>
+            
+        </tags>
+      
     </entry>
     
     
@@ -113,6 +197,12 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> GIT </tag>
+            
+        </tags>
+      
     </entry>
     
     
@@ -131,6 +221,14 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> DNS </tag>
+            
+        </tags>
       
     </entry>
     
@@ -164,6 +262,14 @@
       
       
       
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> Samba </tag>
+            
+        </tags>
+      
     </entry>
     
     
@@ -182,6 +288,14 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> Shell </tag>
+            
+        </tags>
       
     </entry>
     
@@ -219,19 +333,6 @@
           <category> Shell </category>
           
       </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>我的第一篇博客文章</title>
-      <link href="2020/100115650.html"/>
-      <url>2020/100115650.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
       
       
     </entry>

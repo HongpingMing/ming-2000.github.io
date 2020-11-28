@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="我的第一篇博客文章, 明红平的博客">
+    <meta name="keywords" content="Linux 中创建配置逻辑卷, 明红平的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>我的第一篇博客文章 | 明红平的博客</title>
+    <title>Linux 中创建配置逻辑卷 | 明红平的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -246,12 +246,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">我的第一篇博客文章</h1>
+                    <h1 class="description center-align post-title">Linux 中创建配置逻辑卷</h1>
                 </div>
             </div>
         </div>
@@ -369,12 +369,29 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Linux/">
+                                <span class="chip bg-color">Linux</span>
+                            </a>
+                        
+                            <a href="/tags/LVM/">
+                                <span class="chip bg-color">LVM</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Linux/" class="post-category">
+                                Linux
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -383,7 +400,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-01
+                    2020-11-09
                 </div>
                 
 
@@ -392,14 +409,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    1.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    6 分
                 </div>
                 
 
@@ -409,7 +426,135 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <p>逻辑卷管理<code>Logical Volume Management（LVM）</code>在 Linux 系统中扮演着重要的角色，它可以提高可用性、磁盘 I/O、性能和磁盘管理的能力。<br><code>LVM</code> 是一种被广泛使用的技术，<a id="more"></a>对于磁盘管理来说，它是非常灵活的。</p>
+<p>它在物理磁盘和文件系统之间增加了一个额外的层，允许你创建一个逻辑卷而不是物理磁盘。</p>
+<p><code>LVM</code> 允许你在需要的时候轻松地调整、扩展和减少逻辑卷的大小。</p>
+
+
+<h3 id="1-创建-LVM-物理卷（pvcreate）"><a href="#1-创建-LVM-物理卷（pvcreate）" class="headerlink" title="1.创建 LVM 物理卷（pvcreate）"></a>1.创建 LVM 物理卷<code>（pvcreate）</code></h3><p>你可以使用任何磁盘、<code>RAID</code> 阵列、<code>SAN</code> 磁盘或分区作为 <code>LVM</code> 物理卷<code>Physical Volume（PV）</code>。</p>
+<pre><code>pvcreate [物理卷名]</code></pre>
+<p>当在系统中检测到磁盘，使用<code>pvcreate</code> 命令初始化 <code>LVM PV</code>：  </p>
+<pre><code># pvcreate /dev/sdb /dev/sdc /dev/sdd
+Physical volume &quot;/dev/sdb&quot; successfully created
+Physical volume &quot;/dev/sdc&quot; successfully created
+Physical volume &quot;/dev/sdd&quot; successfully created</code></pre>
+<p><strong>注意：</strong>  </p>
+<p>上面的命令将删除给定磁盘 <code>/dev/sdb</code>、<code>/dev/sdc</code> 和 <code>/dev/sdd</code> 上的所有数据。  </p>
+<p>物理磁盘可以直接添加到 <code>LVM PV</code> 中，而不必是磁盘分区。</p>
+<p>使用 <code>pvdisplay</code> 和 <code>pvs</code> 命令来显示你创建的 PV。<code>pvs</code> 命令显示的是摘要输出，<code>pvdisplay</code> 显示的是 PV 的详细输出：  </p>
+<pre><code># pvs
+PV VG Fmt Attr PSize PFree
+/dev/sdb lvm2 a-- 15.00g 15.00g
+/dev/sdc lvm2 a-- 15.00g 15.00g
+/dev/sdd lvm2 a-- 15.00g 15.00g</code></pre>
+<p>pvdisplay：  </p>
+<pre><code># pvdisplay
+&quot;/dev/sdb&quot; is a new physical volume of &quot;15.00 GiB&quot;
+--- NEW Physical volume ---
+PV Name               /dev/sdb
+VG Name
+PV Size               15.00 GiB
+Allocatable           NO
+PE Size               0
+Total PE              0
+Free PE               0
+Allocated PE          0
+PV UUID               69d9dd18-36be-4631-9ebb-78f05fe3217f</code></pre>
+<h3 id="2-如何创建一个卷组（Volume-Group）"><a href="#2-如何创建一个卷组（Volume-Group）" class="headerlink" title="2.如何创建一个卷组（Volume Group）"></a>2.如何创建一个卷组<code>（Volume Group）</code></h3><p>卷组<code>Volume Group（VG）</code>是 <code>LVM</code> 结构中的另一层。基本上，卷组由你创建的 LVM 物理卷组成，你可以将物理卷添加到现有的卷组中，或者根据需要为物理卷创建新的卷组。  </p>
+<p>语法：  </p>
+<pre><code>vgcreate [卷组名] [物理卷名]</code></pre>
+<p>将新的物理卷添加到新的卷组中</p>
+<pre><code># vgcreate vg01 /dev/sdb /dev/sdc /dev/sdd
+Volume group &quot;vg01&quot; successfully created</code></pre>
+<p><strong>注意：</strong><br>   默认情况下，它使用 <code>4MB</code> 的物理范围<code>Physical Extent（PE）</code>，但你可以根据你的需要改变它。</p>
+<p>使用<code>vgs</code> 和 <code>vgdisplay</code> 命令来显示你创建的 <code>VG</code> 的信息：</p>
+<pre><code># vgs vg01  
+VG #PV #LV #SN Attr VSize VFree
+vg01 3 0 0 wz--n- 44.99g 44.99g    </code></pre>
+<p>vgdisplay  </p>
+<pre><code># vgdisplay vg01
+--- Volume group ---
+VG Name              vg01
+System ID
+Format               lvm2
+Metadata Areas       3
+Metadata Sequence No 1
+VG Access            read/write
+VG Status            resizable
+MAX LV               0
+Cur LV               0
+Open LV              0
+Max PV               0
+Cur PV               3
+Act PV               3
+VG Size              44.99 GiB
+PE Size              4.00 MiB
+Total PE             11511
+Alloc PE / Size      0 / 0
+Free PE / Size       11511 / 44.99 GiB
+VG UUID              d17e3c31-e2c9-4f11-809c-94a549bc43b7</code></pre>
+<h3 id="3-扩展卷组"><a href="#3-扩展卷组" class="headerlink" title="3.扩展卷组"></a>3.扩展卷组</h3><p>如果 <code>VG</code> 没有空间，请使用以下命令将新的物理卷添加到现有卷组中。</p>
+<p>语法：</p>
+<pre><code>vgextend [已有卷组名] [物理卷名]  </code></pre>
+<p>如：  </p>
+<pre><code>vgextend vg01 /dev/sde
+Volume group &quot;vg01&quot; successfully extended  </code></pre>
+<h3 id="4-创建以GB-为单位逻辑卷（Logical-Volume）"><a href="#4-创建以GB-为单位逻辑卷（Logical-Volume）" class="headerlink" title="4.创建以GB 为单位逻辑卷（Logical Volume）"></a>4.创建以GB 为单位逻辑卷<code>（Logical Volume）</code></h3><p>逻辑卷<code>Logical Volume（LV）</code>是 <code>LVM</code> 结构中的顶层。逻辑卷是由卷组创建的块设备。它作为一个虚拟磁盘分区，可以使用 <code>LVM</code> 命令轻松管理。<br>你可以使用 <code>lvcreate</code> 命令创建一个新的逻辑卷。</p>
+<p>语法：  </p>
+<pre><code>lvcreate –n [逻辑卷名] –L [逻辑卷大小] [要创建的 LV 所在的卷组名称]  </code></pre>
+<p>例：创建一个大小为 10GB 的逻辑卷 <code>lv001</code>  </p>
+<pre><code># lvcreate -n lv001 -L 10G vg01
+Logical volume &quot;lv001&quot; created</code></pre>
+<p>使用 <code>lvs</code> 和 <code>lvdisplay</code> 命令来显示你所创建的 <code>LV</code> 的信息：</p>
+<pre><code># lvs /dev/vg01/lvol01
+LV VG Attr LSize Pool Origin Data% Move Log Cpy%Sync Convert
+lv001 vg01 mwi-a-m-- 10.00g lv001_mlog 100.00</code></pre>
+<p>lvdisplay  </p>
+<pre><code># lvdisplay /dev/vg01/lv001
+--- Logical volume ---
+LV Path                /dev/vg01/lv001
+LV Name                lv001
+VG Name                vg01
+LV UUID                ca307aa4-0866-49b1-8184-004025789e63
+LV Write Access        read/write
+LV Creation host, time localhost.localdomain, 2020-09-10 11:43:05 -0700
+LV Status              available
+# open                 0
+LV Size                10.00 GiB
+Current LE             2560
+Segments               1
+Allocation             inherit
+Read ahead sectors     auto
+- currently set to     256
+Block device           253:4</code></pre>
+<h3 id="5-创建以PE大小逻辑卷"><a href="#5-创建以PE大小逻辑卷" class="headerlink" title="5.创建以PE大小逻辑卷"></a>5.创建以PE大小逻辑卷</h3><p>或者，你可以使用物理范围<code>（PE）</code>大小创建逻辑卷。</p>
+<p><strong>如何计算PE值？</strong><br>默认情况下，它使用 <code>4MB</code> 的物理范围，但可以通过运行 <code>vgdisplay</code> 命令来检查正确的 PE 大小，因为这可以根据需求进行更改。  </p>
+<pre><code>10GB = 10240MB / 4MB （PE 大小） = 2560 PE</code></pre>
+<p>PE 大小创建逻辑卷 <code>（lvcreate）</code> 的一般语法：<br>    lvcreate –n [逻辑卷名] –l [物理扩展 （PE） 大小] [要创建的 LV 所在的卷组名称]</p>
+<p>例：<br>使用 PE 大小创建 10GB 的逻辑卷，命令如下：  </p>
+<pre><code># lvcreate -n lv001 -l 2560 vg01</code></pre>
+<h3 id="6-创建文件系统"><a href="#6-创建文件系统" class="headerlink" title="6.创建文件系统"></a>6.创建文件系统</h3><p>在创建有效的文件系统之前，你不能使用逻辑卷。 </p>
+<p><strong>语法</strong>   </p>
+<pre><code>mkfs –t [文件系统类型] /dev/[LV 所在的卷组名称]/[LV 名称]</code></pre>
+<p>例：<br>使用以下命令将逻辑卷 <code>lv001</code> 格式化为 <code>ext4</code> 文件系统</p>
+<pre><code># mkfs -t ext4 /dev/vg01/lv001</code></pre>
+<p>对于 <code>xfs</code> 文件系统：  </p>
+<pre><code># mkfs -t xfs /dev/vg01/lv001</code></pre>
+<h3 id="7-挂载逻辑卷"><a href="#7-挂载逻辑卷" class="headerlink" title="7.挂载逻辑卷"></a>7.挂载逻辑卷</h3><p>最后，你需要挂载逻辑卷来使用它。确保在 <code>/etc/fstab</code> 中添加一个条目，以便系统启动时自动加载。</p>
+<p>创建一个目录来挂载逻辑卷：  </p>
+<pre><code># mkdir /lvmtest</code></pre>
+<p>使用挂载命令挂载逻辑卷：  </p>
+<pre><code># mount /dev/vg01/lv001 /lvmtest  </code></pre>
+<p>在 <code>/etc/fstab</code> 文件中添加新的逻辑卷详细信息，以便系统启动时自动挂载</p>
+<pre><code># vi /etc/fstab
+/dev/vg01/lv001 /lvmtest xfs defaults 0 0</code></pre>
+<p>使用 <code>df</code> 命令检查新挂载的卷：</p>
+<pre><code># df -h /lvmtest
+Filesystem Size Used Avail Use% Mounted on
+/dev/mapper/vg01-lv001 15360M 34M 15326M 4% /lvmtest  </code></pre>
+<p>注：挂载点一定存在，否则会导致系统不能正常开机</p>
+<p>本文由 LCTT 原创编译，Linux中国 荣誉推出</p>
+
             </div>
             <hr/>
 
@@ -434,7 +579,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2020/100115650.html">http://example.com/2020/100115650.html</a>
+                    <a href="http://example.com/2020/110922941.html">http://example.com/2020/110922941.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -471,7 +616,15 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/Linux/">
+                                    <span class="chip bg-color">Linux</span>
+                                </a>
+                            
+                                <a href="/tags/LVM/">
+                                    <span class="chip bg-color">LVM</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -517,39 +670,48 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/101045956.html">
+                <a href="/2020/110933074.html">
                     <div class="card-image">
                         
                         
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="/medias/featureimages/18.jpg" class="responsive-img" alt="shell变量定义">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="/medias/featureimages/14.jpg" class="responsive-img" alt="Linux调整逻辑卷容量">
                         
-                        <span class="card-title">shell变量定义</span>
+                        <span class="card-title">Linux调整逻辑卷容量</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            ① Shell的基本语法结构
-  如：变量定义、条件判断、循环语句(for、until、while)、分支语句、函数和数组等； 
-  ② 基本正则表达式的运用;
-  ③ 文件处理三剑客：grep、sed、awk工具的使用；
+                            
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-10
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-09
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Shell/" class="post-category">
-                                    Shell
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
                                 </a>
                             
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
+                    </a>
+                    
+                    <a href="/tags/LVM/">
+                        <span class="chip bg-color">LVM</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -558,37 +720,52 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/100115650.html">
+                <a href="/2020/11069049.html">
                     <div class="card-image">
                         
                         
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="/medias/featureimages/17.jpg" class="responsive-img" alt="我的第一篇博客文章">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="/medias/featureimages/12.jpg" class="responsive-img" alt="网页中引入javascript方式">
                         
-                        <span class="card-title">我的第一篇博客文章</span>
+                        <span class="card-title">网页中引入javascript方式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            JavaScript 是一种轻量级的编程语言。JavaScript 是可插入 HTML 页面的编程代码。JavaScript 插入 HTML 页面后，可由所有的现代浏览器执行。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-01
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-06
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Ming hongping
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/JavaScript/" class="post-category">
+                                    JavaScript
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/HTML/">
+                        <span class="chip bg-color">HTML</span>
+                    </a>
+                    
+                    <a href="/tags/javascript/">
+                        <span class="chip bg-color">javascript</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -794,7 +971,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">12.1k</span>&nbsp;字
+                class="white-color">14k</span>&nbsp;字
             
             
             
