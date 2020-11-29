@@ -51,7 +51,7 @@
     <updated>2020-11-28T07:31:26.745Z</updated>
     
     
-    <summary type="html">&lt;p&gt;逻辑卷管理&lt;code&gt;Logical Volume Management（LVM）&lt;/code&gt;在 Linux 系统中扮演着重要的角色，它可以提高可用性、磁盘 I/O、性能和磁盘管理的能力。&lt;br&gt;&lt;code&gt;LVM&lt;/code&gt; 是一种被广泛使用的技术，</summary>
+    <summary type="html">&lt;p&gt;逻辑卷管理&lt;code&gt;Logical Volume Management（LVM）&lt;/code&gt;在 Linux 系统中扮演着重要的角色，它可以提高可用性、磁盘 I/O、性能和磁盘管理的能力。&lt;br&gt;&lt;code&gt;LVM&lt;/code&gt; 是一种被广泛使用的技术，&lt;/p&gt;</summary>
     
     
     
@@ -72,7 +72,7 @@
     <updated>2020-11-28T07:36:17.261Z</updated>
     
     
-    <summary type="html">&lt;p&gt;JavaScript 是一种轻量级的编程语言。JavaScript 是可插入 HTML 页面的编程代码。JavaScript 插入 HTML 页面后，可由所有的现代浏览器执行。</summary>
+    <summary type="html">&lt;p&gt;JavaScript 是一种轻量级的编程语言。JavaScript 是可插入 HTML 页面的编程代码。JavaScript 插入 HTML 页面后，可由所有的现代浏览器执行。&lt;/p&gt;</summary>
     
     
     
@@ -117,7 +117,7 @@
     <updated>2020-11-28T07:38:46.000Z</updated>
     
     
-    <summary type="html">&lt;p&gt;Node.js 是一个基于Chrome JavaScript 运行时建立的一个平台。Node.js是一个事件驱动I/O服务端JavaScript环境，基于Google的V8引擎，V8引擎执行Javascript的速度非常快，性能非常好。</summary>
+    <summary type="html">&lt;p&gt;Node.js 是一个基于Chrome JavaScript 运行时建立的一个平台。Node.js是一个事件驱动I/O服务端JavaScript环境，基于Google的V8引擎，V8引擎执行Javascript的速度非常快，性能非常好。&lt;/p&gt;</summary>
     
     
     
@@ -136,7 +136,7 @@
     <updated>2020-11-28T07:36:58.323Z</updated>
     
     
-    <summary type="html">&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;Git是一个分布式的版本控制系统，它功能强大、操作简单，并且能很好地解决以上问题。目前，熟练地使用Git已经成了一个软件开发从业者必备的技能。</summary>
+    <summary type="html">&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;Git是一个分布式的版本控制系统，它功能强大、操作简单，并且能很好地解决以上问题。目前，熟练地使用Git已经成了一个软件开发从业者必备的技能。&lt;/p&gt;</summary>
     
     
     
@@ -157,7 +157,7 @@
     <updated>2020-11-28T07:38:02.238Z</updated>
     
     
-    <summary type="html">&lt;p&gt;git的一大特点就是，能为不同的系统下的开发者提供一个合作开发平台。而团队如果要基于Git进行协同开发，就必须依赖远程版本库</summary>
+    <summary type="html">&lt;p&gt;git的一大特点就是，能为不同的系统下的开发者提供一个合作开发平台。而团队如果要基于Git进行协同开发，就必须依赖远程版本库&lt;/p&gt;</summary>
     
     
     
@@ -176,7 +176,7 @@
     <updated>2020-11-28T07:39:30.313Z</updated>
     
     
-    <summary type="html">&lt;p&gt;DNS（Domain Name System，域名系统）技术应运而生。这是一项用于管理和解析域名与 IP 地址对应关系的技术就是能够接受用户输入的域名或 IP 地址</summary>
+    <summary type="html">&lt;p&gt;DNS（Domain Name System，域名系统）技术应运而生。这是一项用于管理和解析域名与 IP 地址对应关系的技术就是能够接受用户输入的域名或 IP 地址&lt;/p&gt;</summary>
     
     
     
@@ -199,7 +199,7 @@
     
     <summary type="html">&lt;p&gt;linux shell 可以用户定义函数，然后在shell脚本中可以随便调用。&lt;/p&gt;
 &lt;h2 id=&quot;1-什么是函数？&quot;&gt;&lt;a href=&quot;#1-什么是函数？&quot; class=&quot;headerlink&quot; title=&quot;1. 什么是函数？&quot;&gt;&lt;/a&gt;1. 什么是函数？&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;shell中允许将&lt;strong&gt;一组命令集合&lt;/strong&gt;或&lt;strong&gt;语句&lt;/strong&gt;形</summary>
+&lt;li&gt;&lt;p&gt;shell中允许将&lt;strong&gt;一组命令集合&lt;/strong&gt;或&lt;strong&gt;语句&lt;/strong&gt;形&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;</summary>
     
     
     
@@ -220,7 +220,7 @@
     <updated>2020-11-28T07:40:32.004Z</updated>
     
     
-    <summary type="html">&lt;p&gt;Samba是在Linux和UNIX系统上实现SMB协议的一个免费软件，由服务器及客户端程序构成。SMB（Server Messages Block，信息服务块）是一种在局域网上共享文件和打印机的一种通信协议</summary>
+    <summary type="html">&lt;p&gt;Samba是在Linux和UNIX系统上实现SMB协议的一个免费软件，由服务器及客户端程序构成。SMB（Server Messages Block，信息服务块）是一种在局域网上共享文件和打印机的一种通信协议&lt;/p&gt;</summary>
     
     
     
@@ -239,7 +239,7 @@
     <updated>2020-11-28T07:34:29.685Z</updated>
     
     
-    <summary type="html">&lt;p&gt;Shell case语句为多选择语句。可以用case语句匹配一个值与一个模式，如果匹配成功，执行相匹配的命令</summary>
+    <summary type="html">&lt;p&gt;Shell case语句为多选择语句。可以用case语句匹配一个值与一个模式，如果匹配成功，执行相匹配的命令&lt;/p&gt;</summary>
     
     
     
@@ -260,7 +260,7 @@
     <updated>2020-11-28T08:04:59.298Z</updated>
     
     
-    <summary type="html">&lt;p&gt;忘记root密码这个问题出现的几率是很高的，不过，在linux下解决这个问题也很简单，只需重启linux系统，然后引导进入linux的单用户模式</summary>
+    <summary type="html">&lt;p&gt;忘记root密码这个问题出现的几率是很高的，不过，在linux下解决这个问题也很简单，只需重启linux系统，然后引导进入linux的单用户模式&lt;/p&gt;</summary>
     
     
     
@@ -303,7 +303,7 @@
     <updated>2020-11-28T08:07:16.084Z</updated>
     
     
-    <summary type="html">&lt;p&gt;YUM（yellowdog updater modified）是一个RPM系统的自动更新和软件包安装/卸载器。它可以自动计算依赖和找出想要安装的软件包。这使得它更容易而不必手动更新每一个使用RPM维护机器的”软件组“。YUM有一个添加简单功能的插件接口。</summary>
+    <summary type="html">&lt;p&gt;YUM（yellowdog updater modified）是一个RPM系统的自动更新和软件包安装/卸载器。它可以自动计算依赖和找出想要安装的软件包。这使得它更容易而不必手动更新每一个使用RPM维护机器的”软件组“。YUM有一个添加简单功能的插件接口。&lt;/p&gt;</summary>
     
     
     
